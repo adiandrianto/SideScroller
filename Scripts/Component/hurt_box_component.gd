@@ -16,4 +16,4 @@ func on_area_entered(other_area: Area2D):
 	
 	var hitbox_component = other_area as HitBoxComponent
 	health_component.damaged(hitbox_component.dmg_point)
-	print("being hit")
+	print("flying alien being hit")
