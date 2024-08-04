@@ -1,0 +1,106 @@
+[gd_scene load_steps=10 format=3 uid="uid://21nd75d1ab0b"]
+
+[ext_resource type="Script" path="res://Scripts/Bullet/gun_bullet.gd" id="1_20wy8"]
+[ext_resource type="Texture2D" uid="uid://b07wfb3w5x7sg" path="res://Assets/Weapon Sprite/machinegun_bullet.png" id="2_xejtb"]
+[ext_resource type="PackedScene" uid="uid://be4lfovfuvq74" path="res://Scenes/Components/hit_box_component.tscn" id="3_x5n8v"]
+[ext_resource type="AudioStream" uid="uid://bjel7f3xeymkw" path="res://Assets/Audio/SFX/MachineGun shoot.wav" id="4_dyi08"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjkc5"]
+radius = 3.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_60mg0"]
+radius = 2.0
+
+[sub_resource type="Animation" id="Animation_0kwvb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_sr1bq"]
+resource_name = "shattered"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_unvlx"]
+_data = {
+"RESET": SubResource("Animation_0kwvb"),
+"shattered": SubResource("Animation_sr1bq")
+}
+
+[node name="MachineGunBullet" type="CharacterBody2D" node_paths=PackedStringArray("shattered_collision", "animation_player")]
+script = ExtResource("1_20wy8")
+shattered_collision = NodePath("ShatteredCollision")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xejtb")
+hframes = 4
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("3_x5n8v")]
+collision_layer = 8
+dmg_point = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_hjkc5")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.500002, 1.90735e-06)
+scale = Vector2(6.55, 0.7)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_dyi08")
+volume_db = -14.0
+pitch_scale = 0.85
+autoplay = true
+
+[node name="ShatteredCollision" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShatteredCollision"]
+position = Vector2(5, 0)
+shape = SubResource("CircleShape2D_60mg0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_unvlx")
+}
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

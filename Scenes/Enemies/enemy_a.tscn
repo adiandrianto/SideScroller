@@ -1,0 +1,82 @@
+[gd_scene load_steps=13 format=3 uid="uid://b6naww1axjgso"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/enemy_a.gd" id="1_2wlea"]
+[ext_resource type="Texture2D" uid="uid://bymegc56qbued" path="res://Assets/Enemy Sprite/enemy_A.png" id="2_11s2r"]
+[ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="3_is3qx"]
+[ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="4_vfun2"]
+[ext_resource type="PackedScene" uid="uid://vf7g4xb870qw" path="res://Scenes/Enemies/killzone.tscn" id="5_bkbvj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8u7c"]
+atlas = ExtResource("2_11s2r")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1acu"]
+atlas = ExtResource("2_11s2r")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gqy85"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8u7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1acu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ektyn"]
+radius = 16.0
+height = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_86hr5"]
+size = Vector2(23, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5pucn"]
+radius = 73.2462
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sb35n"]
+size = Vector2(26, 34)
+
+[node name="EnemyA" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_2wlea")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gqy85")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ektyn")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_is3qx")]
+
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_vfun2")]
+health_component = NodePath("../HealthComponent")
+
+[node name="HurtBoxCollision" type="CollisionShape2D" parent="HurtBoxComponent"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_86hr5")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_5pucn")
+
+[node name="RayCast2D_bottom_right" type="RayCast2D" parent="."]
+target_position = Vector2(14, 17)
+
+[node name="RayCast2D_bottom_left" type="RayCast2D" parent="."]
+target_position = Vector2(-14, 17)
+
+[node name="Killzone" parent="." instance=ExtResource("5_bkbvj")]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("RectangleShape2D_sb35n")
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

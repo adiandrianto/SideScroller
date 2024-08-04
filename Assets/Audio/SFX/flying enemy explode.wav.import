@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://fnp81gndaj7q"
+path="res://.godot/imported/flying enemy explode.wav-b6b8b9ed4a428cd15dff7bec1ac3ae10.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/flying enemy explode.wav"
+dest_files=["res://.godot/imported/flying enemy explode.wav-b6b8b9ed4a428cd15dff7bec1ac3ae10.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

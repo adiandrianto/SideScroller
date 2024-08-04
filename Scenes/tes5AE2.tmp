@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4n73h3xwykh1"]
+
+[ext_resource type="Texture2D" uid="uid://c6g35xajwilmq" path="res://Assets/scene.png" id="1_0cv2c"]
+[ext_resource type="PackedScene" uid="uid://ddhv81dvrtjb3" path="res://Players/player.tscn" id="2_y14ms"]
+[ext_resource type="Script" path="res://Scenes/camera.gd" id="3_howiu"]
+[ext_resource type="PackedScene" uid="uid://b6naww1axjgso" path="res://Scenes/Enemies/enemy_a.tscn" id="4_sije6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qalal"]
+size = Vector2(352, 107)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wtxo"]
+size = Vector2(20, 288)
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(960, 90)
+texture = ExtResource("1_0cv2c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(176, 279)
+shape = SubResource("RectangleShape2D_qalal")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(400, 209, 400, 270, 1920, 271, 1920, 129, 1216, 129, 1216, 65, 1168, 65, 1168, 145, 1088, 145, 1088, 65, 1040, 65, 1040, 129, 960, 129, 960, 145, 928, 145, 928, 161, 896, 161, 896, 177, 864, 177, 864, 193, 832, 193, 832, 209)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-10, 148)
+shape = SubResource("RectangleShape2D_7wtxo")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(241, 135)
+script = ExtResource("3_howiu")
+player = NodePath("../Player")
+smoothing_enabled = true
+smooth_value = 2
+
+[node name="Player" parent="." instance=ExtResource("2_y14ms")]
+position = Vector2(84, 198)
+
+[node name="EnemyA" parent="." instance=ExtResource("4_sije6")]
+position = Vector2(305, 205)

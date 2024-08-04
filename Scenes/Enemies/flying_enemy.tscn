@@ -1,0 +1,286 @@
+[gd_scene load_steps=21 format=3 uid="uid://ckvoiwx40mj15"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/flying_enemy.gd" id="1_10uvs"]
+[ext_resource type="Texture2D" uid="uid://bg2jlsxlksvo7" path="res://Assets/Enemy Sprite/flying_alien.png" id="1_senvq"]
+[ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="2_rs8n4"]
+[ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="3_tqy2k"]
+[ext_resource type="PackedScene" uid="uid://be4lfovfuvq74" path="res://Scenes/Components/hit_box_component.tscn" id="4_ij2d5"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="6_1bq3e"]
+[ext_resource type="AudioStream" uid="uid://fnp81gndaj7q" path="res://Assets/Audio/SFX/flying enemy explode.wav" id="6_jvuqb"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/flying_enemy_idle_state.gd" id="7_l44ce"]
+[ext_resource type="AudioStream" uid="uid://c4k4dwgit0g1a" path="res://Assets/Audio/SFX/flying enemy laser.wav" id="7_mhnus"]
+[ext_resource type="Script" path="res://Scenes/Enemies/flying_enemy_attack_state.gd" id="8_lpd2t"]
+[ext_resource type="Script" path="res://Scenes/Enemies/flying_enemy_chase_state.gd" id="10_ng17f"]
+[ext_resource type="Script" path="res://Scenes/Enemies/enemy_hurt_state.gd" id="12_7mhnt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a8ue8"]
+radius = 14.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40h16"]
+size = Vector2(9, 204)
+
+[sub_resource type="Animation" id="Animation_2hm3o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBoxComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8q8m0"]
+resource_name = "attack"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.7, 0.8, 1.2, 1.4, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [5, 4, 5, 6, 7, 8, 7, 6, 5, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBoxComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StateMachine/Attack")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"to_idle"
+}]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_mhnus")
+}],
+"times": PackedFloat32Array(0.6)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="Animation" id="Animation_2fyj8"]
+resource_name = "death"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [11, 12, 13, 14]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_jvuqb")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = false
+
+[sub_resource type="Animation" id="Animation_fqlpb"]
+resource_name = "hurt"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(100, 100, 100, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/Hurt")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"to_idle"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_4d7tc"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fb1wj"]
+_data = {
+"RESET": SubResource("Animation_2hm3o"),
+"attack": SubResource("Animation_8q8m0"),
+"death": SubResource("Animation_2fyj8"),
+"hurt": SubResource("Animation_fqlpb"),
+"idle": SubResource("Animation_4d7tc")
+}
+
+[node name="FlyingEnemy" type="CharacterBody2D"]
+script = ExtResource("1_10uvs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 83)
+texture = ExtResource("1_senvq")
+hframes = 15
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_rs8n4")]
+max_health = 50
+
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_tqy2k")]
+collision_layer = 2
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+position = Vector2(1, -1)
+shape = SubResource("CircleShape2D_a8ue8")
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("4_ij2d5")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(0.5, 117)
+shape = SubResource("RectangleShape2D_40h16")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fb1wj")
+}
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("6_1bq3e")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("7_l44ce")
+enemy = NodePath("../..")
+
+[node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("10_ng17f")
+enemy = NodePath("../..")
+
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("8_lpd2t")
+enemy = NodePath("../..")
+
+[node name="Hurt" type="Node" parent="StateMachine"]
+script = ExtResource("12_7mhnt")
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -9.0
+offset_top = -37.0
+offset_right = 31.0
+offset_bottom = -14.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+
+[node name="StateLabel" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -57.0
+offset_right = 30.0
+offset_bottom = -34.0
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="being_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_component_being_hit"]
+[connection signal="being_hit" from="HurtBoxComponent" to="StateMachine/Chase" method="_on_hurt_box_component_being_hit"]
+[connection signal="being_hit" from="HurtBoxComponent" to="StateMachine/Attack" method="_on_hurt_box_component_being_hit"]
