@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 			open()
 		if Input.is_action_pressed("down"):
 			close()
-		
+
 func open():
 	animation_player.play("open")
 	await animation_player.animation_finished
@@ -23,6 +23,7 @@ func open():
 	second_dimension.collision_enabled = true
 
 func close():
+	animation_player.play("close")
+	await animation_player.animation_finished
 	second_dimension.collision_enabled = false
 	tile_map.visible = true
-	
