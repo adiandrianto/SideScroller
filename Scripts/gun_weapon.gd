@@ -1,4 +1,5 @@
 extends Node2D
+class_name Weapon
 
 @export var sprite: Sprite2D
 @export var marker_left: Marker2D

@@ -1,8 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://ckvoiwx40mj15"]
+[gd_scene load_steps=22 format=3 uid="uid://ckvoiwx40mj15"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/flying_enemy.gd" id="1_10uvs"]
 [ext_resource type="Texture2D" uid="uid://bg2jlsxlksvo7" path="res://Assets/Enemy Sprite/flying_alien.png" id="1_senvq"]
-[ext_resource type="Shader" path="res://Scenes/Enemies/Blink.gdshader" id="2_gpook"]
+[ext_resource type="Material" uid="uid://bv3bavguqjynk" path="res://Shader/flash_shader.tres" id="2_4cmld"]
 [ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="2_rs8n4"]
 [ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="3_tqy2k"]
 [ext_resource type="PackedScene" uid="uid://be4lfovfuvq74" path="res://Scenes/Components/hit_box_component.tscn" id="4_ij2d5"]
@@ -13,11 +13,6 @@
 [ext_resource type="Script" path="res://Scenes/Enemies/flying_enemy_attack_state.gd" id="8_lpd2t"]
 [ext_resource type="Script" path="res://Scenes/Enemies/flying_enemy_chase_state.gd" id="10_ng17f"]
 [ext_resource type="Script" path="res://Scenes/Enemies/enemy_hurt_state.gd" id="12_7mhnt"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y805h"]
-shader = ExtResource("2_gpook")
-shader_parameter/blink_color = Color(1, 1, 1, 1)
-shader_parameter/blink_intensity = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a8ue8"]
 radius = 14.0
@@ -226,7 +221,7 @@ _data = {
 script = ExtResource("1_10uvs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_y805h")
+material = ExtResource("2_4cmld")
 position = Vector2(0, 83)
 texture = ExtResource("1_senvq")
 hframes = 15
@@ -244,6 +239,7 @@ shape = SubResource("CircleShape2D_a8ue8")
 
 [node name="HitBoxComponent" parent="." instance=ExtResource("4_ij2d5")]
 collision_layer = 16
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 position = Vector2(0.5, 117)

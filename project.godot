@@ -23,6 +23,10 @@ window/size/window_width_override=960
 window/size/window_height_override=540
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdfxr/plugin.cfg")
+
 [global_group]
 
 enemy=""
@@ -69,7 +73,10 @@ shoot={
 2d_physics/layer_3="collide with bullet"
 2d_physics/layer_4="hitbox"
 2d_physics/layer_5="enemy hitbox"
+2d_physics/layer_6="enemy bullet"
+2d_physics/layer_7="enemy"
 2d_physics/layer_8="door"
+2d_physics/layer_9="player hurtbox"
 
 [physics]
 

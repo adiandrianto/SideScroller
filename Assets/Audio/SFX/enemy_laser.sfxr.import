@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://ddxf8vnrx88gt"
+path="res://.godot/imported/enemy_laser.sfxr-d1b0553f11b37b9b688e1a3cc7aa0060.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/enemy_laser.sfxr"
+dest_files=["res://.godot/imported/enemy_laser.sfxr-d1b0553f11b37b9b688e1a3cc7aa0060.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

@@ -1,0 +1,99 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnehnfwepst6o"]
+
+[ext_resource type="Script" path="res://Scripts/Bullet/enemy_bullet.gd" id="1_1dl18"]
+[ext_resource type="Texture2D" uid="uid://b2fesy5rlksv7" path="res://Assets/Weapon Sprite/enemy_laser_bullet.png" id="2_fg7qf"]
+[ext_resource type="Script" path="res://Scripts/Component/hit_box_component.gd" id="3_y1p0y"]
+[ext_resource type="AudioStream" uid="uid://ddxf8vnrx88gt" path="res://Assets/Audio/SFX/enemy_laser.sfxr" id="4_qp38e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qdvba"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_7upcw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_pqhbd"]
+resource_name = "shoot"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5708, 3.14159, 4.71239, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i4fqu"]
+_data = {
+"RESET": SubResource("Animation_7upcw"),
+"shoot": SubResource("Animation_pqhbd")
+}
+
+[node name="EnemyLaserBullet" type="CharacterBody2D"]
+script = ExtResource("1_1dl18")
+bullet_speed = 120
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("2_fg7qf")
+offset = Vector2(0.5, 0.5)
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("3_y1p0y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("CircleShape2D_qdvba")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qp38e")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i4fqu")
+}
