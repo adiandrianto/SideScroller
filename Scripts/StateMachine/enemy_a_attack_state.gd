@@ -28,6 +28,9 @@ func state_physics_update(delta):
 		sprite.flip_h = false
 	else :
 		sprite.flip_h = true
+	
+	if distance.length() > 450 :
+		transitioned.emit(self, "idle")
 
 func shoot():
 	var bullet = bullet_scene.instantiate()
