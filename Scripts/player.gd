@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
+
 @export var speed : float = 120.0
 @export var jump_velocity : float = -350.0
 @export var double_jump : float =  -100       #just testing
+@onready var label = $Label
 @onready var health_component = $HealthComponent
-@onready var pistol = $MachineGun
+@onready var pistol = $Pistol
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var can_shoot_pistol := true 
 @onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
@@ -18,7 +20,10 @@ var direction : Vector2 = Vector2.ZERO
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("shoot") && can_shoot_pistol:
 		pistol.shoot()
-
+		
+func _process(delta):
+	label.text = str(health_component.current_health)
+	
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -79,6 +84,7 @@ func jump():
 func _on_animated_sprite_2d_animation_finished():
 	if animated_sprite.animation == "jump":
 		animation_locked = false
+
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	get_tree().reload_current_scene()
