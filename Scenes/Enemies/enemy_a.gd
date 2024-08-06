@@ -6,7 +6,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurt_box_component: HurtBoxComponent = $HurtBoxComponent
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var health_label: Label = $HealthLabel
 @onready var state_label: Label = $StateLabel
 @onready var state_machine: Node = $StateMachine
 @onready var player = get_tree().get_first_node_in_group("player")

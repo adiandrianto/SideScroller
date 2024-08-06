@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/gun_weapon.gd" id="1_e3ndv"]
 [ext_resource type="PackedScene" uid="uid://cyr7y5ifhob42" path="res://Scenes/Bullets/pistol_bullet.tscn" id="2_ahsxe"]
 
-[node name="Pistol" type="Node2D" node_paths=PackedStringArray("sprite", "marker_left", "marker_right", "marker_up")]
+[node name="Pistol" type="Node2D" node_paths=PackedStringArray("sprite", "marker_left", "marker_right", "marker_up") groups=["weapon"]]
 script = ExtResource("1_e3ndv")
 sprite = NodePath("Sprite")
 marker_left = NodePath("MarkerLeft")

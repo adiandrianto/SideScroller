@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://21nd75d1ab0b" path="res://Scenes/Bullets/machine_gun_bullet.tscn" id="2_lh4mo"]
 [ext_resource type="Texture2D" uid="uid://c084l0ph2vp40" path="res://Assets/Weapon Sprite/machinegun.png" id="3_exnms"]
 
-[node name="MachineGun" type="Node2D" node_paths=PackedStringArray("sprite", "marker_left", "marker_right", "marker_up")]
+[node name="MachineGun" type="Node2D" node_paths=PackedStringArray("sprite", "marker_left", "marker_right", "marker_up") groups=["weapon"]]
 script = ExtResource("1_drm17")
 sprite = NodePath("Sprite")
 marker_left = NodePath("MarkerLeft")

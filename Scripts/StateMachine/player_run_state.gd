@@ -1,11 +1,18 @@
 extends State
 
 @onready var animated_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
-@export var speed:= 1000
-@export var max_horizontal_speed := 100
+@export var speed:= 600
+@export var max_horizontal_speed := 75
 
 func state_physics_update(delta):
 	var direction = Input.get_axis("left", "right")
+	
+	if direction > 0.0:
+		animated_sprite.flip_h = false
+		owner.weapon.flip_right()
+	elif direction < 0.0:
+		animated_sprite.flip_h = true
+		owner.weapon.flip_left()
 	
 	if direction :
 		owner.velocity.x += direction * speed * delta
@@ -23,10 +30,4 @@ func state_physics_update(delta):
 func state_enter():
 	animated_sprite.play("run")
 	
-func update_facing_direction():
-	if owner.direction.x > 0:
-		animated_sprite.flip_h = false
-		#pistol.flip_right()
-	elif owner.direction.x < 0:
-		animated_sprite.flip_h = true
-		#pistol.flip_left()
+	

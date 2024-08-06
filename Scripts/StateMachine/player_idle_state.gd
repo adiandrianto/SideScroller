@@ -2,7 +2,7 @@ extends State
 
 @export var slow_down_speed := 500
 @onready var animated_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
-@onready var weapon = $MachineGun
+@onready var weapon = get_tree().get_first_node_in_group("weapon")
 @onready var can_shoot_weapon := true 
 
 var direction := Vector2.LEFT
@@ -13,11 +13,6 @@ func state_enter():
 		
 func state_process(delta):
 	pass
-	#if Input.is_action_just_pressed("jump"):
-		#transitioned.emit(self, "Jump")
-#
-	#if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
-		#transitioned.emit(self, "Run")
 		
 func state_physics_update(delta):
 	owner.velocity.x = move_toward(owner.velocity.x, 0, slow_down_speed)
