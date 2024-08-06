@@ -91,5 +91,14 @@ func _on_animated_sprite_2d_animation_finished():
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	get_tree().reload_current_scene()
 
+func SetShader_BlinkIntensity(newValue : float):
+	animated_sprite.material.set_shader_parameter("blink_intensity", newValue)
+	
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	get_tree().reload_current_scene()
+
 func _on_hurt_box_component_being_hit() -> void:
 	hurt_sfx.play(0.0)
+	var tween = get_tree().create_tween()
+	tween.tween_method(SetShader_BlinkIntensity, 1.0,0.0,0.5)
