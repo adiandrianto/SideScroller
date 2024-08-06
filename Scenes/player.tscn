@@ -156,9 +156,6 @@ height = 34.0
 collision_mask = 512
 collision_priority = 1.53
 script = ExtResource("1_e0se1")
-speed = null
-jump_velocity = null
-double_jump = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

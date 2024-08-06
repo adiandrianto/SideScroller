@@ -25,6 +25,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		pistol.shoot()
 		
 func _process(delta):
+	pass
 	#label.text = str(on_ladder)
 	
 func _physics_process(delta):
