@@ -93,10 +93,6 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func SetShader_BlinkIntensity(newValue : float):
 	animated_sprite.material.set_shader_parameter("blink_intensity", newValue)
-	
-
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	get_tree().reload_current_scene()
 
 func _on_hurt_box_component_being_hit() -> void:
 	hurt_sfx.play(0.0)
