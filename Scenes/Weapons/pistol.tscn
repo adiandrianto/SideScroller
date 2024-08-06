@@ -11,7 +11,7 @@ marker_left = NodePath("MarkerLeft")
 marker_right = NodePath("MarkerRight")
 marker_up = NodePath("MarkerUp")
 bullet_scene = ExtResource("2_ahsxe")
-shoot_delay = 0.6
+shoot_delay = 0.5
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_0bog5")

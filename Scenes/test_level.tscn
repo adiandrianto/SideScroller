@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://b4n73h3xwykh1"]
+[gd_scene load_steps=27 format=4 uid="uid://b4n73h3xwykh1"]
 
 [ext_resource type="Script" path="res://Scenes/ground_tile.gd" id="1_a22vf"]
 [ext_resource type="PackedScene" uid="uid://dpq85atgs6uk7" path="res://Scenes/Components/door_component.tscn" id="1_prje3"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ckvoiwx40mj15" path="res://Scenes/Enemies/flying_enemy.tscn" id="5_op2hr"]
 [ext_resource type="Texture2D" uid="uid://gbgtu7pqi1j0" path="res://Assets/Tileset/tileset1.png" id="7_nqueo"]
 [ext_resource type="AudioStream" uid="uid://dr08ri1tbree5" path="res://Assets/Audio/Music/Juhani Junkala [Retro Game Music Pack] Level 1.wav" id="9_g50uf"]
+[ext_resource type="PackedScene" uid="uid://ctuy78wbdejks" path="res://Scenes/health_ui.tscn" id="12_5woi3"]
 
 [sub_resource type="Environment" id="Environment_o7nvf"]
 background_mode = 3
@@ -505,6 +506,8 @@ position = Vector2(1024, 96)
 collision_mask = 3
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="UI" instance=ExtResource("12_5woi3")]
 
 [node name="EnemyA2" parent="." instance=ExtResource("4_sije6")]
 position = Vector2(442, 169)
