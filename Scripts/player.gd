@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var jump_velocity : float = -350.0
 @export var double_jump : float =  -100       #just testing
 @onready var health_component = $HealthComponent
-@onready var pistol = $Pistol
+@onready var pistol = $MachineGun
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var can_shoot_pistol := true 
 @onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D

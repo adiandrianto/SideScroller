@@ -230,7 +230,8 @@ hframes = 15
 max_health = 50
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_tqy2k")]
-collision_layer = 2
+collision_layer = 64
+collision_mask = 2
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]

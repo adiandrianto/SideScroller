@@ -73,7 +73,8 @@ texture = ExtResource("2_xejtb")
 hframes = 4
 
 [node name="HitBoxComponent" parent="." instance=ExtResource("3_x5n8v")]
-collision_layer = 8
+collision_layer = 2
+collision_mask = 64
 dmg_point = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
