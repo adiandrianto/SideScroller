@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6naww1axjgso"]
+[gd_scene load_steps=15 format=3 uid="uid://b6naww1axjgso"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/enemy_a.gd" id="1_2wlea"]
 [ext_resource type="Material" uid="uid://bv3bavguqjynk" path="res://Shader/flash_shader.tres" id="2_1puhj"]
@@ -9,37 +9,9 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/enemy_a_idle_state.gd" id="6_ac68t"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/enemy_a_move_state.gd" id="7_acnuy"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/enemy_a_attack_state.gd" id="7_wdkut"]
-[ext_resource type="AudioStream" uid="uid://crkekyoos0a5j" path="res://Assets/Audio/SFX/Alien_hurt.mp3" id="10_3q180"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86hr5"]
 size = Vector2(12, 36)
-
-[sub_resource type="Animation" id="Animation_7eoyl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 
 [sub_resource type="Animation" id="Animation_2q8g0"]
 resource_name = "move"
@@ -68,6 +40,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.0872665, -0.0872665, 0.0872665, -0.0872665, 0.0872665, -0.0872665]
+}
+
+[sub_resource type="Animation" id="Animation_7eoyl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1k7gb"]
@@ -149,10 +148,6 @@ target_position = Vector2(31, 0)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
-
-[node name="deadSFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_3q180")
-volume_db = -5.0
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="being_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_component_being_hit"]
