@@ -17,6 +17,7 @@ extends CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var animation_locked : bool = false
 var has_double_jumped : bool = false
+var on_ladder: bool = false
 var direction : Vector2 = Vector2.ZERO
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -24,14 +25,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		pistol.shoot()
 		
 func _process(delta):
-	label.text = str(health_component.current_health)
+	#label.text = str(on_ladder)
 	
 func _physics_process(delta):
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() && not on_ladder:
 		velocity.y += gravity * delta
 	else: 
 		has_double_jumped = false
+	
+	if on_ladder :
+		if Input.is_action_pressed("up"):
+			velocity.y -= speed*delta*2
+		elif Input.is_action_pressed("down"):
+			velocity.y += speed*delta*2
+		else :
+			velocity.y = 0
 	
 	if Input.is_action_pressed("up"):
 		if pistol.sprite.flip_h:
@@ -41,7 +50,7 @@ func _physics_process(delta):
 	else :
 		pistol.sprite.rotation = deg_to_rad(0.0)
 	# Handle jump.
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") && not on_ladder:
 		if is_on_floor():
 			jump()
 		elif not has_double_jumped:

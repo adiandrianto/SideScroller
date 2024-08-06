@@ -11,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://43eqtbqal6wd" path="res://Assets/player.png" id="8_nvqe3"]
 [ext_resource type="AudioStream" uid="uid://dk0vudek7j813" path="res://Assets/Audio/SFX/PlayerSFX/05. Damage Grunt (Male).wav" id="9_rgoey"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pupvq"]
+radius = 9.0
+height = 34.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6eh7k"]
 shader = ExtResource("2_n73ur")
 shader_parameter/blink_color = Color(1, 1, 1, 1)
@@ -148,12 +152,17 @@ height = 23.774
 radius = 8.0
 height = 34.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pupvq"]
-radius = 9.0
-height = 34.0
-
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 512
+collision_priority = 1.53
 script = ExtResource("1_e0se1")
+speed = null
+jump_velocity = null
+double_jump = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_pupvq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_6eh7k")
@@ -195,17 +204,13 @@ energy = 0.5
 texture = ExtResource("8_nvqe3")
 texture_scale = 0.8
 
-[node name="Collider" type="Area2D" parent="." groups=["player"]]
+[node name="PlayerCollider" type="Area2D" parent="." groups=["player"]]
 collision_layer = 129
 priority = 1
 
-[node name="Collision" type="CollisionShape2D" parent="Collider"]
+[node name="Collision" type="CollisionShape2D" parent="PlayerCollider"]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_8ynfn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_pupvq")
 
 [node name="HurtSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_rgoey")
