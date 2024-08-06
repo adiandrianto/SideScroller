@@ -10,6 +10,8 @@ extends CharacterBody2D
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var can_shoot_pistol := true 
 @onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var hurt_sfx: AudioStreamPlayer2D = $HurtSFX
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -88,3 +90,6 @@ func _on_animated_sprite_2d_animation_finished():
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	get_tree().reload_current_scene()
+
+func _on_hurt_box_component_being_hit() -> void:
+	hurt_sfx.play(0.0)
