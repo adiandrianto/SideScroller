@@ -21,7 +21,7 @@ func state_physics_update(delta):
 		ray_cast_2d.scale = Vector2(1,1)
 		sprite.flip_h = true
 	else :
-		sprite.flip_h = true
+		sprite.flip_h = false
 		ray_cast_2d.scale = Vector2(-1,-1)
 	
 	if ray_cast_2d.is_colliding():

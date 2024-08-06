@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/ground_tile.gd" id="1_a22vf"]
 [ext_resource type="PackedScene" uid="uid://dpq85atgs6uk7" path="res://Scenes/Components/door_component.tscn" id="1_prje3"]
 [ext_resource type="Texture2D" uid="uid://dp5gxubw1ois4" path="res://Assets/Tileset/tileset_city_free.png" id="2_1o6t2"]
-[ext_resource type="PackedScene" uid="uid://ddhv81dvrtjb3" path="res://Scenes/Bullets/player.tscn" id="2_y14ms"]
+[ext_resource type="PackedScene" uid="uid://ddhv81dvrtjb3" path="res://Scenes/player.tscn" id="2_y14ms"]
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="3_howiu"]
 [ext_resource type="Texture2D" uid="uid://cnvwm1xhlm7pn" path="res://Assets/Conical - 128x128.png" id="3_wgsvj"]
 [ext_resource type="PackedScene" uid="uid://b6naww1axjgso" path="res://Scenes/Enemies/enemy_a.tscn" id="4_sije6"]
@@ -485,7 +485,6 @@ texture_scale = 0.5
 position = Vector2(720, 208)
 
 [node name="Door2" parent="." instance=ExtResource("1_prje3")]
-visible = false
 position = Vector2(192, 224)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]

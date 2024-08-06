@@ -12,7 +12,7 @@ var can_close = false
 
 func _process(delta: float) -> void:
 	if ray_cast_2d.is_colliding():
-		if Input.is_action_pressed("up") && can_open:
+		if Input.is_action_just_released("up") && can_open:
 			open()
 		if Input.is_action_pressed("down") && can_close:
 			close()
