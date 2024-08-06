@@ -62,5 +62,14 @@ hframes = 2
 position = Vector2(-1.5, -33)
 shape = SubResource("RectangleShape2D_yfl2j")
 
+[node name="Label" type="Label" parent="."]
+offset_left = 7.0
+offset_top = -48.0
+offset_right = 47.0
+offset_bottom = -25.0
+text = "[F]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
