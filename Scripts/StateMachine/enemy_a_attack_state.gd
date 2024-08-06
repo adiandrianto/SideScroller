@@ -51,7 +51,7 @@ func shoot():
 		get_tree().root.add_child(bullet)
 	
 	can_shoot = false
-	await get_tree().create_timer(1.5).timeout #time between shoot
+	await get_tree().create_timer(2).timeout #time between shoot
 	can_shoot = true
 	
 func state_exit():

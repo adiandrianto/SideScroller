@@ -118,7 +118,8 @@ texture = ExtResource("7_nqueo")
 
 [sub_resource type="TileSet" id="TileSet_glpkt"]
 occlusion_layer_0/light_mask = 1
-physics_layer_0/collision_layer = 5
+physics_layer_0/collision_layer = 128
+physics_layer_0/collision_mask = 3
 sources/1 = SubResource("TileSetAtlasSource_ask5p")
 sources/0 = SubResource("TileSetAtlasSource_pgi6m")
 
@@ -497,6 +498,7 @@ smooth_value = 2
 [node name="Player" parent="." instance=ExtResource("2_y14ms")]
 position = Vector2(87, 183)
 collision_layer = 2
+collision_mask = 128
 
 [node name="MachineGun" parent="Player" instance=ExtResource("8_qw3nt")]
 
@@ -517,7 +519,7 @@ position = Vector2(603, 87)
 [node name="FlyingEnemy" parent="." instance=ExtResource("5_op2hr")]
 position = Vector2(800, 80)
 
-[node name="music" type="AudioStreamPlayer2D" parent="."]
+[node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_g50uf")
 volume_db = -8.0
 autoplay = true

@@ -2,10 +2,16 @@
 
 [ext_resource type="Script" path="res://Scripts/Component/door.gd" id="1_t58nb"]
 [ext_resource type="Texture2D" uid="uid://dp8i6lkvj12ww" path="res://Assets/door.png" id="2_84s0a"]
+[ext_resource type="Shader" path="res://Shader/give_outline.gdshader" id="2_f1p4r"]
 [ext_resource type="AudioStream" uid="uid://bswgorve25wlv" path="res://Assets/Audio/SFX/door_open.wav" id="3_wm0h3"]
-[ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="4_d8kfu"]
-[ext_resource type="Script" path="res://Scripts/StateMachine/door_closed_state.gd" id="5_jiiwe"]
-[ext_resource type="Script" path="res://Scripts/StateMachine/door_opened_state.gd" id="6_ocr21"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lod7y"]
+resource_local_to_scene = true
+shader = ExtResource("2_f1p4r")
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/frequency = 0.5
+shader_parameter/highlight_speed = 5.0
+shader_parameter/highlight_width = 5.0
 
 [sub_resource type="Animation" id="Animation_te1b3"]
 length = 0.001
@@ -61,10 +67,16 @@ _data = {
 "open": SubResource("Animation_7a7bx")
 }
 
-[node name="Door" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3tdqs"]
+size = Vector2(31, 48)
+
+[node name="Door" type="Node2D" node_paths=PackedStringArray("interaction_area", "animation_player")]
 script = ExtResource("1_t58nb")
+interaction_area = NodePath("InteractionArea")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_lod7y")
 position = Vector2(16, -24)
 texture = ExtResource("2_84s0a")
 hframes = 3
@@ -79,19 +91,29 @@ stream = ExtResource("3_wm0h3")
 volume_db = -4.0
 bus = &"SFX"
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("4_d8kfu")
-initial_state = NodePath("Closed")
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 512
 
-[node name="Closed" type="Node" parent="StateMachine"]
-script = ExtResource("5_jiiwe")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(16, -24)
+shape = SubResource("RectangleShape2D_3tdqs")
 
-[node name="Opened" type="Node" parent="StateMachine"]
-script = ExtResource("6_ocr21")
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -31.0
+offset_top = -71.0
+offset_right = 63.0
+offset_bottom = -48.0
+grow_horizontal = 2
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "[F]"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(16, -30)
-target_position = Vector2(0, 16)
-hit_from_inside = true
-collide_with_areas = true
-collide_with_bodies = false
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_shape_exited" from="InteractionArea" to="." method="_on_interaction_area_area_shape_exited"]

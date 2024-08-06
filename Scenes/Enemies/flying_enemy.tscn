@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ckvoiwx40mj15"]
+[gd_scene load_steps=23 format=3 uid="uid://ckvoiwx40mj15"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/flying_enemy.gd" id="1_10uvs"]
 [ext_resource type="Texture2D" uid="uid://bg2jlsxlksvo7" path="res://Assets/Enemy Sprite/flying_alien.png" id="1_senvq"]
@@ -13,6 +13,9 @@
 [ext_resource type="Script" path="res://Scenes/Enemies/flying_enemy_attack_state.gd" id="8_lpd2t"]
 [ext_resource type="Script" path="res://Scenes/Enemies/flying_enemy_chase_state.gd" id="10_ng17f"]
 [ext_resource type="Script" path="res://Scenes/Enemies/enemy_hurt_state.gd" id="12_7mhnt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6o23w"]
+radius = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a8ue8"]
 radius = 14.0
@@ -218,6 +221,8 @@ _data = {
 }
 
 [node name="FlyingEnemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 192
 script = ExtResource("1_10uvs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -226,11 +231,14 @@ position = Vector2(0, 83)
 texture = ExtResource("1_senvq")
 hframes = 15
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6o23w")
+
 [node name="HealthComponent" parent="." instance=ExtResource("2_rs8n4")]
 max_health = 50
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_tqy2k")]
-collision_layer = 64
+collision_layer = 68
 collision_mask = 2
 health_component = NodePath("../HealthComponent")
 
@@ -269,12 +277,6 @@ enemy = NodePath("../..")
 
 [node name="Hurt" type="Node" parent="StateMachine"]
 script = ExtResource("12_7mhnt")
-
-[node name="HealthLabel" type="Label" parent="."]
-offset_left = -9.0
-offset_top = -37.0
-offset_right = 31.0
-offset_bottom = -14.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0

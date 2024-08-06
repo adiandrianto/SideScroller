@@ -11,7 +11,6 @@ class_name FlyingEnemy
 @onready var state_machine = $StateMachine
 
 func _process(delta):
-	health_label.text = str(health_component.current_health) + str(velocity)
 	state_label.text = state_machine.current_state.name
 	
 func _physics_process(delta):

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dk0vudek7j813"
-path="res://.godot/imported/05. Damage Grunt (Male).wav-038d3ea5af2736ce8bace5f7c98ac29a.sample"
+path="res://.godot/imported/05. Damage Grunt (Male).wav-fc9bf51e85cbbcf7aba4979e345425cc.sample"
 
 [deps]
 
-source_file="res://Assets/Audio/SFX/Player_SFX/05. Damage Grunt (Male).wav"
-dest_files=["res://.godot/imported/05. Damage Grunt (Male).wav-038d3ea5af2736ce8bace5f7c98ac29a.sample"]
+source_file="res://Assets/Audio/SFX/PlayerSFX/05. Damage Grunt (Male).wav"
+dest_files=["res://.godot/imported/05. Damage Grunt (Male).wav-fc9bf51e85cbbcf7aba4979e345425cc.sample"]
 
 [params]
 

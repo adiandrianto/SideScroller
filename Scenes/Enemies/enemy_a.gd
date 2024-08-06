@@ -19,8 +19,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _process(delta: float) -> void:
-	health_label.text = str(health_component.current_health)
-	state_label.text = state_machine.current_state.name
+		state_label.text = state_machine.current_state.name
 
 func _on_health_component_died() -> void:
 	queue_free()

@@ -7,7 +7,7 @@ extends State
 
 var direction := Vector2.LEFT
 var player: CharacterBody2D
-const SPEED := 4000
+const SPEED := 4600
 
 func state_enter():
 	player = get_tree().get_first_node_in_group("player")
