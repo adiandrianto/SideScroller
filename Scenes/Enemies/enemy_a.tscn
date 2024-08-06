@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6naww1axjgso"]
+[gd_scene load_steps=16 format=3 uid="uid://b6naww1axjgso"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/enemy_a.gd" id="1_2wlea"]
 [ext_resource type="Material" uid="uid://bv3bavguqjynk" path="res://Shader/flash_shader.tres" id="2_1puhj"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/enemy_a_idle_state.gd" id="6_ac68t"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/enemy_a_move_state.gd" id="7_acnuy"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/enemy_a_attack_state.gd" id="7_wdkut"]
+[ext_resource type="AudioStream" uid="uid://crkekyoos0a5j" path="res://Assets/Audio/SFX/Alien_hurt.mp3" id="10_3q180"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86hr5"]
 size = Vector2(12, 36)
@@ -94,8 +95,6 @@ max_health = 50
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_vfun2")]
 visible = false
-collision_layer = 64
-collision_mask = 2
 health_component = NodePath("../HealthComponent")
 
 [node name="HurtBoxCollision" type="CollisionShape2D" parent="HurtBoxComponent"]
@@ -150,6 +149,10 @@ target_position = Vector2(31, 0)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
+
+[node name="deadSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_3q180")
+volume_db = -5.0
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="being_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_component_being_hit"]

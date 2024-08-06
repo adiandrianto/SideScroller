@@ -1,13 +1,17 @@
 extends CharacterBody2D
 
+
 @export var speed : float = 120.0
 @export var jump_velocity : float = -350.0
 @export var double_jump : float =  -100       #just testing
+@onready var label = $Label
 @onready var health_component = $HealthComponent
-@onready var pistol = $MachineGun
+@onready var pistol = $Pistol
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var can_shoot_pistol := true 
 @onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var hurt_sfx: AudioStreamPlayer2D = $HurtSFX
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -18,7 +22,10 @@ var direction : Vector2 = Vector2.ZERO
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("shoot") && can_shoot_pistol:
 		pistol.shoot()
-
+		
+func _process(delta):
+	label.text = str(health_component.current_health)
+	
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -62,7 +69,7 @@ func update_animation():
 				animated_sprite.play("run")
 			else:
 				animated_sprite.play("idle")
-				
+
 func update_facing_direction():
 	if direction.x > 0:
 		animated_sprite.flip_h = false
@@ -80,5 +87,10 @@ func _on_animated_sprite_2d_animation_finished():
 	if animated_sprite.animation == "jump":
 		animation_locked = false
 
+
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	get_tree().reload_current_scene()
+
+
+func _on_hurt_box_component_being_hit() -> void:
+	hurt_sfx.play(0.0)

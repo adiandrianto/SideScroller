@@ -11,6 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var state_machine: Node = $StateMachine
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var ray_cast: RayCast2D = $RayCast2D
+@onready var dead_sfx: AudioStreamPlayer2D = $deadSFX
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -23,6 +24,8 @@ func _process(delta: float) -> void:
 	state_label.text = state_machine.current_state.name
 
 func _on_health_component_died() -> void:
+	dead_sfx.play(0.0)
+	#need to add animation so deadSFX can fully play
 	queue_free()
 
 func SetShader_BlinkIntensity(newValue : float):
