@@ -4,6 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://d1mij8mgwsubm" path="res://Assets/Weapon Sprite/sword.png" id="2_1dr1o"]
 [ext_resource type="PackedScene" uid="uid://c3chlog4d8jfo" path="res://Scenes/Bullets/sword_slash.tscn" id="2_evlka"]
 
+[sub_resource type="Animation" id="Animation_3ijpa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_2tooj"]
 resource_name = "gunshoot"
 length = 0.04
@@ -18,21 +33,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 2.0944]
-}
-
-[sub_resource type="Animation" id="Animation_3ijpa"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q8agk"]

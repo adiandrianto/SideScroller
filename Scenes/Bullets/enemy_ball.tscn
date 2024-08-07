@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://dbkk23r32ghgr"]
+
+[ext_resource type="Texture2D" uid="uid://bkfpelaoqiqy3" path="res://Assets/Weapon Sprite/enemy_ball.png" id="1_avx5n"]
+[ext_resource type="Script" path="res://Scripts/Bullet/enemy_ball_bullet.gd" id="1_r75ff"]
+[ext_resource type="PackedScene" uid="uid://be4lfovfuvq74" path="res://Scenes/Components/hit_box_component.tscn" id="3_ec74k"]
+[ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="4_mpth5"]
+[ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="5_oy71u"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wu5m4"]
+bounce = 0.2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y851u"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ha4gb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qqaxc"]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 68
+collision_mask = 385
+physics_material_override = SubResource("PhysicsMaterial_wu5m4")
+gravity_scale = 0.5
+angular_velocity = 0.0174533
+script = ExtResource("1_r75ff")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("1_avx5n")
+offset = Vector2(0.5, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_y851u")
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("3_ec74k")]
+collision_layer = 16
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+visible = false
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_ha4gb")
+
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_mpth5")]
+collision_layer = 64
+collision_mask = 2
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+visible = false
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_qqaxc")
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_oy71u")]
+max_health = 60
+
+[connection signal="area_entered" from="HitBoxComponent" to="." method="_on_hit_box_component_area_entered"]

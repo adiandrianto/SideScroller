@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://d32ji57w4shnv"]
+
+[ext_resource type="AudioStream" uid="uid://cjxpqsf1grd3x" path="res://Assets/Audio/SFX/Grenade 1.wav" id="1_p8j7x"]
+[ext_resource type="Texture2D" uid="uid://iyc08bi35vup" path="res://Assets/explosion_sheet.png" id="1_weu64"]
+
+[sub_resource type="Animation" id="Animation_n0c4x"]
+resource_name = "default"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.233333, 0.333333, 0.433333, 0.533333, 0.633333, 0.733333, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_scxgd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_loaha"]
+_data = {
+"RESET": SubResource("Animation_scxgd"),
+"default": SubResource("Animation_n0c4x")
+}
+
+[node name="ExplosionScene" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_p8j7x")
+volume_db = -15.0
+pitch_scale = 0.9
+autoplay = true
+bus = &"SFX"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_weu64")
+hframes = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_loaha")
+}
+autoplay = "default"

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg4qgy6incsek"]
+
+[ext_resource type="Texture2D" uid="uid://df4kb3hxcddu5" path="res://Assets/Enemy Sprite/bomber_enemy.png" id="1_i554a"]
+[ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="2_82y0d"]
+[ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="3_fm58u"]
+
+[node name="Bomber" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_i554a")
+hframes = 6
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_82y0d")]
+
+[node name="HurtBoxComponent" parent="." instance=ExtResource("3_fm58u")]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
