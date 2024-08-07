@@ -47,7 +47,7 @@ shader_parameter/highlight_width = 15.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfl2j"]
 size = Vector2(9, 98)
 
-[node name="Ladder" type="Area2D"]
+[node name="Ladder" type="Area2D" groups=["ladder"]]
 collision_layer = 512
 collision_mask = 0
 script = ExtResource("1_mh5bl")

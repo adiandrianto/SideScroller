@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bovhxqqowml1h"]
+[gd_scene load_steps=7 format=3 uid="uid://brag2e0jicm06"]
 
 [ext_resource type="Script" path="res://Scripts/Component/box.gd" id="1_r0ibe"]
-[ext_resource type="Texture2D" uid="uid://du0ysj6wjccb4" path="res://Assets/box.png" id="2_5dhqh"]
+[ext_resource type="Texture2D" uid="uid://dmr7gu1alv25s" path="res://Assets/box.png" id="2_5dhqh"]
 [ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="3_nyhlu"]
 [ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="4_oy2xb"]
 
@@ -12,6 +12,7 @@ size = Vector2(30, 22)
 size = Vector2(30, 22)
 
 [node name="Box" type="StaticBody2D"]
+collision_layer = 128
 script = ExtResource("1_r0ibe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

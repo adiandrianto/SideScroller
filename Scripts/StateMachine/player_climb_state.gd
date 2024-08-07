@@ -9,6 +9,8 @@ var climb_speed := 50
 func state_enter():
 	animated_sprite.play("climb")
 	owner.global_position = ray_cast.get_collision_point()
+	owner.animated_sprite.flip_h = false
+	owner.weapon.flip_right()
 	
 func state_physics_update(delta):	
 	var y_direction = Input.get_axis("up", "down")

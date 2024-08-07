@@ -26,7 +26,7 @@ func state_physics_update(delta):
 	if Input.is_action_just_pressed("jump"):
 		transitioned.emit(self, "jump")
 	if ray_cast.is_colliding():
-		if ray_cast.get_collider().name == "Ladder" && Input.is_action_just_pressed("interact"):
+		if ray_cast.get_collider().is_in_group("ladder") && Input.is_action_just_pressed("interact"):
 			transitioned.emit(self,"climb")
 			
 	
