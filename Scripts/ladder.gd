@@ -6,8 +6,7 @@ class_name Ladder
 
 func _process(delta: float) -> void:
 	if label.visible :
-		if Input.is_action_pressed("interact"):
-			player.state_machine.current_scene = "Climb"
+		pass
 func _on_area_entered(area: Area2D) -> void:
 	label.visible = true
 

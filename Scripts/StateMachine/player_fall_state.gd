@@ -8,10 +8,10 @@ func state_enter():
 	animated_sprite.play("fall")
 
 func state_physics_update(delta):
-	var direction := Input.get_axis("move_left", "move_right")
+	var direction := Input.get_axis("left", "right")
 	owner.velocity.x = speed * direction
-	owner.velocity.y += gravity * delta
-	owner.velocity.y += gravity * delta
+	owner.velocity.y += gravity
+	owner.velocity.y += gravity
 	owner.move_and_slide()
 	
 	if owner.is_on_floor():

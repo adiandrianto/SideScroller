@@ -4,6 +4,7 @@ extends State
 @onready var animated_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var weapon = get_tree().get_first_node_in_group("weapon")
 @onready var can_shoot_weapon := true 
+@onready var ray_cast: RayCast2D = $"../../RayCast2D"
 
 var direction := Vector2.LEFT
 const SPEED := 50
@@ -24,6 +25,10 @@ func state_physics_update(delta):
 		transitioned.emit(self, "fall")
 	if Input.is_action_just_pressed("jump"):
 		transitioned.emit(self, "jump")
+	if ray_cast.is_colliding():
+		if ray_cast.get_collider().name == "Ladder" && Input.is_action_just_pressed("interact"):
+			transitioned.emit(self,"climb")
+			
 	
 func state_exit():
 	animated_sprite.stop()

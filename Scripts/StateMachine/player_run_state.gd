@@ -10,6 +10,7 @@ func state_physics_update(delta):
 	if direction :
 		owner.velocity.x += direction * speed
 		owner.velocity.x = clamp(owner.velocity.x, -max_horizontal_speed, max_horizontal_speed)
+		
 	if direction!=0:
 		if direction > 0.0:
 			animated_sprite.flip_h = false
