@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://ddhv81dvrtjb3"]
+[gd_scene load_steps=37 format=3 uid="uid://ddhv81dvrtjb3"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_e0se1"]
 [ext_resource type="Texture2D" uid="uid://heclpv4e7vl1" path="res://Assets/Player Sprite/player_pistol_jump-fall.png" id="2_18gb1"]
@@ -26,6 +26,10 @@ resource_local_to_scene = true
 shader = ExtResource("2_n73ur")
 shader_parameter/blink_color = Color(1, 0, 0, 1)
 shader_parameter/blink_intensity = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1y6xb"]
+atlas = ExtResource("2_18gb1")
+region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mc788"]
 atlas = ExtResource("2_18gb1")
@@ -85,6 +89,14 @@ region = Rect2(240, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6wen4"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1y6xb")
+}],
+"loop": true,
+"name": &"climb",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mc788")
@@ -172,7 +184,7 @@ shape = SubResource("CapsuleShape2D_pupvq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_6eh7k")
 sprite_frames = SubResource("SpriteFrames_6wen4")
-animation = &"fall"
+animation = &"climb"
 autoplay = "idle"
 offset = Vector2(0, -7)
 

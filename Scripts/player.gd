@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var speed : float = 120.0
 @onready var label = $Label
