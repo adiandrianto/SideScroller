@@ -10,8 +10,7 @@ func state_enter():
 func state_physics_update(delta):
 	var direction := Input.get_axis("left", "right")
 	owner.velocity.x = speed * direction
-	owner.velocity.y += gravity
-	owner.velocity.y += gravity
+	owner.velocity.y += gravity * delta
 	owner.move_and_slide()
 	
 	if owner.is_on_floor():

@@ -29,16 +29,6 @@ func _physics_process(delta):
 	else :
 		weapon.sprite.rotation = deg_to_rad(0.0)
 	move_and_slide()
-	#update_facing_direction()
-				
-#func update_facing_direction():
-	#if direction.x > 0:
-		#animated_sprite.flip_h = false
-		#weapon.flip_right()
-	#elif direction.x < 0:
-		#animated_sprite.flip_h = true
-		#weapon.flip_left()
-		
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	get_tree().reload_current_scene()

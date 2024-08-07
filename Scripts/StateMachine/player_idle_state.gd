@@ -4,7 +4,7 @@ extends State
 @onready var animated_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var weapon = get_tree().get_first_node_in_group("weapon")
 @onready var can_shoot_weapon := true 
-@onready var ray_cast: RayCast2D = $"../../RayCast2D"
+@onready var ray_cast: RayCast2D = $"../../RayCastFront"
 
 var direction := Vector2.LEFT
 const SPEED := 50
