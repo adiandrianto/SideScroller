@@ -1,19 +1,109 @@
-[gd_scene load_steps=4 format=3 uid="uid://bg4qgy6incsek"]
+[gd_scene load_steps=12 format=3 uid="uid://bg4qgy6incsek"]
 
 [ext_resource type="Texture2D" uid="uid://df4kb3hxcddu5" path="res://Assets/Enemy Sprite/bomber_enemy.png" id="1_i554a"]
+[ext_resource type="Script" path="res://Scripts/Enemies/bomber_enemy.gd" id="1_widm1"]
 [ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="2_82y0d"]
+[ext_resource type="Material" uid="uid://bv3bavguqjynk" path="res://Shader/flash_shader.tres" id="2_jrdqt"]
 [ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="3_fm58u"]
+[ext_resource type="AudioStream" uid="uid://c0kudx8gvt3iq" path="res://Assets/Audio/SFX/bomb_hit.wav" id="6_jo04t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1el3n"]
+size = Vector2(36, 32.5)
+
+[sub_resource type="Animation" id="Animation_s6slg"]
+resource_name = "produce_bomb"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.9, 1.06667, 1.26667, 1.53333, 1.73333, 1.93333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 2, 1, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wsj6u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m3u35"]
+_data = {
+"RESET": SubResource("Animation_wsj6u"),
+"produce_bomb": SubResource("Animation_s6slg")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7i2m"]
+size = Vector2(53, 37)
 
 [node name="Bomber" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_widm1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("2_jrdqt")
 texture = ExtResource("1_i554a")
 hframes = 6
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_82y0d")]
 
 [node name="HurtBoxComponent" parent="." instance=ExtResource("3_fm58u")]
+position = Vector2(47, 0)
+collision_layer = 64
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+position = Vector2(-31, 8.25)
+shape = SubResource("RectangleShape2D_1el3n")
 
 [node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-7, 12)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m3u35")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 132
+collision_mask = 259
+
+[node name="BomberCollider" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(9.5, 5.5)
+shape = SubResource("RectangleShape2D_r7i2m")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jo04t")
+pitch_scale = 1.9
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="being_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_component_being_hit"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

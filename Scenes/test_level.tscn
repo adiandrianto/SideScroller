@@ -8,11 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://cnvwm1xhlm7pn" path="res://Assets/Conical - 128x128.png" id="3_wgsvj"]
 [ext_resource type="PackedScene" uid="uid://b7v1vgaqydiex" path="res://Scenes/ladder.tscn" id="4_i113j"]
 [ext_resource type="Texture2D" uid="uid://gbgtu7pqi1j0" path="res://Assets/Tileset/tileset1.png" id="7_nqueo"]
-[ext_resource type="PackedScene" uid="uid://cg3fjv2cr74e0" path="res://Scenes/Weapons/sword.tscn" id="8_werdn"]
+[ext_resource type="PackedScene" uid="uid://555p773njqu6" path="res://Scenes/Weapons/machine_gun.tscn" id="8_k01pn"]
 [ext_resource type="PackedScene" uid="uid://brag2e0jicm06" path="res://Scenes/Components/box.tscn" id="9_a5on3"]
 [ext_resource type="AudioStream" uid="uid://dr08ri1tbree5" path="res://Assets/Audio/Music/Juhani Junkala [Retro Game Music Pack] Level 1.wav" id="9_g50uf"]
 [ext_resource type="PackedScene" uid="uid://ctuy78wbdejks" path="res://Scenes/health_ui.tscn" id="12_5woi3"]
-[ext_resource type="PackedScene" uid="uid://dbkk23r32ghgr" path="res://Scenes/Bullets/enemy_ball.tscn" id="15_gvafv"]
+[ext_resource type="PackedScene" uid="uid://bg4qgy6incsek" path="res://Scenes/bomber_enemy.tscn" id="13_0u4iq"]
 
 [sub_resource type="GDScript" id="GDScript_i5s2s"]
 
@@ -509,7 +509,7 @@ position = Vector2(911, 83)
 collision_layer = 2
 collision_mask = 128
 
-[node name="Sword" parent="Player" instance=ExtResource("8_werdn")]
+[node name="MachineGun" parent="Player" instance=ExtResource("8_k01pn")]
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -536,5 +536,5 @@ scale = Vector2(1, 0.719998)
 position = Vector2(110, 156)
 scale = Vector2(1, 0.719998)
 
-[node name="RigidBody2D" parent="." instance=ExtResource("15_gvafv")]
-position = Vector2(1063, 22)
+[node name="Bomber" parent="." instance=ExtResource("13_0u4iq")]
+position = Vector2(1001, 87)

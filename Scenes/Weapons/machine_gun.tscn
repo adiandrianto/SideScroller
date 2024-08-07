@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://555p773njqu6"]
+[gd_scene load_steps=7 format=3 uid="uid://555p773njqu6"]
 
 [ext_resource type="Script" path="res://Scripts/gun_weapon.gd" id="1_drm17"]
 [ext_resource type="PackedScene" uid="uid://21nd75d1ab0b" path="res://Scenes/Bullets/machine_gun_bullet.tscn" id="2_lh4mo"]
@@ -6,13 +6,41 @@
 
 [sub_resource type="Animation" id="Animation_4xxvg"]
 resource_name = "gunshoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.366667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_whexg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3b3ms"]
 _data = {
+"RESET": SubResource("Animation_whexg"),
 "gunshoot": SubResource("Animation_4xxvg")
 }
 
-[node name="MachineGun" type="Node2D" node_paths=PackedStringArray("sprite", "marker_left", "marker_right", "marker_up") groups=["weapon"]]
+[node name="MachineGun" type="Node2D" node_paths=PackedStringArray("sprite", "marker_left", "marker_right", "marker_up", "animation_player") groups=["weapon"]]
 script = ExtResource("1_drm17")
 sprite = NodePath("Sprite")
 marker_left = NodePath("MarkerLeft")
@@ -20,6 +48,7 @@ marker_right = NodePath("MarkerRight")
 marker_up = NodePath("MarkerUp")
 bullet_scene = ExtResource("2_lh4mo")
 shoot_delay = 0.1
+animation_player = NodePath("AnimationPlayer")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("3_exnms")

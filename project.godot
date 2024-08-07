@@ -33,6 +33,7 @@ enemy=""
 player=""
 weapon=""
 ladder=""
+bullet=""
 
 [input]
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbkk23r32ghgr"]
+[gd_scene load_steps=14 format=3 uid="uid://dbkk23r32ghgr"]
 
 [ext_resource type="Texture2D" uid="uid://bkfpelaoqiqy3" path="res://Assets/Weapon Sprite/enemy_ball.png" id="1_avx5n"]
 [ext_resource type="Script" path="res://Scripts/Bullet/enemy_ball_bullet.gd" id="1_r75ff"]
 [ext_resource type="PackedScene" uid="uid://be4lfovfuvq74" path="res://Scenes/Components/hit_box_component.tscn" id="3_ec74k"]
 [ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="4_mpth5"]
 [ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="5_oy71u"]
+[ext_resource type="AudioStream" uid="uid://c0kudx8gvt3iq" path="res://Assets/Audio/SFX/bomb_hit.wav" id="6_01g64"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wu5m4"]
 bounce = 0.2
@@ -15,6 +16,43 @@ radius = 9.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ha4gb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qqaxc"]
+
+[sub_resource type="Animation" id="Animation_tjf1o"]
+resource_name = "being_hit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(82.162, 86.486, 80, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5speg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5fspt"]
+_data = {
+"RESET": SubResource("Animation_5speg"),
+"being_hit": SubResource("Animation_tjf1o")
+}
 
 [node name="RigidBody2D" type="RigidBody2D"]
 collision_layer = 68
@@ -30,10 +68,12 @@ texture = ExtResource("1_avx5n")
 offset = Vector2(0.5, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_y851u")
 
 [node name="HitBoxComponent" parent="." instance=ExtResource("3_ec74k")]
+visible = false
 collision_layer = 16
 collision_mask = 256
 
@@ -43,6 +83,7 @@ position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_ha4gb")
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_mpth5")]
+visible = false
 collision_layer = 64
 collision_mask = 2
 health_component = NodePath("../HealthComponent")
@@ -53,6 +94,17 @@ position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_qqaxc")
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_oy71u")]
-max_health = 60
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_01g64")
+volume_db = -5.622
+pitch_scale = 1.61
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5fspt")
+}
 
 [connection signal="area_entered" from="HitBoxComponent" to="." method="_on_hit_box_component_area_entered"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]

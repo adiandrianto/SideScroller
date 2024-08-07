@@ -4,7 +4,7 @@ class_name Player
 @export var speed : float = 120.0
 @onready var label = $Label
 @onready var health_component = $HealthComponent
-@onready var weapon = $Sword
+@onready var weapon = $MachineGun
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var can_shoot_pistol := true 
 @onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
