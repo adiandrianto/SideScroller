@@ -7,6 +7,7 @@ class_name Weapon
 @export var marker_up: Marker2D
 @export var bullet_scene: PackedScene
 @export var shoot_delay : float
+@export var animation_player: AnimationPlayer
 
 var can_shoot = true
 
@@ -36,7 +37,7 @@ func shoot():
 		
 		bullet.position = marker.global_position
 		get_tree().root.add_child(bullet)
-	
+	animation_player.play("gunshoot")
 	can_shoot = false
 	await get_tree().create_timer(shoot_delay).timeout #time between shoot
 	can_shoot = true

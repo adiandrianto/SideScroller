@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://hhhotqfvb4mp"
+path="res://.godot/imported/add_health.sfxr-ccb888583c2d92ca01cc097056bbe7de.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/add_health.sfxr"
+dest_files=["res://.godot/imported/add_health.sfxr-ccb888583c2d92ca01cc097056bbe7de.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

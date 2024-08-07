@@ -4,7 +4,7 @@ class_name Player
 @export var speed : float = 120.0
 @onready var label = $Label
 @onready var health_component = $HealthComponent
-@onready var weapon = $MachineGun
+@onready var weapon = $Sword
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var can_shoot_pistol := true 
 @onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
@@ -18,7 +18,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		weapon.shoot()
 		
 func _process(delta):
-	label.text = str(state_machine.current_state)
+	label.text = str(state_machine.current_state.name)
 	
 func _physics_process(delta):
 	if Input.is_action_pressed("up"):

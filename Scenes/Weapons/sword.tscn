@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://cg3fjv2cr74e0"]
+
+[ext_resource type="Script" path="res://Scripts/gun_weapon.gd" id="1_xncv1"]
+[ext_resource type="Texture2D" uid="uid://d1mij8mgwsubm" path="res://Assets/Weapon Sprite/sword.png" id="2_1dr1o"]
+[ext_resource type="PackedScene" uid="uid://c3chlog4d8jfo" path="res://Scenes/Bullets/sword_slash.tscn" id="2_evlka"]
+
+[sub_resource type="Animation" id="Animation_2tooj"]
+resource_name = "gunshoot"
+length = 0.04
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.0944]
+}
+
+[sub_resource type="Animation" id="Animation_3ijpa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q8agk"]
+_data = {
+"RESET": SubResource("Animation_3ijpa"),
+"gunshoot": SubResource("Animation_2tooj")
+}
+
+[node name="Sword" type="Node2D" node_paths=PackedStringArray("sprite", "marker_left", "marker_right", "marker_up", "animation_player")]
+script = ExtResource("1_xncv1")
+sprite = NodePath("Sprite")
+marker_left = NodePath("MarkerLeft")
+marker_right = NodePath("MarkerRight")
+marker_up = NodePath("MarkerUp")
+bullet_scene = ExtResource("2_evlka")
+shoot_delay = 0.3
+animation_player = NodePath("AnimationPlayer")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_1dr1o")
+
+[node name="MarkerRight" type="Marker2D" parent="."]
+position = Vector2(16, 0)
+
+[node name="MarkerLeft" type="Marker2D" parent="."]
+position = Vector2(-16, 0)
+
+[node name="MarkerUp" type="Marker2D" parent="."]
+position = Vector2(0, -19)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q8agk")
+}
