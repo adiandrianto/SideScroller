@@ -172,7 +172,7 @@ collision_mask = 512
 script = ExtResource("1_e0se1")
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="." groups=["player"]]
-position = Vector2(0, 1)
+position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_pupvq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -194,7 +194,6 @@ size_flags_vertical = 0
 max_health = 3
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") groups=["player"] instance=ExtResource("7_6bgoq")]
-visible = false
 collision_layer = 256
 collision_mask = 48
 health_component = NodePath("../HealthComponent")
@@ -246,5 +245,7 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="HurtBoxComponent" to="." method="_on_hurt_box_component_area_entered"]
 [connection signal="being_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_component_being_hit"]
+[connection signal="body_entered" from="HurtBoxComponent" to="." method="_on_hurt_box_component_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

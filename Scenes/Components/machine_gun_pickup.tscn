@@ -1,0 +1,147 @@
+[gd_scene load_steps=11 format=3 uid="uid://nt1kquei12yu"]
+
+[ext_resource type="Script" path="res://Scripts/Component/pickup_component.gd" id="1_tksq6"]
+[ext_resource type="Shader" path="res://Shader/give_outline.gdshader" id="2_m420i"]
+[ext_resource type="Texture2D" uid="uid://i0hoqeqbn6d2" path="res://Assets/Pickup/machine_gun_power_up.png" id="3_21awy"]
+[ext_resource type="AudioStream" uid="uid://co0aa1h6dohv5" path="res://Assets/Audio/SFX/pickup.sfxr" id="4_seifd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s25ut"]
+size = Vector2(38.5, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_djgjf"]
+shader = ExtResource("2_m420i")
+shader_parameter/highlight_color = Color(0.994811, 1, 0.915347, 1)
+shader_parameter/frequency = 0.6
+shader_parameter/highlight_speed = 6.0
+shader_parameter/highlight_width = 10.0
+
+[sub_resource type="Animation" id="Animation_7p0v7"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(17, -8), Vector2(17, -11), Vector2(17, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.122173, -0.122173]
+}
+
+[sub_resource type="Animation" id="Animation_nnsep"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.933334, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_iwl74"]
+resource_name = "pick_up"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(17, -8), Vector2(17, -16), Vector2(17, -18)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rh7d8"]
+_data = {
+"RESET": SubResource("Animation_nnsep"),
+"idle": SubResource("Animation_7p0v7"),
+"pick_up": SubResource("Animation_iwl74")
+}
+
+[node name="MachineGunPickup" type="Area2D" node_paths=PackedStringArray("animation_player", "audio_stream_player")]
+collision_layer = 512
+collision_mask = 256
+script = ExtResource("1_tksq6")
+animation_player = NodePath("AnimationPlayer")
+audio_stream_player = NodePath("AudioStreamPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(17.75, -9)
+shape = SubResource("RectangleShape2D_s25ut")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_djgjf")
+position = Vector2(17, -8)
+scale = Vector2(0.933334, 1)
+texture = ExtResource("3_21awy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rh7d8")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_seifd")
+volume_db = -10.341
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

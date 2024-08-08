@@ -94,6 +94,7 @@ position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_qqaxc")
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_oy71u")]
+max_health = 50
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_01g64")
