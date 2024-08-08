@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0lmrsghbybd2"]
+
+[ext_resource type="AudioStream" uid="uid://d2hc0vffoypmd" path="res://Assets/Audio/SFX/Alien_A_Scream.mp3" id="1_8sjiq"]
+[ext_resource type="Script" path="res://enemy_A_scream.gd" id="2_ffn02"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_8sjiq")
+script = ExtResource("2_ffn02")

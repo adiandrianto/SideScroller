@@ -13,6 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var ray_cast: RayCast2D = $RayCast2D
 @onready var dead_sfx: AudioStreamPlayer2D = $DeadSFX
 @onready var blood_splatter: AudioStreamPlayer2D = $BloodSplatter
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -24,7 +25,10 @@ func _process(delta: float) -> void:
 		state_label.text = state_machine.current_state.name
 
 func _on_health_component_died() -> void:
-	deadSFX()
+	#var deadsfx = audio_stream_player.instantiate()
+	#get_tree().root.add_child(deadsfx)
+	
+	audio_stream_player.custom_play() # ---> custom function testing.
 	bloodSFX()
 	
 	queue_free()
@@ -37,16 +41,7 @@ func _on_hurt_box_component_being_hit() -> void:
 	tween.tween_method(SetShader_BlinkIntensity, 1.0,0.0,0.5)
 
 func deadSFX():
-	randomize()
-	dead_sfx.pitch_scale = randf_range(0.8, 1.2)
-	
-	while abs(dead_sfx.pitch_scale - last_pitch) < .1:
-		randomize()
-		dead_sfx.pitch_scale = randf_range(0.8, 1.2)
-	
-	last_pitch = dead_sfx.pitch_scale
-	
-	dead_sfx.play(0.0)
+	pass
 
 func bloodSFX():
 	randomize()
