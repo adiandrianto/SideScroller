@@ -5,18 +5,25 @@ class_name Player
 @onready var label = $Label
 @onready var health_component = $HealthComponent
 @onready var weapon = get_tree().get_first_node_in_group("weapon")
+@onready var grenade = preload("res://Scenes/Weapons/Grenade.tscn")
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var can_shoot_pistol := true 
 @onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var hurt_sfx: AudioStreamPlayer2D = $HurtSFX
 @onready var state_machine: Node = $StateMachine
 
+var gre
 var direction : Vector2 = Vector2.ZERO
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("shoot") && can_shoot_pistol && weapon != null:
 		weapon.shoot()
-		
+	if Input.is_action_just_pressed("Throw"):
+		gre = grenade.instantiate()
+		get_parent().add_child(gre)
+		gre.init(direction)
+		gre.global_position = global_position
+		gre.throw(Vector2(1000, -700))
 func _process(delta):
 	label.text = str(state_machine.current_state.name)
 	

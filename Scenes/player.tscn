@@ -172,7 +172,7 @@ collision_mask = 512
 script = ExtResource("1_e0se1")
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="." groups=["player"]]
-position = Vector2(0, 7)
+position = Vector2(3, 1)
 shape = SubResource("CapsuleShape2D_pupvq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
