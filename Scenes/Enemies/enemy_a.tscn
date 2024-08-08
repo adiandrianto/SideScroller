@@ -149,6 +149,7 @@ shape = SubResource("CapsuleShape2D_mh1m4")
 stream = ExtResource("11_gsasf")
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource("11_ypfyq")]
+script = null
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="being_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_component_being_hit"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://b4n73h3xwykh1"]
+[gd_scene load_steps=30 format=4 uid="uid://b4n73h3xwykh1"]
 
 [ext_resource type="Script" path="res://Scenes/ground_tile.gd" id="1_a22vf"]
 [ext_resource type="PackedScene" uid="uid://dpq85atgs6uk7" path="res://Scenes/Components/door_component.tscn" id="1_prje3"]
@@ -8,11 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://cnvwm1xhlm7pn" path="res://Assets/Conical - 128x128.png" id="3_wgsvj"]
 [ext_resource type="PackedScene" uid="uid://b7v1vgaqydiex" path="res://Scenes/ladder.tscn" id="4_i113j"]
 [ext_resource type="Texture2D" uid="uid://gbgtu7pqi1j0" path="res://Assets/Tileset/tileset1.png" id="7_nqueo"]
+[ext_resource type="PackedScene" uid="uid://cg3fjv2cr74e0" path="res://Scenes/Weapons/sword.tscn" id="8_ycydo"]
 [ext_resource type="PackedScene" uid="uid://brag2e0jicm06" path="res://Scenes/Components/box.tscn" id="9_a5on3"]
 [ext_resource type="AudioStream" uid="uid://dr08ri1tbree5" path="res://Assets/Audio/Music/Juhani Junkala [Retro Game Music Pack] Level 1.wav" id="9_g50uf"]
 [ext_resource type="PackedScene" uid="uid://ctuy78wbdejks" path="res://Scenes/health_ui.tscn" id="12_5woi3"]
-[ext_resource type="PackedScene" uid="uid://bg4qgy6incsek" path="res://Scenes/bomber_enemy.tscn" id="13_0u4iq"]
 [ext_resource type="PackedScene" uid="uid://nt1kquei12yu" path="res://Scenes/Components/machine_gun_pickup.tscn" id="14_xraac"]
+[ext_resource type="PackedScene" uid="uid://b6naww1axjgso" path="res://Scenes/Enemies/enemy_a.tscn" id="15_l0mle"]
 
 [sub_resource type="GDScript" id="GDScript_i5s2s"]
 
@@ -508,6 +509,8 @@ smooth_value = 2
 position = Vector2(566, 56)
 collision_mask = 128
 
+[node name="Sword" parent="Player" instance=ExtResource("8_ycydo")]
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HealthUI" parent="UI" instance=ExtResource("12_5woi3")]
@@ -533,8 +536,8 @@ scale = Vector2(1, 0.719998)
 position = Vector2(110, 156)
 scale = Vector2(1, 0.719998)
 
-[node name="Bomber" parent="." instance=ExtResource("13_0u4iq")]
-position = Vector2(840, 152)
-
 [node name="MachineGunPickup" parent="." instance=ExtResource("14_xraac")]
 position = Vector2(406, 205)
+
+[node name="EnemyA" parent="." instance=ExtResource("15_l0mle")]
+position = Vector2(729, 146)

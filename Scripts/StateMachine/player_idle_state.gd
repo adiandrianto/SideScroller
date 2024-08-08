@@ -19,12 +19,16 @@ func state_physics_update(delta):
 	owner.velocity.x = move_toward(owner.velocity.x, 0, slow_down_speed)
 	owner.move_and_slide()
 	var direction = Input.get_axis("left", "right")
+	
 	if direction && owner.is_on_floor():
 		transitioned.emit(self, "run")
+		
 	if not owner.is_on_floor():
 		transitioned.emit(self, "fall")
+		
 	if Input.is_action_just_pressed("jump"):
 		transitioned.emit(self, "jump")
+		
 	if ray_cast.is_colliding():
 		if ray_cast.get_collider().is_in_group("ladder") && Input.is_action_just_pressed("interact"):
 			transitioned.emit(self,"climb")
