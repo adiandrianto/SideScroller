@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4ecgcx26c5k1"]
+[gd_scene load_steps=10 format=3 uid="uid://c4ecgcx26c5k1"]
 
 [ext_resource type="Script" path="res://Scripts/Component/pickup_component.gd" id="1_skf60"]
 [ext_resource type="Shader" path="res://Shader/give_outline.gdshader" id="2_fjd78"]
 [ext_resource type="Texture2D" uid="uid://djtqtb02sm5vf" path="res://Assets/Pickup/pistol_power_up.png" id="2_lylyd"]
+[ext_resource type="AudioStream" uid="uid://co0aa1h6dohv5" path="res://Assets/Audio/SFX/pickup.sfxr" id="2_m1luf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kdfvx"]
 resource_local_to_scene = true
@@ -101,6 +102,8 @@ audio_stream_player = NodePath("AudioStreamPlayer")
 pickup_path = "res://Scenes/Weapons/pistol.tscn"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_m1luf")
+volume_db = -10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_kdfvx")

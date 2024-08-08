@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ctuy78wbdejks" path="res://Scenes/health_ui.tscn" id="12_5woi3"]
 [ext_resource type="PackedScene" uid="uid://c4ecgcx26c5k1" path="res://Scenes/Components/pistol_pickup.tscn" id="14_g704k"]
 [ext_resource type="PackedScene" uid="uid://nt1kquei12yu" path="res://Scenes/Components/machine_gun_pickup.tscn" id="14_xraac"]
-[ext_resource type="PackedScene" uid="uid://8iqw3uglldm3" path="res://Scenes/Components/sword_pickup.tscn" id="15_6d6t4"]
+[ext_resource type="PackedScene" uid="uid://qgvefke0us0x" path="res://Scenes/Components/sword_pickup.tscn" id="15_6d6t4"]
 
 [sub_resource type="GDScript" id="GDScript_i5s2s"]
 

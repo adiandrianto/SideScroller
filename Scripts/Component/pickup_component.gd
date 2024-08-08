@@ -15,4 +15,3 @@ func _on_area_entered(area: Area2D) -> void:
 		animation_player.play("pick_up")
 		audio_stream_player.play()
 		PickupManager.change_weapon(pickup_path)
-		print("machine gun acquired")
