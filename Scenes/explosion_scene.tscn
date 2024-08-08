@@ -3,6 +3,21 @@
 [ext_resource type="AudioStream" uid="uid://cjxpqsf1grd3x" path="res://Assets/Audio/SFX/Grenade 1.wav" id="1_p8j7x"]
 [ext_resource type="Texture2D" uid="uid://iyc08bi35vup" path="res://Assets/explosion_sheet.png" id="1_weu64"]
 
+[sub_resource type="Animation" id="Animation_scxgd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_n0c4x"]
 resource_name = "default"
 length = 0.9
@@ -31,21 +46,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"queue_free"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_scxgd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_loaha"]

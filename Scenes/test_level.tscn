@@ -505,7 +505,7 @@ smoothing_enabled = true
 smooth_value = 2
 
 [node name="Player" parent="." instance=ExtResource("2_y14ms")]
-position = Vector2(911, 83)
+position = Vector2(566, 56)
 collision_layer = 2
 collision_mask = 128
 
@@ -537,4 +537,4 @@ position = Vector2(110, 156)
 scale = Vector2(1, 0.719998)
 
 [node name="Bomber" parent="." instance=ExtResource("13_0u4iq")]
-position = Vector2(1001, 87)
+position = Vector2(840, 152)

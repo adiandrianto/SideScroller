@@ -17,6 +17,9 @@ func _on_hit_box_component_area_entered(area: Area2D) -> void:
 		queue_free()
 		
 func _on_health_component_died() -> void:
+	var explosion = EXPLOSION_SCENE.instantiate()
+	explosion.global_position = global_position
+	get_tree().root.add_child(explosion)
 	queue_free()
 
 func _on_health_component_health_changed() -> void:

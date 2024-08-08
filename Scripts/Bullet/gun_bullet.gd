@@ -8,7 +8,8 @@ class_name Bullet
 func _ready() -> void:
 	animation_player.play("shoot")
 	shattered_collision.body_entered.connect(on_contact)
-
+	shattered_collision.area_entered.connect(on_contact)
+	
 func _physics_process(delta):
 	move_and_collide(velocity.normalized() * delta * bullet_speed)
 
@@ -19,3 +20,5 @@ func on_contact(body):
 	print(body.name)
 	velocity = Vector2.ZERO
 	animation_player.play("shattered")
+	
+#need to check if collision_layer contain layer 3 on area_entered

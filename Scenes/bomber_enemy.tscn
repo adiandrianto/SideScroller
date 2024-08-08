@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bg4qgy6incsek"]
+[gd_scene load_steps=13 format=3 uid="uid://bg4qgy6incsek"]
 
 [ext_resource type="Texture2D" uid="uid://df4kb3hxcddu5" path="res://Assets/Enemy Sprite/bomber_enemy.png" id="1_i554a"]
 [ext_resource type="Script" path="res://Scripts/Enemies/bomber_enemy.gd" id="1_widm1"]
@@ -7,38 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="3_fm58u"]
 [ext_resource type="AudioStream" uid="uid://c0kudx8gvt3iq" path="res://Assets/Audio/SFX/bomb_hit.wav" id="6_jo04t"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7i2m"]
+size = Vector2(53, 37)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1el3n"]
 size = Vector2(36, 32.5)
-
-[sub_resource type="Animation" id="Animation_s6slg"]
-resource_name = "produce_bomb"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.9, 1.06667, 1.26667, 1.53333, 1.73333, 1.93333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 2, 1, 0]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1.5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"attack"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_wsj6u"]
 length = 0.001
@@ -54,19 +27,195 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shield:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shield:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_s6slg"]
+resource_name = "produce_bomb"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 1.63333, 1.8, 2, 2.23333, 3.03333, 3.23333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 2, 1, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shield:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.533333, 3.16667, 3.33333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shield:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.533333, 3.16667, 3.33333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_766oj"]
+resource_name = "death"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.69821, 3.49066, 5.23599]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m3u35"]
 _data = {
 "RESET": SubResource("Animation_wsj6u"),
+"death": SubResource("Animation_766oj"),
 "produce_bomb": SubResource("Animation_s6slg")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7i2m"]
-size = Vector2(53, 37)
-
 [node name="Bomber" type="CharacterBody2D"]
-collision_layer = 4
+collision_layer = 68
+collision_mask = 128
 script = ExtResource("1_widm1")
+
+[node name="Shield" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="BomberCollider" type="CollisionShape2D" parent="Shield"]
+position = Vector2(9.5, 5.5)
+shape = SubResource("RectangleShape2D_r7i2m")
+debug_color = Color(0.775871, 0.387737, 0.554404, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = ExtResource("2_jrdqt")
@@ -74,11 +223,13 @@ texture = ExtResource("1_i554a")
 hframes = 6
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_82y0d")]
+max_health = 50
 
-[node name="HurtBoxComponent" parent="." instance=ExtResource("3_fm58u")]
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_fm58u")]
 position = Vector2(47, 0)
 collision_layer = 64
 collision_mask = 2
+health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 position = Vector2(-31, 8.25)
@@ -92,18 +243,16 @@ libraries = {
 "": SubResource("AnimationLibrary_m3u35")
 }
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 132
-collision_mask = 259
-
-[node name="BomberCollider" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(9.5, 5.5)
-shape = SubResource("RectangleShape2D_r7i2m")
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_jo04t")
 pitch_scale = 1.9
 
+[node name="Label" type="Label" parent="."]
+offset_left = -2.0
+offset_top = -38.0
+offset_right = 38.0
+offset_bottom = -15.0
+
+[connection signal="area_entered" from="Shield" to="." method="_on_area_2d_area_entered"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
-[connection signal="being_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_component_being_hit"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
