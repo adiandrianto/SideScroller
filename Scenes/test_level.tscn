@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://b4n73h3xwykh1"]
+[gd_scene load_steps=31 format=4 uid="uid://b4n73h3xwykh1"]
 
 [ext_resource type="Script" path="res://Scenes/ground_tile.gd" id="1_a22vf"]
 [ext_resource type="PackedScene" uid="uid://dpq85atgs6uk7" path="res://Scenes/Components/door_component.tscn" id="1_prje3"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ctuy78wbdejks" path="res://Scenes/health_ui.tscn" id="12_5woi3"]
 [ext_resource type="PackedScene" uid="uid://c4ecgcx26c5k1" path="res://Scenes/Components/pistol_pickup.tscn" id="14_g704k"]
 [ext_resource type="PackedScene" uid="uid://nt1kquei12yu" path="res://Scenes/Components/machine_gun_pickup.tscn" id="14_xraac"]
+[ext_resource type="PackedScene" uid="uid://8iqw3uglldm3" path="res://Scenes/Components/sword_pickup.tscn" id="15_6d6t4"]
 
 [sub_resource type="GDScript" id="GDScript_i5s2s"]
 
@@ -541,3 +542,6 @@ position = Vector2(406, 205)
 
 [node name="Area2D" parent="." instance=ExtResource("14_g704k")]
 position = Vector2(606, 205)
+
+[node name="PistolPickup" parent="Area2D" instance=ExtResource("15_6d6t4")]
+position = Vector2(278, -65)
