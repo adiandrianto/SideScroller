@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0lmrsghbybd2"]
+[gd_scene load_steps=16 format=3 uid="uid://d0lmrsghbybd2"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/enemy_A_death_scene.gd" id="1_lo1r1"]
 [ext_resource type="Texture2D" uid="uid://erijbmfhe02u" path="res://Assets/Enemy Sprite/enemyA.png" id="2_iuawj"]
 [ext_resource type="Texture2D" uid="uid://b414shg5hp4od" path="res://Assets/splatter.png" id="3_oenqf"]
 [ext_resource type="AudioStream" uid="uid://d2hc0vffoypmd" path="res://Assets/Audio/SFX/Alien_A_Scream.mp3" id="4_euav7"]
+[ext_resource type="AudioStream" uid="uid://c8khfxyllxkm1" path="res://Assets/Audio/SFX/Blood-Spill-Hit.wav" id="5_edvqc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7pegu"]
 atlas = ExtResource("3_oenqf")
@@ -54,6 +55,57 @@ animations = [{
 "name": &"default",
 "speed": 8.0
 }]
+
+[sub_resource type="Animation" id="Animation_7t7bi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_pcawo"]
 resource_name = "death"
@@ -120,57 +172,6 @@ tracks/4/keys = {
 "values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_7t7bi"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [5]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s2vsu"]
 _data = {
 "RESET": SubResource("Animation_7t7bi"),
@@ -192,9 +193,14 @@ frame = 5
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_euav7")
 pitch_scale = 1.29
+bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")
 libraries = {
 "": SubResource("AnimationLibrary_s2vsu")
 }
+
+[node name="BloodSplatter" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_edvqc")
+volume_db = 1.0
