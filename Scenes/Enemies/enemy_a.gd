@@ -13,7 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var ray_cast: RayCast2D = $RayCast2D
 @onready var dead_sfx: AudioStreamPlayer2D = $DeadSFX
 @onready var blood_splatter: AudioStreamPlayer2D = $BloodSplatter
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+const ENEMY_A_DEATH_SCENE = preload("res://Scenes/Enemies/enemy_a_death_scene.tscn")
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -22,13 +22,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _process(delta: float) -> void:
-		state_label.text = state_machine.current_state.name
-
+	state_label.text = str(health_component.current_health)
+	
 func _on_health_component_died() -> void:
 	#var deadsfx = audio_stream_player.instantiate()
 	#get_tree().root.add_child(deadsfx)
 	
-	audio_stream_player.custom_play() # ---> custom function testing.
+	var death_scene = ENEMY_A_DEATH_SCENE.instantiate()
+	death_scene.global_position = global_position
+	get_tree().root.add_child(death_scene)
 	bloodSFX()
 	
 	queue_free()

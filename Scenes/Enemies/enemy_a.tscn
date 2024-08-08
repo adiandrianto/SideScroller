@@ -10,10 +10,10 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/enemy_a_move_state.gd" id="7_acnuy"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/enemy_a_attack_state.gd" id="7_wdkut"]
 [ext_resource type="AudioStream" uid="uid://c8khfxyllxkm1" path="res://Assets/Audio/SFX/Blood-Spill-Hit.wav" id="11_gsasf"]
-[ext_resource type="PackedScene" uid="uid://d0lmrsghbybd2" path="res://Scenes/Enemies/Enemy_a_Scream.tscn" id="11_ypfyq"]
+[ext_resource type="PackedScene" uid="uid://d0lmrsghbybd2" path="res://Scenes/Enemies/enemy_a_death_scene.tscn" id="11_ypfyq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86hr5"]
-size = Vector2(12, 36)
+size = Vector2(18, 36)
 
 [sub_resource type="Animation" id="Animation_7eoyl"]
 length = 0.001
@@ -96,13 +96,12 @@ flip_h = true
 max_health = 50
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_vfun2")]
-visible = false
 collision_layer = 64
 collision_mask = 2
 health_component = NodePath("../HealthComponent")
 
 [node name="HurtBoxCollision" type="CollisionShape2D" parent="HurtBoxComponent"]
-position = Vector2(3, 6)
+position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_86hr5")
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
@@ -148,7 +147,7 @@ shape = SubResource("CapsuleShape2D_mh1m4")
 [node name="BloodSplatter" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_gsasf")
 
-[node name="AudioStreamPlayer" parent="." instance=ExtResource("11_ypfyq")]
+[node name="DeathScene" parent="." instance=ExtResource("11_ypfyq")]
 script = null
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

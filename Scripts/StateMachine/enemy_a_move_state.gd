@@ -25,9 +25,7 @@ func state_physics_update(delta):
 		ray_cast_2d.scale = Vector2(-1,-1)
 	
 	if ray_cast_2d.is_colliding():
-		print(ray_cast_2d.get_collider())
 		if ray_cast_2d.get_collider().get_parent() is GroundTile :
-			print("asoidhd")
 			transitioned.emit(self, "attack")
 	
 	if distance.length() > 175 && enemy.is_on_floor():
