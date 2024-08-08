@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b6naww1axjgso"]
+[gd_scene load_steps=16 format=3 uid="uid://b6naww1axjgso"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/enemy_a.gd" id="1_2wlea"]
 [ext_resource type="Material" uid="uid://bv3bavguqjynk" path="res://Shader/flash_shader.tres" id="2_1puhj"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/enemy_a_move_state.gd" id="7_acnuy"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/enemy_a_attack_state.gd" id="7_wdkut"]
 [ext_resource type="AudioStream" uid="uid://c8khfxyllxkm1" path="res://Assets/Audio/SFX/Blood-Spill-Hit.wav" id="11_gsasf"]
-[ext_resource type="PackedScene" uid="uid://d0lmrsghbybd2" path="res://Scenes/Enemies/enemy_a_death_scene.tscn" id="11_ypfyq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86hr5"]
 size = Vector2(18, 36)
@@ -147,8 +146,5 @@ shape = SubResource("CapsuleShape2D_mh1m4")
 [node name="BloodSplatter" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_gsasf")
 
-[node name="DeathScene" parent="." instance=ExtResource("11_ypfyq")]
-script = null
-
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
-[connection signal="being_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_component_being_hit"]
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
