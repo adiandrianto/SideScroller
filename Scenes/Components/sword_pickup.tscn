@@ -84,6 +84,8 @@ _data = {
 }
 
 [node name="SwordPickup" type="Area2D" node_paths=PackedStringArray("animation_player", "audio_stream_player")]
+collision_layer = 512
+collision_mask = 256
 script = ExtResource("1_baad2")
 animation_player = NodePath("AnimationPlayer")
 audio_stream_player = NodePath("AudioStreamPlayer")

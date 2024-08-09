@@ -1,30 +1,16 @@
 extends RigidBody2D
 
-@onready var explode = preload("res://Scenes/Weapons/grenade_explosion.tscn")
-var expl
-var strength = 0
-var direction = false
+@onready var explosion_scene = preload("res://Scenes/Weapons/grenade_explosion.tscn")
 
-func init(d = 0):
-	direction = d
-
-func throw(imp_vec):
-	strength = imp_vec
-	if direction:
-		strength.x *= -1
-	apply_impulse(Vector2.ZERO, strength)
-
+func _on_area_entered(area: Area2D) -> void:
+	print(area.name)
+	explode()
 
 func _on_timer_timeout() -> void:
-	explode_grenade()
+	explode()
 
-func explode_grenade():
-	$Timer.stop()
-	sleeping = true
-	expl = explode.instantiate()
-	$AnimatedSprite2D.visible = false
-	add_child(expl)
-	expl.connect("exploded", grenade_exploded)
-
-func grenade_exploded():
+func explode():
+	var explode = explosion_scene.instantiate()
+	explode.global_position = global_position
+	get_tree().root.add_child(explode)
 	queue_free()

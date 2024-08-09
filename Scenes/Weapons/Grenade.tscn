@@ -1,49 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://cree6imlx0yyj"]
+[gd_scene load_steps=5 format=3 uid="uid://cree6imlx0yyj"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet/grenade.gd" id="1_abqcl"]
 [ext_resource type="Texture2D" uid="uid://g42qc3ilfth7" path="res://Assets/Weapon Sprite/grenades.png" id="1_ukcf2"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3rmqe"]
-atlas = ExtResource("1_ukcf2")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2t4dq"]
-atlas = ExtResource("1_ukcf2")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_sim4a"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3rmqe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2t4dq")
-}],
-"loop": false,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_40yn4"]
+bounce = 0.2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4lve"]
-radius = 5.0
+radius = 7.0
 height = 14.0
 
 [node name="Grenade" type="RigidBody2D"]
+position = Vector2(153, 181)
 collision_layer = 2
 collision_mask = 192
-gravity_scale = 10.0
+physics_material_override = SubResource("PhysicsMaterial_40yn4")
 script = ExtResource("1_abqcl")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_sim4a")
-frame_progress = 0.0725331
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ukcf2")
+hframes = 8
+vframes = 4
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_s4lve")
 
 [node name="Timer" type="Timer" parent="." groups=["weapon"]]
-wait_time = 3.0
+wait_time = 1.4
 one_shot = true
 autostart = true
 

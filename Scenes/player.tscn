@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://ddhv81dvrtjb3"]
+[gd_scene load_steps=39 format=3 uid="uid://ddhv81dvrtjb3"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_e0se1"]
 [ext_resource type="Texture2D" uid="uid://heclpv4e7vl1" path="res://Assets/Player Sprite/player_pistol_jump-fall.png" id="2_18gb1"]
 [ext_resource type="Shader" path="res://Scenes/player.gdshader" id="2_n73ur"]
 [ext_resource type="Texture2D" uid="uid://c7oo0oelwxbe6" path="res://Assets/Player Sprite/player_idle.png" id="3_mf4u5"]
+[ext_resource type="Texture2D" uid="uid://dvvmjvo8hspcg" path="res://Assets/Player Sprite/player-climb-side.png" id="3_r8cay"]
 [ext_resource type="Texture2D" uid="uid://cc6wbqjfnrfj3" path="res://Assets/Player Sprite/player_pistol_jump-jump.png" id="4_t4nrx"]
 [ext_resource type="Texture2D" uid="uid://dlyjntdemxt3d" path="res://Assets/Player Sprite/player_run_without_arm.png" id="5_biwir"]
 [ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="6_xwy6r"]
@@ -26,9 +27,21 @@ shader = ExtResource("2_n73ur")
 shader_parameter/blink_color = Color(1, 0, 0, 1)
 shader_parameter/blink_intensity = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1y6xb"]
-atlas = ExtResource("2_18gb1")
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7lba"]
+atlas = ExtResource("3_r8cay")
 region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sv6k"]
+atlas = ExtResource("3_r8cay")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkgve"]
+atlas = ExtResource("3_r8cay")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opst7"]
+atlas = ExtResource("3_r8cay")
+region = Rect2(144, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mc788"]
 atlas = ExtResource("2_18gb1")
@@ -90,11 +103,20 @@ region = Rect2(240, 0, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1y6xb")
+"texture": SubResource("AtlasTexture_k7lba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sv6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkgve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opst7")
 }],
 "loop": true,
 "name": &"climb",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -180,6 +202,7 @@ material = SubResource("ShaderMaterial_6eh7k")
 sprite_frames = SubResource("SpriteFrames_6wen4")
 animation = &"climb"
 autoplay = "idle"
+frame_progress = 0.0881981
 offset = Vector2(0, -7)
 
 [node name="Label" type="Label" parent="."]

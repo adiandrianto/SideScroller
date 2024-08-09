@@ -540,8 +540,8 @@ scale = Vector2(1, 0.719998)
 [node name="MachineGunPickup" parent="." instance=ExtResource("14_xraac")]
 position = Vector2(406, 205)
 
-[node name="Area2D" parent="." instance=ExtResource("14_g704k")]
-position = Vector2(606, 205)
+[node name="SwordPickup" parent="." instance=ExtResource("15_6d6t4")]
+position = Vector2(959, 106)
 
-[node name="PistolPickup" parent="Area2D" instance=ExtResource("15_6d6t4")]
-position = Vector2(278, -65)
+[node name="PistolPickup" parent="." instance=ExtResource("14_g704k")]
+position = Vector2(638, 203)

@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://djtqtb02sm5vf" path="res://Assets/Pickup/pistol_power_up.png" id="2_lylyd"]
 [ext_resource type="AudioStream" uid="uid://co0aa1h6dohv5" path="res://Assets/Audio/SFX/pickup.sfxr" id="2_m1luf"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fe3ea"]
+size = Vector2(24, 18)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kdfvx"]
 resource_local_to_scene = true
 shader = ExtResource("2_fjd78")
@@ -12,9 +15,6 @@ shader_parameter/highlight_color = Color(1, 1, 1, 1)
 shader_parameter/frequency = 0.6
 shader_parameter/highlight_speed = 6.0
 shader_parameter/highlight_width = 10.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fe3ea"]
-size = Vector2(24, 18)
 
 [sub_resource type="Animation" id="Animation_cml8p"]
 resource_name = "idle"
@@ -105,14 +105,14 @@ pickup_path = "res://Scenes/Weapons/pistol.tscn"
 stream = ExtResource("2_m1luf")
 volume_db = -10.0
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(17, -10)
+shape = SubResource("RectangleShape2D_fe3ea")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_kdfvx")
 position = Vector2(17, -8)
 texture = ExtResource("2_lylyd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(17, -10)
-shape = SubResource("RectangleShape2D_fe3ea")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
