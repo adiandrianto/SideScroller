@@ -1,10 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cree6imlx0yyj"]
+[gd_scene load_steps=4 format=3 uid="uid://cree6imlx0yyj"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet/grenade.gd" id="1_abqcl"]
 [ext_resource type="Texture2D" uid="uid://g42qc3ilfth7" path="res://Assets/Weapon Sprite/grenades.png" id="1_ukcf2"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_40yn4"]
-bounce = 0.2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4lve"]
 radius = 7.0
@@ -14,7 +11,7 @@ height = 14.0
 position = Vector2(153, 181)
 collision_layer = 2
 collision_mask = 192
-physics_material_override = SubResource("PhysicsMaterial_40yn4")
+mass = 0.001
 script = ExtResource("1_abqcl")
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]

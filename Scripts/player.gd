@@ -35,9 +35,17 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Throw"):
 		var grenade = grenade_scene.instantiate()
 		var target = get_global_mouse_position()
+		var range = global_position.distance_to(get_global_mouse_position())
+		var angle = deg_to_rad(45)
+		var gravity = 980
+		var t = 1 #1second
+		var force = sqrt((range * gravity)/ sin(2*angle))
+		var x = force*t*cos(angle)
+		var y = -gravity/2 + (force * sin(angle) * t)
+		print(range)
 		
 		grenade.global_position = global_position
-		grenade.apply_impulse(Vector2(500,-400))
+		grenade.apply_impulse(Vector2(x,y))
 		get_tree().root.add_child(grenade)
 	#if Input.is_action_just_pressed("Throw"):
 		#var grenade = grenade_scene.instantiate()
