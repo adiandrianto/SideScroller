@@ -576,4 +576,7 @@ position = Vector2(433, 182)
 [node name="HeartPickup" parent="." instance=ExtResource("14_36s80")]
 position = Vector2(770, 184)
 
-[connection signal="DimensionChange" from="Door" to="EnemyA" method="_on_door_dimension_change"]
+[connection signal="Dimension1" from="Door" to="EnemyA" method="_on_door_dimension_1"]
+[connection signal="Dimension2" from="Door" to="EnemyA" method="_on_door_dimension_2"]
+[connection signal="Dimension1" from="Door2" to="EnemyA" method="_on_door_dimension_1"]
+[connection signal="Dimension2" from="Door2" to="EnemyA" method="_on_door_dimension_2"]

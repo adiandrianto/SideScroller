@@ -9,7 +9,8 @@ class_name Door
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 @onready var enemyA : CharacterBody2D = get_tree().get_first_node_in_group("enemy")
 @onready var label: Label = $Label
-signal DimensionChange
+signal Dimension2
+signal Dimension1
 
 
 var can_open = true
@@ -20,9 +21,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("interact") && can_open && label.visible:
 		open()
-		emit_signal("DimensionChange")
+		emit_signal("Dimension2")
 	if Input.is_action_pressed("interact") && not can_open && label.visible:
-		emit_signal("DimensionChange")
+		emit_signal("Dimension1")
 		close()
 
 func open():
