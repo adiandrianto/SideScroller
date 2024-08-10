@@ -5,7 +5,7 @@ class_name FlyingEnemyIdle
 @export var enemy :CharacterBody2D
 
 var direction := Vector2.LEFT
-var player: CharacterBody2D
+var player: Player
 const SPEED := 50
 
 func state_enter():

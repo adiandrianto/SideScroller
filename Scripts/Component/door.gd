@@ -4,8 +4,8 @@ class_name Door
 @export var interaction_area: Area2D
 @export var animation_player: AnimationPlayer
 @onready var audio_stream_player: AudioStreamPlayer
-@onready var tile_map: TileMap = $"../TileMap"
-@onready var second_dimension: TileMapLayer = $"../GroundTile/2ndDimension"
+@export var tile_map: TileMap
+@export var second_dimension: TileMapLayer
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 @onready var label: Label = $Label
 
