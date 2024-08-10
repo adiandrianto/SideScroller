@@ -498,11 +498,15 @@ texture = ExtResource("3_wgsvj")
 offset = Vector2(5, 0)
 texture_scale = 0.5
 
-[node name="Door" parent="." instance=ExtResource("1_prje3")]
+[node name="Door" parent="." node_paths=PackedStringArray("tile_map", "second_dimension") instance=ExtResource("1_prje3")]
 position = Vector2(720, 208)
+tile_map = NodePath("../TileMap")
+second_dimension = NodePath("../GroundTile/2ndDimension")
 
-[node name="Door2" parent="." instance=ExtResource("1_prje3")]
+[node name="Door2" parent="." node_paths=PackedStringArray("tile_map", "second_dimension") instance=ExtResource("1_prje3")]
 position = Vector2(192, 224)
+tile_map = NodePath("../TileMap")
+second_dimension = NodePath("../GroundTile/2ndDimension")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(241, 135)
@@ -512,7 +516,7 @@ smoothing_enabled = true
 smooth_value = 2
 
 [node name="Player" parent="." instance=ExtResource("2_y14ms")]
-position = Vector2(566, 56)
+position = Vector2(161, 203)
 collision_mask = 128
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -561,13 +565,15 @@ position = Vector2(110, 148)
 scale = Vector2(1, 0.719998)
 
 [node name="MachineGunPickup" parent="." instance=ExtResource("14_xraac")]
-position = Vector2(406, 205)
+position = Vector2(11, 202)
 
 [node name="GrenadePickup" parent="." instance=ExtResource("15_qaw0j")]
 position = Vector2(893, 134)
 
 [node name="EnemyA" parent="." instance=ExtResource("17_48u07")]
-position = Vector2(676, 98)
+position = Vector2(433, 182)
 
 [node name="HeartPickup" parent="." instance=ExtResource("14_36s80")]
 position = Vector2(770, 184)
+
+[connection signal="DimensionChange" from="Door" to="EnemyA" method="_on_door_dimension_change"]
