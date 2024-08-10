@@ -100,6 +100,7 @@ Throw={
 2d_physics/layer_8="Environment"
 2d_physics/layer_9="player hurtbox"
 2d_physics/layer_10="interact"
+2d_physics/layer_11="Ladder"
 
 [physics]
 

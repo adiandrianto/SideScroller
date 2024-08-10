@@ -48,7 +48,7 @@ shader_parameter/highlight_width = 15.0
 size = Vector2(9, 100)
 
 [node name="Ladder" type="Area2D" groups=["ladder"]]
-collision_layer = 512
+collision_layer = 1024
 collision_mask = 256
 script = ExtResource("1_mh5bl")
 

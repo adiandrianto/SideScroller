@@ -1,4 +1,5 @@
 extends Node2D
+class_name Door
 
 @export var interaction_area: Area2D
 @export var animation_player: AnimationPlayer
