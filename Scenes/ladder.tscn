@@ -45,32 +45,22 @@ shader_parameter/highlight_speed = 6.0
 shader_parameter/highlight_width = 15.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfl2j"]
-size = Vector2(9, 98)
+size = Vector2(9, 100)
 
 [node name="Ladder" type="Area2D" groups=["ladder"]]
 collision_layer = 512
-collision_mask = 0
+collision_mask = 256
 script = ExtResource("1_mh5bl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_0slfa")
 position = Vector2(0, -33)
-scale = Vector2(1, 3.0625)
 texture = ExtResource("1_1wgh0")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -33)
 shape = SubResource("RectangleShape2D_yfl2j")
-
-[node name="Label" type="Label" parent="."]
-offset_left = 7.0
-offset_top = -48.0
-offset_right = 47.0
-offset_bottom = -25.0
-text = "[F]"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

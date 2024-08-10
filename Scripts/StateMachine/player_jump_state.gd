@@ -5,6 +5,7 @@ extends State
 @export var max_jump_horizontal_speed := 80
 @export var jump_gravity:= 900
 @onready var animated_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
+@onready var ray_cast: RayCast2D = $"../../RayCastFront"
 		
 func state_physics_update(delta):
 	var direction = Input.get_axis("left", "right")
@@ -28,6 +29,12 @@ func state_physics_update(delta):
 	
 	if owner.is_on_floor():
 		transitioned.emit(self, "idle")
+		
+	if ray_cast.is_colliding():
+		if ray_cast.get_collider().is_in_group("ladder") && Input.is_action_just_pressed("interact"):
+			transitioned.emit(self,"climb")
+		else :
+			return	
 	
 func state_enter():
 	animated_sprite.play("jump")

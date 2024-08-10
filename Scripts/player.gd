@@ -13,7 +13,6 @@ class_name Player
 @onready var state_machine: Node = $StateMachine
 @export var grenade_count:int
 
-
 var direction = Input.get_axis("left", "right")
 
 func _ready() -> void:
@@ -71,7 +70,7 @@ func _on_hurt_box_component_being_hit() -> void:
 	hurt_sfx.play(0.0)
 	var tween = get_tree().create_tween()
 	tween.tween_method(SetShader_BlinkIntensity, 1.0,0.0,0.5)
-	
+
 	#if Input.is_action_just_pressed("Throw"):
 		#var grenade = grenade_scene.instantiate()
 		#var target = get_global_mouse_position()

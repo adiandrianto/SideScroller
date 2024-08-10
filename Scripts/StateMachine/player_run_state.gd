@@ -3,6 +3,7 @@ extends State
 @onready var animated_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @export var speed: int
 @export var max_horizontal_speed : int
+@onready var ray_cast: RayCast2D = $"../../RayCastFront"
 
 func state_physics_update(delta):
 	var direction = Input.get_axis("left", "right")
@@ -26,6 +27,12 @@ func state_physics_update(delta):
 		transitioned.emit(self, "fall")
 	if Input.is_action_just_pressed("jump"):
 		transitioned.emit(self, "jump")
+	
+	if ray_cast.is_colliding():
+		if ray_cast.get_collider().is_in_group("ladder") && Input.is_action_just_pressed("interact"):
+			transitioned.emit(self,"climb")
+		else :
+			return	
 		
 	owner.move_and_slide()
 	

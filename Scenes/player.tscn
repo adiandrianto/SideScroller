@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/player_fall_state.gd" id="15_4ki7g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pupvq"]
-radius = 9.0
+radius = 5.0
 height = 32.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6eh7k"]
@@ -259,7 +259,7 @@ jump_horizontal_speed = 100
 script = ExtResource("15_4ki7g")
 
 [node name="RayCastUp" type="RayCast2D" parent="."]
-position = Vector2(2, 17)
+position = Vector2(4, 14)
 target_position = Vector2(0, -9)
 collision_mask = 640
 hit_from_inside = true
@@ -267,7 +267,8 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="RayCastFront" type="RayCast2D" parent="."]
-target_position = Vector2(15, 0)
+position = Vector2(-3, 0)
+target_position = Vector2(19, 0)
 collision_mask = 640
 collide_with_areas = true
 collide_with_bodies = false

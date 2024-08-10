@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ds3vgr08eolu7"]
+[gd_scene load_steps=11 format=3 uid="uid://ds3vgr08eolu7"]
 
 [ext_resource type="Script" path="res://Scripts/Component/pickup_component.gd" id="1_p4uqu"]
 [ext_resource type="Shader" path="res://Shader/give_outline.gdshader" id="2_banii"]
 [ext_resource type="Texture2D" uid="uid://bop0o5310pxtc" path="res://Assets/Pickup/grenade_pickup.png" id="2_n5kvh"]
+[ext_resource type="AudioStream" uid="uid://hhhotqfvb4mp" path="res://Assets/Audio/SFX/add_health.sfxr" id="4_6c7t3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x7psm"]
 shader = ExtResource("2_banii")
@@ -143,3 +144,5 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6c7t3")
+volume_db = -8.0
