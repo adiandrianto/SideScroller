@@ -192,6 +192,7 @@ height = 23.774
 z_index = 5
 collision_mask = 512
 script = ExtResource("1_e0se1")
+grenade_count = 7
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="." groups=["player"]]
 position = Vector2(3, 1)
@@ -202,7 +203,7 @@ material = SubResource("ShaderMaterial_6eh7k")
 sprite_frames = SubResource("SpriteFrames_6wen4")
 animation = &"climb"
 autoplay = "idle"
-frame_progress = 0.994248
+frame_progress = 0.743075
 offset = Vector2(0, -7)
 
 [node name="Label" type="Label" parent="."]

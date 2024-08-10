@@ -11,9 +11,10 @@ class_name Player
 @onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var hurt_sfx: AudioStreamPlayer2D = $HurtSFX
 @onready var state_machine: Node = $StateMachine
+@export var grenade_count:int
 
 
-var direction : Vector2 = Vector2.ZERO
+var direction = Input.get_axis("left", "right")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("shoot") && can_shoot_pistol && weapon != null:
@@ -32,32 +33,19 @@ func _physics_process(delta):
 		else :
 			weapon.sprite.rotation = deg_to_rad(0.0)
 			
-	if Input.is_action_just_pressed("Throw"):
+	if Input.is_action_just_pressed("Throw") && grenade_count > 0 :
+		var grenade_x_force: int = 350
+		var grenade_y_force: int = -400
 		var grenade = grenade_scene.instantiate()
 		var target = get_global_mouse_position()
-		var range = global_position.distance_to(get_global_mouse_position())
-		var angle = deg_to_rad(45)
-		var gravity = 980
-		var t = 1 #1second
-		var force = sqrt((range * gravity)/ sin(2*angle))
-		var x = force*t*cos(angle)
-		var y = -gravity/2 + (force * sin(angle) * t)
-		print(range)
-		
+		if animated_sprite.flip_h == true:
+			grenade_x_force *= -1
+			
 		grenade.global_position = global_position
-		grenade.apply_impulse(Vector2(x,y))
+		grenade.apply_central_impulse(Vector2(grenade_x_force,grenade_y_force))
 		get_tree().root.add_child(grenade)
-	#if Input.is_action_just_pressed("Throw"):
-		#var grenade = grenade_scene.instantiate()
-		#var target = get_global_mouse_position()
-		#var t: float
-		#if t < 1.0 :
-			#t += delta * 20
-		#print(target)
-		#grenade.global_position = global_position
-		#grenade.set_destination(target)
-		#
-		#get_tree().root.add_child(grenade)
+		grenade_count -= 1
+		PickupManager.grenade_change.emit()
 		
 	move_and_slide()
 
@@ -71,3 +59,26 @@ func _on_hurt_box_component_being_hit() -> void:
 	hurt_sfx.play(0.0)
 	var tween = get_tree().create_tween()
 	tween.tween_method(SetShader_BlinkIntensity, 1.0,0.0,0.5)
+	
+	#if Input.is_action_just_pressed("Throw"):
+		#var grenade = grenade_scene.instantiate()
+		#var target = get_global_mouse_position()
+		#var range = global_position.distance_to(get_global_mouse_position())
+		#var distance =  get_global_mouse_position() - global_position 
+		#var distance_x = get_global_mouse_position().x - global_position.x
+		#var distance_y = get_global_mouse_position().y - global_position.y
+		#var angle = deg_to_rad(45)
+		#var gravity = 980
+		#var t = 1 #1second
+		#var force = sqrt((distance_x * gravity)/ sin(2*angle))
+		#var x = force*t*cos(angle)
+		#var y = -(gravity/2) + (force * sin(angle) * t)
+#
+		#var v_init_squared = gravity*(distance_x*distance_x) / 2*(cos(angle)*cos(angle))*(-distance_y + (distance_x*tan(angle)))
+		#var v_init = sqrt(v_init_squared)
+		#print(v_init)
+		#var x = v_init * cos(angle)
+		#var y = v_init * sin(angle)
+		#grenade.global_position = global_position
+		#grenade.apply_central_impulse(Vector2(x,y))
+		#get_tree().root.add_child(grenade)

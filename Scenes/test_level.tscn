@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://b4n73h3xwykh1"]
+[gd_scene load_steps=33 format=4 uid="uid://b4n73h3xwykh1"]
 
 [ext_resource type="Script" path="res://Scenes/ground_tile.gd" id="1_a22vf"]
 [ext_resource type="PackedScene" uid="uid://dpq85atgs6uk7" path="res://Scenes/Components/door_component.tscn" id="1_prje3"]
@@ -11,10 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://gbgtu7pqi1j0" path="res://Assets/Tileset/tileset1.png" id="7_nqueo"]
 [ext_resource type="PackedScene" uid="uid://brag2e0jicm06" path="res://Scenes/Components/box.tscn" id="9_a5on3"]
 [ext_resource type="AudioStream" uid="uid://dr08ri1tbree5" path="res://Assets/Audio/Music/Juhani Junkala [Retro Game Music Pack] Level 1.wav" id="9_g50uf"]
-[ext_resource type="PackedScene" uid="uid://ctuy78wbdejks" path="res://Scenes/health_ui.tscn" id="12_5woi3"]
-[ext_resource type="PackedScene" uid="uid://c4ecgcx26c5k1" path="res://Scenes/Components/pistol_pickup.tscn" id="14_g704k"]
+[ext_resource type="PackedScene" uid="uid://cv03uet6ywynh" path="res://Scenes/UI/grenade_ammo_ui.tscn" id="10_btjk7"]
+[ext_resource type="PackedScene" uid="uid://ctuy78wbdejks" path="res://Scenes/UI/health_ui.tscn" id="12_5woi3"]
+[ext_resource type="PackedScene" uid="uid://n3lrqlddh4s1" path="res://Scenes/Components/heart_pickup.tscn" id="14_36s80"]
 [ext_resource type="PackedScene" uid="uid://nt1kquei12yu" path="res://Scenes/Components/machine_gun_pickup.tscn" id="14_xraac"]
-[ext_resource type="PackedScene" uid="uid://qgvefke0us0x" path="res://Scenes/Components/sword_pickup.tscn" id="15_6d6t4"]
+[ext_resource type="PackedScene" uid="uid://ds3vgr08eolu7" path="res://Scenes/Components/grenade_pickup.tscn" id="15_qaw0j"]
+[ext_resource type="PackedScene" uid="uid://b6naww1axjgso" path="res://Scenes/Enemies/enemy_a.tscn" id="17_48u07"]
 
 [sub_resource type="GDScript" id="GDScript_i5s2s"]
 
@@ -516,6 +518,12 @@ collision_mask = 128
 
 [node name="HealthUI" parent="UI" instance=ExtResource("12_5woi3")]
 
+[node name="GrenadeAmmoUI" parent="UI" instance=ExtResource("10_btjk7")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_g50uf")
 volume_db = -8.0
@@ -540,8 +548,11 @@ scale = Vector2(1, 0.719998)
 [node name="MachineGunPickup" parent="." instance=ExtResource("14_xraac")]
 position = Vector2(406, 205)
 
-[node name="SwordPickup" parent="." instance=ExtResource("15_6d6t4")]
-position = Vector2(959, 106)
+[node name="GrenadePickup" parent="." instance=ExtResource("15_qaw0j")]
+position = Vector2(893, 134)
 
-[node name="PistolPickup" parent="." instance=ExtResource("14_g704k")]
-position = Vector2(638, 203)
+[node name="EnemyA" parent="." instance=ExtResource("17_48u07")]
+position = Vector2(676, 98)
+
+[node name="HeartPickup" parent="." instance=ExtResource("14_36s80")]
+position = Vector2(770, 184)

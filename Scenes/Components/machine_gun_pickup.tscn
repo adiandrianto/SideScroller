@@ -138,7 +138,8 @@ collision_mask = 256
 script = ExtResource("1_tksq6")
 animation_player = NodePath("AnimationPlayer")
 audio_stream_player = NodePath("AudioStreamPlayer")
-pickup_path = "res://Scenes/Weapons/machine_gun.tscn"
+pickup_path = "H:/GODOT PROJECT/SideScroller/Scenes/Weapons/machine_gun.tscn"
+pickup_type = "weapon"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(17.75, -9)

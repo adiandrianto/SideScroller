@@ -8,10 +8,9 @@ radius = 7.0
 height = 14.0
 
 [node name="Grenade" type="RigidBody2D"]
-position = Vector2(153, 181)
+position = Vector2(24, 247)
 collision_layer = 2
 collision_mask = 192
-mass = 0.001
 script = ExtResource("1_abqcl")
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]

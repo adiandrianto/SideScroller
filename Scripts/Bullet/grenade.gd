@@ -5,7 +5,7 @@ extends RigidBody2D
 func _on_area_entered(area: Area2D) -> void:
 	print(area.name)
 	explode()
-
+	
 func _on_timer_timeout() -> void:
 	explode()
 
@@ -14,3 +14,5 @@ func explode():
 	explode.global_position = global_position
 	get_tree().root.add_child(explode)
 	queue_free()
+
+ 
