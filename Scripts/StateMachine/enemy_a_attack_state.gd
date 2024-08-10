@@ -19,7 +19,10 @@ func state_enter():
 
 func state_physics_update(delta):
 	enemy.velocity = lerp(enemy.velocity, Vector2.ZERO,0.1)
-	shoot()
+	if enemy.can_shoot:
+		shoot()
+	else:
+		return
 	var distance = enemy.global_position - player.global_position
 	#print(distance)
 	if distance.length() < 80 && not ray_cast.is_colliding():
@@ -31,6 +34,7 @@ func state_physics_update(delta):
 	
 	if distance.length() > 450 :
 		transitioned.emit(self, "idle")
+
 
 func shoot():
 	var bullet = bullet_scene.instantiate()
