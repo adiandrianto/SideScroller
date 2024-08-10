@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-@export var speed : float = 120.0
+@export var speed : float
 @onready var label = $Label
 @onready var health_component = $HealthComponent
 @onready var weapon = get_tree().get_first_node_in_group("weapon")

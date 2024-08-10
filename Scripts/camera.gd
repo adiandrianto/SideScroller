@@ -1,6 +1,6 @@
 extends Camera2D
 
-@export var player: CharacterBody2D
+@export var player: Player
 @export var smoothing_enabled: bool
 @export_range(1, 10) var smooth_value: int = 8
 

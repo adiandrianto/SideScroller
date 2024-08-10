@@ -190,7 +190,7 @@ height = 23.774
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 5
-collision_mask = 512
+collision_mask = 640
 script = ExtResource("1_e0se1")
 grenade_count = 7
 
@@ -242,10 +242,11 @@ initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("12_e7h83")
+slow_down_speed = 250
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("13_u236u")
-speed = 200
+speed = 150
 max_horizontal_speed = 75
 
 [node name="Climb" type="Node" parent="StateMachine"]
