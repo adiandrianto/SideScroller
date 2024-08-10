@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://n3lrqlddh4s1"]
+[gd_scene load_steps=11 format=3 uid="uid://n3lrqlddh4s1"]
 
 [ext_resource type="Shader" path="res://Shader/give_outline.gdshader" id="1_dnitq"]
 [ext_resource type="Script" path="res://Scripts/Component/pickup_component.gd" id="1_ffewv"]
 [ext_resource type="Texture2D" uid="uid://djuyr2vy4202r" path="res://Assets/Pickup/heart_pickup.png" id="2_poe6p"]
+[ext_resource type="AudioStream" uid="uid://hhhotqfvb4mp" path="res://Assets/Audio/SFX/add_health.sfxr" id="4_16sad"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7h485"]
 size = Vector2(32, 31)
@@ -84,9 +85,37 @@ tracks/2/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_s316j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o87du"]
 _data = {
+"RESET": SubResource("Animation_s316j"),
 "idle": SubResource("Animation_l3tr3"),
 "pick_up": SubResource("Animation_5kn18")
 }
@@ -105,8 +134,7 @@ shape = SubResource("RectangleShape2D_7h485")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2buva")
-position = Vector2(17, -10.2523)
-skew = -0.060898
+position = Vector2(17, -8)
 texture = ExtResource("2_poe6p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -116,3 +144,5 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_16sad")
+volume_db = -8.0

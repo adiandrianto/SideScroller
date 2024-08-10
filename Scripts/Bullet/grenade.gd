@@ -1,10 +1,6 @@
 extends RigidBody2D
 
-@onready var explosion_scene = preload("res://Scenes/Weapons/grenade_explosion.tscn")
-
-func _on_area_entered(area: Area2D) -> void:
-	print(area.name)
-	explode()
+@onready var explosion_scene = preload("res://Scenes/explosion_scene.tscn")
 	
 func _on_timer_timeout() -> void:
 	explode()
@@ -15,4 +11,6 @@ func explode():
 	get_tree().root.add_child(explode)
 	queue_free()
 
- 
+func _on_hit_box_component_area_entered(area: Area2D) -> void:
+	print(area.name)
+	explode()

@@ -1,7 +1,7 @@
 extends Area2D
 class_name PickUp
 
-@onready var player: CharacterBody2D
+@onready var player: Player
 @export var animation_player: AnimationPlayer
 @export var audio_stream_player: AudioStreamPlayer
 @export var pickup_path: String
@@ -19,7 +19,8 @@ func _on_area_entered(area: Area2D) -> void:
 		if pickup_type == "weapon":
 			PickupManager.change_weapon(pickup_path)
 		elif pickup_type == "heart":
-			PickupManager.add_heart()
+			print("heart picked")
+			PickupManager.add_health.emit()
 		elif pickup_type == "grenade":
-			PickupManager.emit_signal("grenade_acquired")
-			PickupManager.add_grenade()
+			print("grenade picked")
+			PickupManager.add_grenade.emit()

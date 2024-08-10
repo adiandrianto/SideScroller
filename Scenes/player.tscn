@@ -216,6 +216,7 @@ size_flags_vertical = 0
 
 [node name="HealthComponent" parent="." instance=ExtResource("6_xwy6r")]
 max_health = 3
+current_health = 1
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") groups=["player"] instance=ExtResource("7_6bgoq")]
 collision_layer = 256
@@ -244,12 +245,15 @@ script = ExtResource("12_e7h83")
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("13_u236u")
+speed = 200
+max_horizontal_speed = 75
 
 [node name="Climb" type="Node" parent="StateMachine"]
 script = ExtResource("14_4qdod")
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("15_0uodt")
+jump_horizontal_speed = 100
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("15_4ki7g")

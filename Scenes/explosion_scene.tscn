@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d32ji57w4shnv"]
+[gd_scene load_steps=7 format=3 uid="uid://d32ji57w4shnv"]
 
 [ext_resource type="AudioStream" uid="uid://cjxpqsf1grd3x" path="res://Assets/Audio/SFX/Grenade 1.wav" id="1_p8j7x"]
+[ext_resource type="Script" path="res://Scenes/explosion_scene.gd" id="1_qfjd0"]
 [ext_resource type="Texture2D" uid="uid://iyc08bi35vup" path="res://Assets/explosion_sheet.png" id="1_weu64"]
 
 [sub_resource type="Animation" id="Animation_scxgd"]
@@ -55,6 +56,7 @@ _data = {
 }
 
 [node name="ExplosionScene" type="Node2D"]
+script = ExtResource("1_qfjd0")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_p8j7x")

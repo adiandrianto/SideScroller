@@ -1,17 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://cv03uet6ywynh"]
+[gd_scene load_steps=3 format=3 uid="uid://cv03uet6ywynh"]
 
 [ext_resource type="Script" path="res://Scripts/UI/grenade_ammo_ui.gd" id="1_0358n"]
+[ext_resource type="Texture2D" uid="uid://tqqfglmah2my" path="res://Assets/Weapon Sprite/single grenade.png" id="2_1xxfk"]
 
 [node name="GrenadeAmmoUI" type="Control"]
 layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-grow_horizontal = 0
-size_flags_horizontal = 4
+anchors_preset = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 script = ExtResource("1_0358n")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+offset_right = 53.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_1xxfk")
+expand_mode = 4
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "X 76"

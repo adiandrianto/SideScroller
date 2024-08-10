@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cree6imlx0yyj"]
+[gd_scene load_steps=6 format=3 uid="uid://cree6imlx0yyj"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet/grenade.gd" id="1_abqcl"]
 [ext_resource type="Texture2D" uid="uid://g42qc3ilfth7" path="res://Assets/Weapon Sprite/grenades.png" id="1_ukcf2"]
+[ext_resource type="PackedScene" uid="uid://be4lfovfuvq74" path="res://Scenes/Components/hit_box_component.tscn" id="3_jiu42"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4lve"]
-radius = 7.0
-height = 14.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_2jm3r"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ow6qv"]
 
 [node name="Grenade" type="RigidBody2D"]
 position = Vector2(24, 247)
@@ -19,12 +21,21 @@ hframes = 8
 vframes = 4
 frame = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_s4lve")
-
 [node name="Timer" type="Timer" parent="." groups=["weapon"]]
 wait_time = 1.4
 one_shot = true
 autostart = true
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2jm3r")
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("3_jiu42")]
+collision_layer = 2
+collision_mask = 64
+dmg_point = 50
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("CircleShape2D_ow6qv")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="HitBoxComponent" to="." method="_on_hit_box_component_area_entered"]

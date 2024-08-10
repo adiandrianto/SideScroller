@@ -32,7 +32,8 @@ func state_physics_update(delta):
 	if ray_cast.is_colliding():
 		if ray_cast.get_collider().is_in_group("ladder") && Input.is_action_just_pressed("interact"):
 			transitioned.emit(self,"climb")
-			
+		else :
+			return
 	
 func state_exit():
 	animated_sprite.stop()

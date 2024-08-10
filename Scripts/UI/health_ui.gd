@@ -3,7 +3,7 @@ extends Control
 var hearts := 4 : set = _set_health
 var max_hearts := 4
 
-@onready var player: CharacterBody2D
+@onready var player: Player
 @onready var progress_bar: TextureProgressBar = $TextureProgressBar
 
 func _ready() -> void:

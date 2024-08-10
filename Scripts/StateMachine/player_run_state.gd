@@ -1,8 +1,8 @@
 extends State
 
 @onready var animated_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
-@export var speed:= 600
-@export var max_horizontal_speed := 80
+@export var speed: int
+@export var max_horizontal_speed : int
 
 func state_physics_update(delta):
 	var direction = Input.get_axis("left", "right")

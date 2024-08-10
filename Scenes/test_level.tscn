@@ -516,13 +516,13 @@ collision_mask = 128
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="HealthUI" parent="UI" instance=ExtResource("12_5woi3")]
-
 [node name="GrenadeAmmoUI" parent="UI" instance=ExtResource("10_btjk7")]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-grow_horizontal = 2
+offset_left = 15.0
+offset_top = 25.0
+offset_right = 15.0
+offset_bottom = 25.0
+
+[node name="HealthUI" parent="UI" instance=ExtResource("12_5woi3")]
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_g50uf")

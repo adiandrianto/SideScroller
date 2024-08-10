@@ -16,6 +16,18 @@ class_name Player
 
 var direction = Input.get_axis("left", "right")
 
+func _ready() -> void:
+	PickupManager.add_grenade.connect(on_add_grenade)
+	PickupManager.add_health.connect(on_add_health)
+	
+func on_add_grenade():
+	grenade_count += 1
+	PickupManager.grenade_changed.emit()
+	
+func on_add_health():
+	health_component.current_health += 1
+	health_component.health_changed.emit()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("shoot") && can_shoot_pistol && weapon != null:
 		weapon.shoot()
@@ -45,7 +57,7 @@ func _physics_process(delta):
 		grenade.apply_central_impulse(Vector2(grenade_x_force,grenade_y_force))
 		get_tree().root.add_child(grenade)
 		grenade_count -= 1
-		PickupManager.grenade_change.emit()
+		PickupManager.grenade_changed.emit()
 		
 	move_and_slide()
 
