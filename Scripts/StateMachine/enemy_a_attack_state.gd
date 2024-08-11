@@ -19,7 +19,7 @@ func state_enter():
 
 func state_physics_update(delta):
 	enemy.velocity = lerp(enemy.velocity, Vector2.ZERO,0.1)
-	if enemy.can_shoot:
+	if DimensionManager.is_inside == false:
 		shoot()
 	else:
 		return

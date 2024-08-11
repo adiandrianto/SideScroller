@@ -3,7 +3,6 @@ extends CharacterBody2D
 const SPEED := 40
 var direction = 1
 var last_pitch = 1.0
-var can_shoot : bool = true
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurt_box_component: HurtBoxComponent = $HurtBoxComponent
@@ -33,8 +32,6 @@ func _on_health_component_died() -> void:
 func SetShader_BlinkIntensity(newValue : float):
 	sprite.material.set_shader_parameter("blink_intensity", newValue)
 
-
-
 func _on_health_component_health_changed() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_method(SetShader_BlinkIntensity, 1.0,0.0,0.2)
@@ -46,8 +43,8 @@ func _on_health_component_health_changed() -> void:
 	#else:
 		#can_shoot = true
 		
-func _on_door_dimension_1() -> void:
-	can_shoot = true
-
-func _on_door_dimension_2() -> void:
-	can_shoot = false
+#func _on_door_dimension_1() -> void:
+	#can_shoot = true
+#
+#func _on_door_dimension_2() -> void:
+	#can_shoot = false

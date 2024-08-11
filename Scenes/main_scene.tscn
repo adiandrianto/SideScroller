@@ -430,10 +430,6 @@ texture_filter = 1
 texture = ExtResource("10_lkpav")
 offset = Vector2(0, 70)
 
-[node name="HeartPickup" parent="." instance=ExtResource("20_ld3e8")]
-visible = false
-position = Vector2(1264, 200)
-
 [node name="Player" parent="." instance=ExtResource("1_gfy2y")]
 position = Vector2(48, 166)
 
@@ -565,3 +561,6 @@ position = Vector2(3278, 257)
 position = Vector2(1312, 208)
 tile_map = NodePath("../TileMap")
 second_dimension = NodePath("../GroundTile/2ndDimension")
+
+[node name="HeartPickup" parent="." instance=ExtResource("20_ld3e8")]
+position = Vector2(1263, 201)

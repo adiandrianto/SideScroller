@@ -15,6 +15,21 @@ shader_parameter/frequency = 0.6
 shader_parameter/highlight_speed = 5.0
 shader_parameter/highlight_width = 7.0
 
+[sub_resource type="Animation" id="Animation_s316j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_l3tr3"]
 resource_name = "idle"
 length = 2.0
@@ -98,21 +113,6 @@ tracks/3/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_s316j"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o87du"]
 _data = {
 "RESET": SubResource("Animation_s316j"),
@@ -127,6 +127,7 @@ script = ExtResource("1_ffewv")
 animation_player = NodePath("AnimationPlayer")
 audio_stream_player = NodePath("AudioStreamPlayer")
 pickup_type = "heart"
+is_inside = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(16, -11)

@@ -12,13 +12,12 @@ var last_pitch = 1.0
 @onready var dead_sfx: AudioStreamPlayer2D = $deadSFX
 @onready var blood_splatter: AudioStreamPlayer2D = $BloodSplatter
 
-
-var alive := true
+var alive : bool = true
 
 func _physics_process(_delta: float) -> void:
 	label.text = str(health_component.current_health)
 	var distance = global_position - player.global_position
-	if distance.length() <1000 && alive :
+	if distance.length() <1000 && alive && DimensionManager.is_inside == false:
 		animation_player.play("produce_bomb")
 		
 func SetShader_BlinkIntensity(newValue : float):

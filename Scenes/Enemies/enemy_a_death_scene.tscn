@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://d0lmrsghbybd2"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/enemy_A_death_scene.gd" id="1_lo1r1"]
+[ext_resource type="Script" path="res://Scripts/Enemies/enemy_A_death_scene.gd" id="1_lo1r1"]
 [ext_resource type="Texture2D" uid="uid://erijbmfhe02u" path="res://Assets/Enemy Sprite/enemyA.png" id="2_iuawj"]
 [ext_resource type="Texture2D" uid="uid://b414shg5hp4od" path="res://Assets/splatter.png" id="3_oenqf"]
 [ext_resource type="AudioStream" uid="uid://d2hc0vffoypmd" path="res://Assets/Audio/SFX/Alien_A_Scream.mp3" id="4_euav7"]

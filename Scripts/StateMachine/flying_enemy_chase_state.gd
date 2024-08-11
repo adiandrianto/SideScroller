@@ -17,7 +17,8 @@ func state_physics_update(delta):
 	var distance_x = enemy.global_position.x - player.global_position.x
 	enemy.velocity = Vector2(direction_to_player.x,0) * SPEED
 	if distance_x < 15:
-		transitioned.emit(self, "attack")
+		if DimensionManager.is_inside == false :
+			transitioned.emit(self, "attack")
 	elif distance_x > 175:
 		transitioned.emit(self, "idle")
 		

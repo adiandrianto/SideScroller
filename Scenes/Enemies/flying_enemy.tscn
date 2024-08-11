@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://ckvoiwx40mj15"]
 
-[ext_resource type="Script" path="res://Scripts/flying_enemy.gd" id="1_10uvs"]
+[ext_resource type="Script" path="res://Scripts/Enemies/flying_enemy.gd" id="1_10uvs"]
 [ext_resource type="Texture2D" uid="uid://bg2jlsxlksvo7" path="res://Assets/Enemy Sprite/flying_alien.png" id="1_senvq"]
 [ext_resource type="Material" uid="uid://bv3bavguqjynk" path="res://Shader/flash_shader.tres" id="2_4cmld"]
 [ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="2_rs8n4"]
@@ -11,8 +11,8 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/flying_enemy_idle_state.gd" id="7_l44ce"]
 [ext_resource type="AudioStream" uid="uid://c4k4dwgit0g1a" path="res://Assets/Audio/SFX/flying enemy laser.wav" id="7_mhnus"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/flying_enemy_attack_state.gd" id="8_lpd2t"]
-[ext_resource type="Script" path="res://Scenes/Enemies/flying_enemy_chase_state.gd" id="10_ng17f"]
-[ext_resource type="Script" path="res://Scenes/Enemies/enemy_hurt_state.gd" id="12_7mhnt"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/flying_enemy_chase_state.gd" id="10_ng17f"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/enemy_hurt_state.gd" id="12_7mhnt"]
 [ext_resource type="Texture2D" uid="uid://tatbhgngq5dq" path="res://Assets/Circular 7 - 128x128.png" id="14_nn8ut"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6o23w"]

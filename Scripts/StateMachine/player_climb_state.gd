@@ -8,7 +8,8 @@ var climb_speed := 50
 
 func state_enter():
 	owner.velocity = Vector2.ZERO
-	animated_sprite.frame = 1
+	animated_sprite.play("climb")
+	animated_sprite.pause()
 	if owner.weapon != null:
 		owner.weapon.visible = false
 		owner.weapon.flip_right()
