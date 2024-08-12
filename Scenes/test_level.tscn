@@ -511,10 +511,9 @@ position = Vector2(192, 224)
 tile_map = NodePath("../TileMap")
 second_dimension = NodePath("../GroundTile/2ndDimension")
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(241, 135)
 script = ExtResource("3_howiu")
-player = NodePath("../Player")
 smoothing_enabled = true
 smooth_value = 2
 

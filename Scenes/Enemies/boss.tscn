@@ -1,11 +1,16 @@
-[gd_scene load_steps=32 format=3 uid="uid://1gm8yfxkfox4"]
+[gd_scene load_steps=44 format=3 uid="uid://1gm8yfxkfox4"]
 
 [ext_resource type="Texture2D" uid="uid://cnlxucnbad27i" path="res://Assets/Enemy Sprite/Gravity-Sheet.png" id="1_fpfi7"]
 [ext_resource type="Script" path="res://Scripts/Enemies/boss.gd" id="1_p3ro2"]
 [ext_resource type="Texture2D" uid="uid://ccx6rtwk63dg5" path="res://Assets/Enemy Sprite/boss_front.png" id="2_b0iuc"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="4_wboy4"]
 [ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="5_cbxsc"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/boss_side_attack_state.gd" id="5_ft2pq"]
 [ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="5_h1bo7"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/boss_vulnerable_state.gd" id="6_wk7so"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/boss_mid_attack_state.gd" id="7_f5lsi"]
+[ext_resource type="Material" uid="uid://bv3bavguqjynk" path="res://Shader/flash_shader.tres" id="10_n42h4"]
+[ext_resource type="Texture2D" uid="uid://bflxww33glovf" path="res://Assets/Enemy Sprite/boss_shield.png" id="10_t2dyq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l1eww"]
 atlas = ExtResource("1_fpfi7")
@@ -160,7 +165,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/path = NodePath("vortex:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -172,7 +177,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:modulate")
+tracks/1/path = NodePath("vortex:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -184,7 +189,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/path = NodePath("BossSprite:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -196,7 +201,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/path = NodePath("BossSprite:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -205,6 +210,17 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BossSprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_o2udd"]
 resource_name = "appear"
@@ -212,7 +228,7 @@ length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/path = NodePath("vortex:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -224,7 +240,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:modulate")
+tracks/1/path = NodePath("vortex:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -236,7 +252,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/path = NodePath("BossSprite:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -248,7 +264,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/path = NodePath("BossSprite:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -258,20 +274,130 @@ tracks/3/keys = {
 "values": [Vector2(0.5, 0.5), Vector2(1.1, 1.1), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_pmcy4"]
+resource_name = "appear_side"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("vortex:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333, 0.8, 0.866667, 0.966667, 1.06667, 1.16667, 1.26667, 1.36667, 1.46667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("vortex:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.966667, 1.43333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BossSprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.03333, 1.33333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BossSprite:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1, 1.3, 1.33333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BossSprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mqkvv"]
 _data = {
 "RESET": SubResource("Animation_ck1xo"),
-"appear": SubResource("Animation_o2udd")
+"appear": SubResource("Animation_o2udd"),
+"appear_side": SubResource("Animation_pmcy4")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk6el"]
+atlas = ExtResource("10_t2dyq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4en7"]
+atlas = ExtResource("10_t2dyq")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ek46"]
+atlas = ExtResource("10_t2dyq")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcms1"]
+atlas = ExtResource("10_t2dyq")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7mq0n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk6el")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4en7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ek46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcms1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sungi"]
+radius = 30.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tm52v"]
 height = 42.0
 
-[node name="BOSS" type="Node2D"]
+[node name="BOSS" type="CharacterBody2D" node_paths=PackedStringArray("summon_markers")]
 script = ExtResource("1_p3ro2")
+summon_markers = [null, null, null, null]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(25, -20)
+[node name="MarkerLeft" type="Marker2D" parent="."]
+position = Vector2(-35, -26)
+
+[node name="MarkerRight" type="Marker2D" parent="."]
+position = Vector2(34, -27)
+
+[node name="vortex" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -20)
 sprite_frames = SubResource("SpriteFrames_fkyvx")
 animation = &"appear"
 frame = 1
@@ -281,27 +407,60 @@ libraries = {
 "": SubResource("AnimationLibrary_mqkvv")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(24, -24)
+[node name="BossSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
 texture = ExtResource("2_b0iuc")
+hframes = 2
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_wboy4")
+initial_state = NodePath("SideAttack")
 
-[node name="SideAttack" type="Node" parent="StateMachine"]
+[node name="SideAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("boss")]
+script = ExtResource("5_ft2pq")
+boss = NodePath("../..")
 
 [node name="Vulnerable" type="Node" parent="StateMachine"]
+script = ExtResource("6_wk7so")
 
 [node name="MidAttack" type="Node" parent="StateMachine"]
+script = ExtResource("7_f5lsi")
 
-[node name="HealthComponent" parent="." instance=ExtResource("5_h1bo7")]
+[node name="AlienHealth" parent="." instance=ExtResource("5_h1bo7")]
 max_health = 200
 
-[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_cbxsc")]
-health_component = NodePath("../HealthComponent")
+[node name="ShieldHealth" parent="." instance=ExtResource("5_h1bo7")]
+max_health = 100
+current_health = 100
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+[node name="ShieldHurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_cbxsc")]
+position = Vector2(-24, -1)
+collision_layer = 68
+collision_mask = 2
+health_component = NodePath("../ShieldHealth")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ShieldHurtBox"]
+modulate = Color(1, 1, 1, 0.388235)
+material = ExtResource("10_n42h4")
+position = Vector2(24, -21)
+sprite_frames = SubResource("SpriteFrames_7mq0n")
+frame_progress = 0.961067
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHurtBox"]
+position = Vector2(24, -20)
+shape = SubResource("CircleShape2D_sungi")
+
+[node name="AlienHurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_cbxsc")]
+position = Vector2(-24, 0)
+health_component = NodePath("../AlienHealth")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlienHurtBox"]
 position = Vector2(24, -21)
 shape = SubResource("CapsuleShape2D_tm52v")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="died" from="ShieldHealth" to="StateMachine/SideAttack" method="_on_shield_health_died"]
+[connection signal="health_changed" from="ShieldHealth" to="." method="_on_shield_health_health_changed"]

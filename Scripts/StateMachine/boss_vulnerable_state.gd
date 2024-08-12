@@ -1,11 +1,22 @@
-extends Node
+extends State
 
+@export var enemy :CharacterBody2D
+@onready var shield_hurtbox: HurtBoxComponent = $"../../ShieldHurtBox"
+@onready var shield_health: HealthComponent = $"../../ShieldHealth"
+@onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func state_enter():
+	shield_hurtbox.visible = false
+	shield_hurtbox.monitoring = false
+	shield_hurtbox.monitorable = false
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func state_physics_update(delta):
+	await get_tree().create_timer(4).timeout
+	#animation_player.play("vulnerable")
+	transitioned.emit(self, "sideattack")
+	
+func state_exit():
+	shield_health.current_health = shield_health.max_health
+	shield_hurtbox.visible = true
+	shield_hurtbox.monitoring = true
+	shield_hurtbox.monitorable = true
