@@ -8,7 +8,7 @@ extends Node
 @onready var shield: AnimatedSprite2D = $ShieldHurtBox/AnimatedSprite2D
 @onready var alien_health: HealthComponent = $AlienHealth
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if self.global_position < player.global_position:
 		boss_sprite.flip_h = true
 	else:

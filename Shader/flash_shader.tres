@@ -10,5 +10,5 @@ noise = SubResource("FastNoiseLite_gl7uu")
 [resource]
 resource_local_to_scene = true
 shader = ExtResource("1_rdvdd")
-shader_parameter/value = 1.0
+shader_parameter/value = 0.0
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_amnes")

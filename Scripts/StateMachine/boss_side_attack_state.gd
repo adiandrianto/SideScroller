@@ -6,23 +6,23 @@ extends State
 @onready var marker_right: Marker2D = $"../../MarkerRight"
 @onready var sprite: Sprite2D = $"../../BossSprite"
 @onready var player: Player = get_tree().get_first_node_in_group("player")
-
+@onready var gate1: int
+@onready var gate2: int
 const BOSS_CLONE = preload("res://Scenes/Enemies/boss_clone.tscn")
 const BOSS_BOULDER = preload("res://Scenes/Bullets/boss_boulder.tscn")
-var gate1
-var gate2
 var can_shoot:bool = true
 
 func state_enter():
 	var clone = BOSS_CLONE.instantiate()
 	gate1 = pick_random_gate()
 	gate2 = pick_random_gate()
-	
-	boss.global_position = boss.summon_markers[1].global_position
-	clone.global_position = boss.summon_markers[2].global_position
-	animation_player.play("appear_side")
-	get_tree().root.add_child(clone)
-	
+	if gate1 == gate2:
+		gate1 = pick_random_gate()
+	else:
+		boss.global_position = boss.summon_markers[gate1].global_position
+		clone.global_position = boss.summon_markers[gate2].global_position
+		animation_player.play("appear_side")
+		get_tree().root.add_child.call_deferred(clone)
 
 func state_physics_update(_delta):
 	if not animation_player.is_playing():
@@ -32,7 +32,7 @@ func state_exit():
 	pass
 
 func pick_random_gate():
-	randi_range(0,3)
+	return randi_range(0,3)
 	
 func _on_shield_health_died() -> void:
 	transitioned.emit(self,"vulnerable")
@@ -57,5 +57,6 @@ func shoot():
 		get_tree().root.add_child(boulder)
 	
 	can_shoot = false
-	await get_tree().create_timer(2).timeout #time between shoot
+	var t = randf_range(2.0, 3.5)
+	await get_tree().create_timer(t).timeout #time between shoot
 	can_shoot = true

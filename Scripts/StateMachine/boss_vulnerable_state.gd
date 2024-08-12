@@ -10,7 +10,7 @@ func state_enter():
 	shield_hurtbox.monitoring = false
 	shield_hurtbox.monitorable = false
 
-func state_physics_update(delta):
+func state_physics_update(_delta):
 	await get_tree().create_timer(4).timeout
 	#animation_player.play("vulnerable")
 	transitioned.emit(self, "sideattack")

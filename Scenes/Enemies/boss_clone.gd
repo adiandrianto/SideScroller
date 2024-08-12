@@ -14,7 +14,15 @@ func _ready() -> void:
 	
 func _on_health_component_died() -> void:
 	animation_player.play("clone_death")
-
+	
+func _physics_process(delta: float) -> void:
+	if not animation_player.is_playing():
+		shoot()
+	if global_position < player.global_position:
+		sprite.flip_h = true
+	else:
+		sprite.flip_h = false
+	
 func shoot():
 	var boulder = BOSS_BOULDER.instantiate()
 	var marker: Marker2D
@@ -35,5 +43,6 @@ func shoot():
 		get_tree().root.add_child(boulder)
 	
 	can_shoot = false
-	await get_tree().create_timer(2).timeout #time between shoot
+	var t = randf_range(2.0,3.5)
+	await get_tree().create_timer(t).timeout #time between shoot
 	can_shoot = true

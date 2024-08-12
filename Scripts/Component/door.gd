@@ -41,5 +41,5 @@ func _on_interaction_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
 		label.visible = true
 
-func _on_interaction_area_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+func _on_interaction_area_area_shape_exited(area: Area2D) -> void:
 	label.visible = false
