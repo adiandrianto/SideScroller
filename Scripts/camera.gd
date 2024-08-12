@@ -9,6 +9,8 @@ var x_distance:= 10
 
 func _physics_process(_delta: float) -> void:
 	var weight: float
+	var direction = player.direction
+	
 	if player != null :
 		var camera_pos: Vector2
 		
@@ -18,4 +20,7 @@ func _physics_process(_delta: float) -> void:
 		else :
 			camera_pos = player.global_position
 			
-		global_position = Vector2((camera_pos.x + x_distance), (camera_pos.y - y_distance)).floor()
+		if direction > 0 :
+			global_position = Vector2((camera_pos.x + x_distance), (camera_pos.y - y_distance)).floor()
+		else :
+			global_position = Vector2((camera_pos.x - x_distance), (camera_pos.y - y_distance)).floor()
