@@ -7,8 +7,10 @@ class_name FlyingEnemyAttack
 var player:CharacterBody2D
 
 func state_enter():
-	player = get_tree().get_first_node_in_group("player")
-	animation_player.play("attack")
+	if DimensionManager.is_inside == false:
+		player = get_tree().get_first_node_in_group("player")
+		animation_player.play("attack")
+			
 		
 func to_idle():
 	transitioned.emit(self, "idle")

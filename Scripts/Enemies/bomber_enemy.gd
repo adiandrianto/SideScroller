@@ -24,9 +24,10 @@ func SetShader_BlinkIntensity(newValue : float):
 	sprite.material.set_shader_parameter("blink_intensity", newValue)
 	
 func attack():
-	var bullet = bullet_scene.instantiate()
-	bullet.position = marker.global_position
-	get_tree().root.add_child(bullet)
+	if DimensionManager.is_inside == false:
+		var bullet = bullet_scene.instantiate()
+		bullet.position = marker.global_position
+		get_tree().root.add_child(bullet)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullet"):
