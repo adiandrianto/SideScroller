@@ -397,7 +397,7 @@ fill_to = Vector2(1, 0.0642202)
 [node name="Main" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource("1_gfy2y")]
-position = Vector2(3965, 305)
+position = Vector2(49, 182)
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
 texture = ExtResource("2_f4j8k")

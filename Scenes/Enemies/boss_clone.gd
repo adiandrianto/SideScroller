@@ -30,15 +30,15 @@ func shoot():
 		return
 	else :
 		if sprite.flip_h == true:
-			#boulder.velocity = Vector2.RIGHT
+			boulder.velocity = Vector2.RIGHT
 			marker = marker_right
 		else:
-			#boulder.velocity = Vector2.LEFT
+			boulder.velocity = Vector2.LEFT
 			#boulder.rotate(deg_to_rad(180))
 			marker = marker_left
 		
 		boulder.position = marker.global_position
-		boulder.velocity = boulder.global_position.direction_to(player.global_position)
+		#boulder.velocity = boulder.global_position.direction_to(player.global_position)
 		boulder.look_at(player.global_position)
 		get_tree().root.add_child(boulder)
 	
