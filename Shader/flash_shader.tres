@@ -1,9 +1,14 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bv3bavguqjynk"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bv3bavguqjynk"]
 
-[ext_resource type="Shader" path="res://Scenes/Enemies/Blink.gdshader" id="1_ruhqh"]
+[ext_resource type="Shader" path="res://Shader/dissolve.gdshader" id="1_rdvdd"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gl7uu"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_amnes"]
+noise = SubResource("FastNoiseLite_gl7uu")
 
 [resource]
 resource_local_to_scene = true
-shader = ExtResource("1_ruhqh")
-shader_parameter/blink_color = Color(1, 1, 1, 1)
-shader_parameter/blink_intensity = 0.0
+shader = ExtResource("1_rdvdd")
+shader_parameter/value = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_amnes")

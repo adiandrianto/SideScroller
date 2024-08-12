@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://1gm8yfxkfox4"]
+[gd_scene load_steps=45 format=3 uid="uid://1gm8yfxkfox4"]
 
 [ext_resource type="Texture2D" uid="uid://cnlxucnbad27i" path="res://Assets/Enemy Sprite/Gravity-Sheet.png" id="1_fpfi7"]
 [ext_resource type="Script" path="res://Scripts/Enemies/boss.gd" id="1_p3ro2"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="5_h1bo7"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/boss_vulnerable_state.gd" id="6_wk7so"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/boss_mid_attack_state.gd" id="7_f5lsi"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/boss_death_state.gd" id="8_bi2im"]
 [ext_resource type="Material" uid="uid://bv3bavguqjynk" path="res://Shader/flash_shader.tres" id="10_n42h4"]
 [ext_resource type="Texture2D" uid="uid://bflxww33glovf" path="res://Assets/Enemy Sprite/boss_shield.png" id="10_t2dyq"]
 
@@ -391,10 +392,10 @@ script = ExtResource("1_p3ro2")
 summon_markers = [null, null, null, null]
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
-position = Vector2(-35, -26)
+position = Vector2(-30, -20)
 
 [node name="MarkerRight" type="Marker2D" parent="."]
-position = Vector2(34, -27)
+position = Vector2(30, -20)
 
 [node name="vortex" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -20)
@@ -426,6 +427,9 @@ script = ExtResource("6_wk7so")
 [node name="MidAttack" type="Node" parent="StateMachine"]
 script = ExtResource("7_f5lsi")
 
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("8_bi2im")
+
 [node name="AlienHealth" parent="." instance=ExtResource("5_h1bo7")]
 max_health = 200
 
@@ -452,6 +456,8 @@ shape = SubResource("CircleShape2D_sungi")
 
 [node name="AlienHurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_cbxsc")]
 position = Vector2(-24, 0)
+collision_layer = 68
+collision_mask = 2
 health_component = NodePath("../AlienHealth")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AlienHurtBox"]

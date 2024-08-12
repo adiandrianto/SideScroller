@@ -1,0 +1,39 @@
+extends CharacterBody2D
+
+@onready var player: Player = get_tree().get_first_node_in_group("player")
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+const BOSS_BOULDER = preload("res://Scenes/Bullets/boss_boulder.tscn")
+@onready var marker_right: Marker2D = $MarkerRight
+@onready var marker_left: Marker2D = $MarkerLeft
+@onready var sprite: Sprite2D = $Sprite2D
+
+var can_shoot:= true
+
+func _ready() -> void:
+	animation_player.play("appear")
+	
+func _on_health_component_died() -> void:
+	animation_player.play("clone_death")
+
+func shoot():
+	var boulder = BOSS_BOULDER.instantiate()
+	var marker: Marker2D
+	if not can_shoot:
+		return
+	else :
+		if sprite.flip_h == true:
+			#boulder.velocity = Vector2.RIGHT
+			marker = marker_right
+		else:
+			#boulder.velocity = Vector2.LEFT
+			#boulder.rotate(deg_to_rad(180))
+			marker = marker_left
+		
+		boulder.position = marker.global_position
+		boulder.velocity = boulder.global_position.direction_to(player.global_position)
+		boulder.look_at(player.global_position)
+		get_tree().root.add_child(boulder)
+	
+	can_shoot = false
+	await get_tree().create_timer(2).timeout #time between shoot
+	can_shoot = true

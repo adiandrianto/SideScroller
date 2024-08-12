@@ -6,13 +6,14 @@ extends Node
 @onready var label: Label = $Label
 @onready var state_machine: Node = $StateMachine
 @onready var shield: AnimatedSprite2D = $ShieldHurtBox/AnimatedSprite2D
+@onready var alien_health: HealthComponent = $AlienHealth
 
 func _process(delta: float) -> void:
 	if self.global_position < player.global_position:
 		boss_sprite.flip_h = true
 	else:
 		boss_sprite.flip_h = false
-	label.text = state_machine.current_state.name
+	label.text = state_machine.current_state.name + str(alien_health.current_health)
 
 func SetShader_BlinkIntensity(newValue : float):
 	shield.material.set_shader_parameter("blink_intensity", newValue)
