@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://1gm8yfxkfox4"]
+[gd_scene load_steps=59 format=3 uid="uid://1gm8yfxkfox4"]
 
 [ext_resource type="Texture2D" uid="uid://cnlxucnbad27i" path="res://Assets/Enemy Sprite/Gravity-Sheet.png" id="1_fpfi7"]
 [ext_resource type="Script" path="res://Scripts/Enemies/boss.gd" id="1_p3ro2"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://wsiok3a834qw" path="res://Assets/Audio/SFX/enemy die 1.wav" id="14_fvlya"]
 [ext_resource type="AudioStream" uid="uid://det27s7i26mke" path="res://Assets/Audio/SFX/Alien Death_06.wav" id="16_e0v60"]
 [ext_resource type="Script" path="res://Scenes/Enemies/boss_talk.gd" id="18_t5bxk"]
+[ext_resource type="AudioStream" uid="uid://c17gujwas2v07" path="res://Assets/Audio/SFX/Boss/Alien Growl_03.wav" id="23_vnj1i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_264ck"]
 
@@ -542,40 +543,41 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(0.5, 0.5), Vector2(1.1, 1.1), Vector2(1, 1)]
 }
-tracks/4/type = "bezier"
+tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("BossSprite:frame")
+tracks/4/path = NodePath("Splatter:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Splatter:frame")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(-0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [6]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("vortex:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("vortex:visible")
+tracks/6/path = NodePath("BossSprite:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(-0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_ndtil"]
@@ -660,7 +662,7 @@ tracks/6/path = NodePath("AlienDeathSound:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.79, 3.13333),
+"times": PackedFloat32Array(0.79, 3.03333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -672,7 +674,7 @@ tracks/7/path = NodePath("BossSprite:skew")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(3.1, 3.26667, 3.46667, 3.66667, 3.96667),
+"times": PackedFloat32Array(3.26667, 3.43333, 3.63333, 3.83333, 4.13333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, -0.179769, 0.256563, -0.275762, -0.179769]
@@ -684,7 +686,7 @@ tracks/8/path = NodePath("BossSprite:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(2.96667, 4.1),
+"times": PackedFloat32Array(3.13333, 4.26667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 0)]
@@ -696,7 +698,7 @@ tracks/9/path = NodePath(".")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(4.9377),
+"times": PackedFloat32Array(5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -734,6 +736,18 @@ tracks/12/path = NodePath("ShieldHurtBox/AnimatedSprite2D:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("vortex:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
 "times": PackedFloat32Array(0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -1006,6 +1020,9 @@ pitch_scale = 0.63
 [node name="BossTalk" type="AudioStreamPlayer" parent="."]
 script = ExtResource("18_t5bxk")
 phrase = Array[AudioStream]([ExtResource("9_tfp7b"), ExtResource("10_0711l"), ExtResource("11_4343k"), ExtResource("12_pbgh5")])
+
+[node name="Growl" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_vnj1i")
 
 [connection signal="died" from="AlienHealth" to="StateMachine/Vulnerable" method="_on_alien_health_died"]
 [connection signal="health_changed" from="AlienHealth" to="." method="_on_alien_health_health_changed"]

@@ -11,6 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func state_enter():
 	animation_player.play("vulnerable")
+	$"../../Growl".play(0.1)
 	boss_sprite.frame = 2
 	shield_hurtbox.visible = false
 	shield_hurtbox.monitoring = false
