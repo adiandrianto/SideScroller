@@ -67,29 +67,12 @@ func SetShader_BlinkIntensity(newValue : float):
 	animated_sprite.material.set_shader_parameter("blink_intensity", newValue)
 
 func _on_hurt_box_component_being_hit() -> void:
+	timefreeze(0.05, 0.5)
 	hurt_sfx.play(0.0)
 	var tween = get_tree().create_tween()
 	tween.tween_method(SetShader_BlinkIntensity, 1.0,0.0,0.5)
 
-	#if Input.is_action_just_pressed("Throw"):
-		#var grenade = grenade_scene.instantiate()
-		#var target = get_global_mouse_position()
-		#var range = global_position.distance_to(get_global_mouse_position())
-		#var distance =  get_global_mouse_position() - global_position 
-		#var distance_x = get_global_mouse_position().x - global_position.x
-		#var distance_y = get_global_mouse_position().y - global_position.y
-		#var angle = deg_to_rad(45)
-		#var gravity = 980
-		#var t = 1 #1second
-		#var force = sqrt((distance_x * gravity)/ sin(2*angle))
-		#var x = force*t*cos(angle)
-		#var y = -(gravity/2) + (force * sin(angle) * t)
-#
-		#var v_init_squared = gravity*(distance_x*distance_x) / 2*(cos(angle)*cos(angle))*(-distance_y + (distance_x*tan(angle)))
-		#var v_init = sqrt(v_init_squared)
-		#print(v_init)
-		#var x = v_init * cos(angle)
-		#var y = v_init * sin(angle)
-		#grenade.global_position = global_position
-		#grenade.apply_central_impulse(Vector2(x,y))
-		#get_tree().root.add_child(grenade)
+func timefreeze(timescale, duration):
+	Engine.time_scale = timescale
+	await get_tree().create_timer(duration * timescale).timeout
+	Engine.time_scale = 1.0
