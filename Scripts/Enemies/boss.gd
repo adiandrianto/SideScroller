@@ -1,4 +1,5 @@
-extends Node
+extends CharacterBody2D
+class_name Boss
 
 @export var summon_markers : Array[Marker2D]
 @onready var player :Player = get_tree().get_first_node_in_group("player")
@@ -7,6 +8,8 @@ extends Node
 @onready var state_machine: Node = $StateMachine
 @onready var shield: AnimatedSprite2D = $ShieldHurtBox/AnimatedSprite2D
 @onready var alien_health: HealthComponent = $AlienHealth
+@export var blood: PackedScene
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _process(_delta: float) -> void:
 	if self.global_position < player.global_position:
@@ -20,4 +23,8 @@ func SetShader_BlinkIntensity(newValue : float):
 	
 func _on_shield_health_health_changed() -> void:
 	var tween = get_tree().create_tween()
-	tween.tween_method(SetShader_BlinkIntensity, 1.0,0.0,0.2)
+	tween.tween_method(SetShader_BlinkIntensity, 1.0,0.0,0.1)
+
+func _on_alien_health_health_changed() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_method(SetShader_BlinkIntensity, 1.0,0.0,0.1)

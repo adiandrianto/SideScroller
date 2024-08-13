@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://det27s7i26mke"
+path="res://.godot/imported/Alien Death_06.wav-2e9fac4c61c93bca1344d2e22668009f.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/Alien Death_06.wav"
+dest_files=["res://.godot/imported/Alien Death_06.wav-2e9fac4c61c93bca1344d2e22668009f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

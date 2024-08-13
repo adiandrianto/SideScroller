@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://lx7dfg5vvt3s"
+path="res://.godot/imported/Alien What are you.wav-67c181900aeb6341f34253756c3c3c84.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/Boss/Alien What are you.wav"
+dest_files=["res://.godot/imported/Alien What are you.wav-67c181900aeb6341f34253756c3c3c84.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

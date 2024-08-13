@@ -249,7 +249,7 @@ vframes = 5
 material = SubResource("ShaderMaterial_lc7ch")
 position = Vector2(0, -24)
 texture = ExtResource("1_5mk25")
-hframes = 2
+hframes = 3
 frame = 1
 
 [node name="ShieldHurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_om10w")]

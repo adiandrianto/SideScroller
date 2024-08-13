@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://prdqngk2fp8c"]
+[gd_scene load_steps=37 format=4 uid="uid://prdqngk2fp8c"]
 
 [ext_resource type="PackedScene" uid="uid://ddhv81dvrtjb3" path="res://Scenes/player.tscn" id="1_gfy2y"]
 [ext_resource type="Texture2D" uid="uid://b6yr3hviibdnu" path="res://Assets/Tileset/Clouds 3/3.png" id="2_236pe"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dpq85atgs6uk7" path="res://Scenes/Components/door_component.tscn" id="19_4ka2x"]
 [ext_resource type="PackedScene" uid="uid://n3lrqlddh4s1" path="res://Scenes/Components/heart_pickup.tscn" id="20_ld3e8"]
 [ext_resource type="PackedScene" uid="uid://1gm8yfxkfox4" path="res://Scenes/Enemies/boss.tscn" id="20_pg0b5"]
+[ext_resource type="AudioStream" uid="uid://c7d05d7pg8tls" path="res://Assets/Audio/Music/Juhani Junkala [Retro Game Music Pack] Level 3.wav" id="21_fm578"]
 
 [sub_resource type="Environment" id="Environment_72a32"]
 background_mode = 3
@@ -397,7 +398,7 @@ fill_to = Vector2(1, 0.0642202)
 [node name="Main" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource("1_gfy2y")]
-position = Vector2(49, 182)
+position = Vector2(4067, 384)
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
 texture = ExtResource("2_f4j8k")
@@ -575,3 +576,9 @@ position = Vector2(4331, 400)
 [node name="BOSS" parent="." node_paths=PackedStringArray("summon_markers") instance=ExtResource("20_pg0b5")]
 position = Vector2(4069.83, 345.602)
 summon_markers = [NodePath("../Marker1"), NodePath("../Marker2"), NodePath("../Marker3"), NodePath("../Marker4")]
+
+[node name="Music" type="AudioStreamPlayer" parent="." groups=["music"]]
+stream = ExtResource("21_fm578")
+volume_db = -8.0
+autoplay = true
+bus = &"SFX"

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var true_boss: Boss = get_tree().get_first_node_in_group("boss")
 @onready var player: Player = get_tree().get_first_node_in_group("player")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 const BOSS_BOULDER = preload("res://Scenes/Bullets/boss_boulder.tscn")
@@ -11,6 +12,10 @@ var can_shoot:= true
 
 func _ready() -> void:
 	animation_player.play("appear")
+	true_boss.alien_health.died.connect(on_boss_death)
+	
+func on_boss_death():
+	queue_free()
 	
 func _on_health_component_died() -> void:
 	animation_player.play("clone_death")
@@ -22,6 +27,9 @@ func _physics_process(delta: float) -> void:
 		sprite.flip_h = true
 	else:
 		sprite.flip_h = false
+	if true_boss != null:	
+		if true_boss.visible == false:
+			animation_player.play("clone_death")
 	
 func shoot():
 	var boulder = BOSS_BOULDER.instantiate()
@@ -34,12 +42,10 @@ func shoot():
 			marker = marker_right
 		else:
 			boulder.velocity = Vector2.LEFT
-			#boulder.rotate(deg_to_rad(180))
+			boulder.rotate(deg_to_rad(180))
 			marker = marker_left
 		
 		boulder.position = marker.global_position
-		#boulder.velocity = boulder.global_position.direction_to(player.global_position)
-		boulder.look_at(player.global_position)
 		get_tree().root.add_child(boulder)
 	
 	can_shoot = false

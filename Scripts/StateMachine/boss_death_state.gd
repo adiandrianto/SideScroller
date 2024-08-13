@@ -3,9 +3,12 @@ extends State
 @onready var camera: Camera2D
 @export var enemy :CharacterBody2D
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
+@onready var music: AudioStreamPlayer = get_tree().get_first_node_in_group("music")
 
 func state_enter():
-	timefreeze(0.1, 1)
+	music.stop()
+	timefreeze(0.2, 2)
+	animation_player.play("death")
 
 func state_physics_update(delta):
 	pass

@@ -39,6 +39,8 @@ player=""
 weapon=""
 ladder=""
 bullet=""
+boss=""
+music=""
 
 [input]
 

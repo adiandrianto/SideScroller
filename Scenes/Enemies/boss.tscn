@@ -1,18 +1,29 @@
-[gd_scene load_steps=47 format=3 uid="uid://1gm8yfxkfox4"]
+[gd_scene load_steps=58 format=3 uid="uid://1gm8yfxkfox4"]
 
 [ext_resource type="Texture2D" uid="uid://cnlxucnbad27i" path="res://Assets/Enemy Sprite/Gravity-Sheet.png" id="1_fpfi7"]
 [ext_resource type="Script" path="res://Scripts/Enemies/boss.gd" id="1_p3ro2"]
 [ext_resource type="Texture2D" uid="uid://ccx6rtwk63dg5" path="res://Assets/Enemy Sprite/boss_front.png" id="2_b0iuc"]
+[ext_resource type="PackedScene" uid="uid://dg17dt74ttirh" path="res://Scenes/blood.tscn" id="2_e7y1g"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="4_wboy4"]
 [ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="5_cbxsc"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/boss_side_attack_state.gd" id="5_ft2pq"]
 [ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="5_h1bo7"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/boss_vulnerable_state.gd" id="6_wk7so"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/boss_mid_attack_state.gd" id="7_f5lsi"]
+[ext_resource type="Script" path="res://Scenes/Enemies/boss_wait_state.gd" id="8_3m4o1"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/boss_death_state.gd" id="8_bi2im"]
+[ext_resource type="AudioStream" uid="uid://dca68l8q0exci" path="res://Assets/Audio/SFX/Boss/Alien Die!.wav" id="9_tfp7b"]
+[ext_resource type="AudioStream" uid="uid://plbxgnie8ph4" path="res://Assets/Audio/SFX/Boss/Alien Human.wav" id="10_0711l"]
 [ext_resource type="Material" uid="uid://bv3bavguqjynk" path="res://Shader/flash_shader.tres" id="10_n42h4"]
 [ext_resource type="Texture2D" uid="uid://bflxww33glovf" path="res://Assets/Enemy Sprite/boss_shield.png" id="10_t2dyq"]
-[ext_resource type="Texture2D" uid="uid://b414shg5hp4od" path="res://Assets/splatter.png" id="13_e7lly"]
+[ext_resource type="AudioStream" uid="uid://be8t1iaafx4tv" path="res://Assets/Audio/SFX/Boss/Alien Well well well.wav" id="11_4343k"]
+[ext_resource type="AudioStream" uid="uid://lx7dfg5vvt3s" path="res://Assets/Audio/SFX/Boss/Alien What are you.wav" id="12_pbgh5"]
+[ext_resource type="Texture2D" uid="uid://dtilirthowc05" path="res://Assets/splatter_green.png" id="13_enore"]
+[ext_resource type="AudioStream" uid="uid://wsiok3a834qw" path="res://Assets/Audio/SFX/enemy die 1.wav" id="14_fvlya"]
+[ext_resource type="AudioStream" uid="uid://det27s7i26mke" path="res://Assets/Audio/SFX/Alien Death_06.wav" id="16_e0v60"]
+[ext_resource type="Script" path="res://Scenes/Enemies/boss_talk.gd" id="18_t5bxk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_264ck"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l1eww"]
 atlas = ExtResource("1_fpfi7")
@@ -226,7 +237,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2D:frame")
+tracks/5/path = NodePath("Splatter:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -238,7 +249,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Sprite2D2:frame")
+tracks/6/path = NodePath("Splatter2:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -250,7 +261,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Sprite2D:position")
+tracks/7/path = NodePath("Splatter:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -258,6 +269,114 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Splatter:flip_h")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SplatterSFX:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AlienDeathSound:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BossSprite:skew")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("BossSprite:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -24)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("vortex:frame")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("vortex:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Splatter2:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("ShieldHurtBox/AnimatedSprite2D:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_o2udd"]
@@ -335,6 +454,42 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.607843)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("vortex:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Splatter:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Splatter2:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
 
 [sub_resource type="Animation" id="Animation_pmcy4"]
 resource_name = "appear_side"
@@ -398,9 +553,34 @@ tracks/4/keys = {
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Splatter:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(-0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("vortex:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(-0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ndtil"]
 resource_name = "death"
+length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -408,46 +588,245 @@ tracks/0/path = NodePath("BossSprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2.26667, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(100, 100, 100, 1)]
+"values": [Color(100, 100, 100, 1), Color(100, 100, 100, 1), Color(0, 0, 0, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/path = NodePath("Splatter:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.633333, 0.7, 0.766667, 0.833333, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.79, 0.89, 0.99, 1.09, 1.19, 1.29, 1.39, 2.15667, 2.25667, 2.35667, 2.45667, 2.55667, 2.65667, 2.75667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4]
+"values": [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D2:frame")
+tracks/2/path = NodePath("Splatter2:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.3, 0.366667, 0.433333, 0.5, 0.566667, 0.633333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.79, 1.65667, 1.75667, 1.85667, 1.95667, 2.05667, 2.15667, 2.25667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 5, 4, 5]
+"values": [6, 0, 1, 2, 5, 4, 5, 6]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:position")
+tracks/3/path = NodePath("Splatter:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.433333, 0.6),
+"times": PackedFloat32Array(0.79, 2.05667, 2.12333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -5), Vector2(5, -14), Vector2(-4, -14)]
+"values": [Vector2(0, -5), Vector2(0, -5), Vector2(5, -14)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Splatter:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.79, 2.05667, 2.12333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SplatterSFX:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.756667, 0.79, 1.65667, 2.25667, 3.79),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AlienDeathSound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.79, 3.13333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BossSprite:skew")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(3.1, 3.26667, 3.46667, 3.66667, 3.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.179769, 0.256563, -0.275762, -0.179769]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BossSprite:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2.96667, 4.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0)]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(4.9377),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BossSprite:frame")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Splatter2:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.99, 1.02333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("ShieldHurtBox/AnimatedSprite2D:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1xa3k"]
+resource_name = "vulnerable"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BossSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BossSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BossSprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -24), Vector2(0, -26), Vector2(0, -24)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Splatter:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("vortex:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Splatter2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mqkvv"]
@@ -455,7 +834,8 @@ _data = {
 "RESET": SubResource("Animation_ck1xo"),
 "appear": SubResource("Animation_o2udd"),
 "appear_side": SubResource("Animation_pmcy4"),
-"death": SubResource("Animation_ndtil")
+"death": SubResource("Animation_ndtil"),
+"vulnerable": SubResource("Animation_1xa3k")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lk6el"]
@@ -501,9 +881,16 @@ radius = 30.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tm52v"]
 height = 42.0
 
-[node name="BOSS" type="CharacterBody2D" node_paths=PackedStringArray("summon_markers")]
+[node name="BOSS" type="CharacterBody2D" node_paths=PackedStringArray("summon_markers") groups=["boss"]]
+collision_layer = 64
+collision_mask = 128
 script = ExtResource("1_p3ro2")
 summon_markers = [null, null, null, null]
+blood = ExtResource("2_e7y1g")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_264ck")
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
 position = Vector2(-30, -20)
@@ -515,7 +902,7 @@ position = Vector2(30, -20)
 position = Vector2(0, -20)
 sprite_frames = SubResource("SpriteFrames_fkyvx")
 animation = &"appear"
-frame = 19
+frame = 18
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -523,34 +910,46 @@ libraries = {
 }
 
 [node name="BossSprite" type="Sprite2D" parent="."]
+material = ExtResource("10_n42h4")
 position = Vector2(0, -24)
 texture = ExtResource("2_b0iuc")
-hframes = 2
+hframes = 3
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_wboy4")
-initial_state = NodePath("SideAttack")
+initial_state = NodePath("Wait")
 
 [node name="SideAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("boss")]
 script = ExtResource("5_ft2pq")
 boss = NodePath("../..")
-
-[node name="Vulnerable" type="Node" parent="StateMachine"]
-script = ExtResource("6_wk7so")
+wait_time = 6.0
 
 [node name="MidAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_f5lsi")
 enemy = NodePath("../..")
+wait_time = 5.0
 
-[node name="Death" type="Node" parent="StateMachine"]
+[node name="Wait" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("8_3m4o1")
+enemy = NodePath("../..")
+wait_time = 2.5
+
+[node name="Vulnerable" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_wk7so")
+enemy = NodePath("../..")
+vulnerable_time = 3.0
+
+[node name="Death" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("8_bi2im")
+enemy = NodePath("../..")
 
 [node name="AlienHealth" parent="." instance=ExtResource("5_h1bo7")]
-max_health = 200
+max_health = 300
+current_health = 300
 
 [node name="ShieldHealth" parent="." instance=ExtResource("5_h1bo7")]
-max_health = 100
-current_health = 100
+max_health = 50
+current_health = 50
 
 [node name="ShieldHurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_cbxsc")]
 position = Vector2(-24, -1)
@@ -584,15 +983,35 @@ shape = SubResource("CapsuleShape2D_tm52v")
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("13_e7lly")
-hframes = 6
+[node name="Splatter" type="Sprite2D" parent="."]
+texture = ExtResource("13_enore")
+hframes = 7
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Splatter2" type="Sprite2D" parent="."]
 position = Vector2(-3, -35)
-texture = ExtResource("13_e7lly")
-hframes = 6
+texture = ExtResource("13_enore")
+hframes = 7
 frame = 5
 
+[node name="SplatterSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_fvlya")
+
+[node name="AlienDeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_e0v60")
+volume_db = -2.476
+pitch_scale = 0.63
+
+[node name="WaitTimer" type="Timer" parent="."]
+
+[node name="BossTalk" type="AudioStreamPlayer" parent="."]
+script = ExtResource("18_t5bxk")
+phrase = Array[AudioStream]([ExtResource("9_tfp7b"), ExtResource("10_0711l"), ExtResource("11_4343k"), ExtResource("12_pbgh5")])
+
+[connection signal="died" from="AlienHealth" to="StateMachine/Vulnerable" method="_on_alien_health_died"]
+[connection signal="health_changed" from="AlienHealth" to="." method="_on_alien_health_health_changed"]
 [connection signal="died" from="ShieldHealth" to="StateMachine/SideAttack" method="_on_shield_health_died"]
+[connection signal="died" from="ShieldHealth" to="StateMachine/MidAttack" method="_on_shield_health_died"]
 [connection signal="health_changed" from="ShieldHealth" to="." method="_on_shield_health_health_changed"]
+[connection signal="timeout" from="WaitTimer" to="StateMachine/SideAttack" method="_on_wait_timer_timeout"]
+[connection signal="timeout" from="WaitTimer" to="StateMachine/MidAttack" method="_on_wait_timer_timeout"]
+[connection signal="timeout" from="WaitTimer" to="StateMachine/Wait" method="_on_wait_timer_timeout"]

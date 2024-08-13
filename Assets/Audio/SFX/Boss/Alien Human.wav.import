@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://plbxgnie8ph4"
+path="res://.godot/imported/Alien Human.wav-a552c2ff6477b99d5a437b4ec0ab1e41.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/Boss/Alien Human.wav"
+dest_files=["res://.godot/imported/Alien Human.wav-a552c2ff6477b99d5a437b4ec0ab1e41.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

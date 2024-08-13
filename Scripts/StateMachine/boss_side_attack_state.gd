@@ -1,6 +1,7 @@
 extends State
 
 @export var boss :CharacterBody2D
+@export var wait_time:float
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var marker_left: Marker2D = $"../../MarkerLeft"
 @onready var marker_right: Marker2D = $"../../MarkerRight"
@@ -11,8 +12,14 @@ extends State
 const BOSS_CLONE = preload("res://Scenes/Enemies/boss_clone.tscn")
 const BOSS_BOULDER = preload("res://Scenes/Bullets/boss_boulder.tscn")
 var can_shoot:bool = true
+@onready var boss_sprite: Sprite2D = $"../../BossSprite"
+@onready var timer: Timer = $"../../WaitTimer"
+@onready var alien_hurt_box: HurtBoxComponent = $"../../AlienHurtBox"
 
 func state_enter():
+	$"../../BossTalk".play_random()
+	timer.start(wait_time)
+	boss_sprite.frame = 1
 	var clone = BOSS_CLONE.instantiate()
 	gate1 = pick_random_gate()
 	gate2 = pick_random_gate()
@@ -23,11 +30,13 @@ func state_enter():
 		clone.global_position = boss.summon_markers[gate2].global_position
 		animation_player.play("appear_side")
 		get_tree().root.add_child.call_deferred(clone)
+	alien_hurt_box.monitoring = false
+	alien_hurt_box.monitorable = false
 
 func state_physics_update(_delta):
 	if not animation_player.is_playing():
 		shoot()
-	
+			
 func state_exit():
 	pass
 
@@ -58,3 +67,6 @@ func shoot():
 	var t = randf_range(2.0, 3.5)
 	await get_tree().create_timer(t).timeout #time between shoot
 	can_shoot = true
+
+func _on_wait_timer_timeout() -> void:
+	transitioned.emit(self, "wait")
