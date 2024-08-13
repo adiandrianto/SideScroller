@@ -118,6 +118,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ShieldHurtBox:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_hoapm"]
 resource_name = "appear"
@@ -153,7 +165,7 @@ tracks/2/path = NodePath("Sprite2D:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.1, 1.46667),
+"times": PackedFloat32Array(0, 1.06667, 1.46667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -165,7 +177,7 @@ tracks/3/path = NodePath("Sprite2D:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.13333, 1.2, 1.46667),
+"times": PackedFloat32Array(1.1, 1.2, 1.46667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
@@ -181,6 +193,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ShieldHurtBox:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.23333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_holge"]
@@ -240,10 +264,12 @@ max_health = 30
 current_health = 30
 
 [node name="Vortex" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -24)
 texture = ExtResource("4_j77dm")
 hframes = 4
 vframes = 5
+frame = 19
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_lc7ch")
@@ -253,6 +279,7 @@ hframes = 3
 frame = 1
 
 [node name="ShieldHurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_om10w")]
+visible = false
 position = Vector2(-24, -1)
 collision_layer = 68
 collision_mask = 2

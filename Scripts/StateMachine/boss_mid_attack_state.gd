@@ -41,7 +41,7 @@ func mid_shoot():
 		get_tree().root.add_child(boulder)
 	
 	can_shoot = false
-	await get_tree().create_timer(0.8).timeout #time between shoot
+	await get_tree().create_timer(1).timeout #time between shoot
 	can_shoot = true
 
 func _on_wait_timer_timeout() -> void:

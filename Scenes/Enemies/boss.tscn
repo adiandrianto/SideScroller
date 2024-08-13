@@ -379,6 +379,18 @@ tracks/16/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("ShieldHurtBox:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_o2udd"]
 resource_name = "appear"
@@ -491,6 +503,18 @@ tracks/8/keys = {
 "update": 1,
 "values": [6]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ShieldHurtBox:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1.26667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_pmcy4"]
 resource_name = "appear_side"
@@ -579,10 +603,34 @@ tracks/6/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Splatter2:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(-0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ShieldHurtBox:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.0333333, 1.23333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_ndtil"]
 resource_name = "death"
-length = 5.0
+length = 7.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -662,10 +710,10 @@ tracks/6/path = NodePath("AlienDeathSound:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.79, 3.03333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(3.03333),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [true]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -698,7 +746,7 @@ tracks/9/path = NodePath(".")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(5),
+"times": PackedFloat32Array(6.96667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -958,12 +1006,11 @@ script = ExtResource("8_bi2im")
 enemy = NodePath("../..")
 
 [node name="AlienHealth" parent="." instance=ExtResource("5_h1bo7")]
-max_health = 300
-current_health = 300
+max_health = 400
 
 [node name="ShieldHealth" parent="." instance=ExtResource("5_h1bo7")]
-max_health = 50
-current_health = 50
+max_health = 100
+current_health = 100
 
 [node name="ShieldHurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_cbxsc")]
 position = Vector2(-24, -1)
