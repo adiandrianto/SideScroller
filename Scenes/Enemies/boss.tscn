@@ -1041,6 +1041,7 @@ position = Vector2(24, -21)
 shape = SubResource("CapsuleShape2D_tm52v")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 
