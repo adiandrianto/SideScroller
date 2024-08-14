@@ -7,6 +7,7 @@ const BOSS_BOULDER = preload("res://Scenes/Bullets/boss_boulder.tscn")
 @onready var marker_right: Marker2D = $MarkerRight
 @onready var marker_left: Marker2D = $MarkerLeft
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var shield: AnimatedSprite2D = $ShieldHurtBox/AnimatedSprite2D
 
 var can_shoot:= true
 
@@ -52,3 +53,10 @@ func shoot():
 	var t = randf_range(2.0,3.5)
 	await get_tree().create_timer(t).timeout #time between shoot
 	can_shoot = true
+
+func SetShader_BlinkIntensity(newValue : float):
+	shield.material.set_shader_parameter("blink_intensity", newValue)
+	
+func _on_health_component_health_changed() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_method(SetShader_BlinkIntensity, 3.0,0.0,0.1)

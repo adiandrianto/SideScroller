@@ -15,6 +15,7 @@ var can_shoot:bool = true
 @onready var boss_sprite: Sprite2D = $"../../BossSprite"
 @onready var timer: Timer = $"../../WaitTimer"
 @onready var alien_hurt_box: HurtBoxComponent = $"../../AlienHurtBox"
+@onready var shield: AnimatedSprite2D = $"../../ShieldHurtBox/AnimatedSprite2D"
 
 func state_enter():
 	$"../../BossTalk".play_random()
@@ -70,3 +71,10 @@ func shoot():
 
 func _on_wait_timer_timeout() -> void:
 	transitioned.emit(self, "wait")
+
+func SetShader_BlinkIntensity(newValue : float):
+	shield.material.set_shader_parameter("blink_intensity", newValue)
+	
+func _on_shield_health_health_changed() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_method(SetShader_BlinkIntensity, 3.0,0.0,0.1)

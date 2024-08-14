@@ -260,7 +260,7 @@ material = SubResource("ShaderMaterial_1hxrr")
 script = ExtResource("2_8j1is")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_vs60w")]
-max_health = 30
+max_health = 20
 current_health = 30
 
 [node name="Vortex" type="Sprite2D" parent="."]
@@ -309,3 +309,4 @@ position = Vector2(30, -20)
 position = Vector2(-30, -20)
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]

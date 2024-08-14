@@ -242,10 +242,10 @@ tracks/5/path = NodePath("Splatter:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(-0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [6]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -574,7 +574,7 @@ tracks/4/path = NodePath("Splatter:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(-0.0333333),
+"times": PackedFloat32Array(-0.0666667),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [6]
@@ -610,7 +610,7 @@ tracks/7/path = NodePath("Splatter2:frame")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(-0.0333333),
+"times": PackedFloat32Array(-0.0666667),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [6]
@@ -1030,13 +1030,13 @@ position = Vector2(24, -20)
 shape = SubResource("CircleShape2D_sungi")
 
 [node name="AlienHurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_cbxsc")]
-visible = false
 position = Vector2(-24, 0)
 collision_layer = 68
 collision_mask = 2
 health_component = NodePath("../AlienHealth")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AlienHurtBox"]
+visible = false
 position = Vector2(24, -21)
 shape = SubResource("CapsuleShape2D_tm52v")
 
@@ -1048,6 +1048,7 @@ offset_bottom = 23.0
 [node name="Splatter" type="Sprite2D" parent="."]
 texture = ExtResource("13_enore")
 hframes = 7
+frame = 6
 
 [node name="Splatter2" type="Sprite2D" parent="."]
 position = Vector2(-3, -35)
@@ -1077,6 +1078,8 @@ stream = ExtResource("23_vnj1i")
 [connection signal="died" from="ShieldHealth" to="StateMachine/SideAttack" method="_on_shield_health_died"]
 [connection signal="died" from="ShieldHealth" to="StateMachine/MidAttack" method="_on_shield_health_died"]
 [connection signal="health_changed" from="ShieldHealth" to="." method="_on_shield_health_health_changed"]
+[connection signal="health_changed" from="ShieldHealth" to="StateMachine/SideAttack" method="_on_shield_health_health_changed"]
+[connection signal="health_changed" from="ShieldHealth" to="StateMachine/MidAttack" method="_on_shield_health_health_changed"]
 [connection signal="timeout" from="WaitTimer" to="StateMachine/SideAttack" method="_on_wait_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="StateMachine/MidAttack" method="_on_wait_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="StateMachine/Wait" method="_on_wait_timer_timeout"]
