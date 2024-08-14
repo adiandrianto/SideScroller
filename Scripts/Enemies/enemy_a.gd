@@ -4,6 +4,7 @@ const SPEED := 40
 var direction = 1
 var last_pitch = 1.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@export var is_inside: bool
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurt_box_component: HurtBoxComponent = $HurtBoxComponent
 @onready var sprite: Sprite2D = $Sprite2D
@@ -21,6 +22,21 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state_label.text = str(health_component.current_health)
+	
+	if is_inside && DimensionManager.is_inside:
+		can_be_seen()
+	elif is_inside && not DimensionManager.is_inside:
+		invincible()
+	elif not is_inside && DimensionManager.is_inside:
+		invincible()
+	else :
+		can_be_seen()
+		
+func invincible():
+	visible = false
+	
+func can_be_seen():
+	visible = true
 	
 func _on_health_component_died() -> void:
 

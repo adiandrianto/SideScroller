@@ -31,8 +31,8 @@ func state_physics_update(delta):
 	if ray_cast.is_colliding():
 		if ray_cast.get_collider() == Ladder && Input.is_action_just_pressed("interact"):
 			transitioned.emit(self,"climb")
-		else :
-			return	
+		else: 
+			return
 		
 	owner.move_and_slide()
 	

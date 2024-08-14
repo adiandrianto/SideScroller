@@ -36,6 +36,9 @@ func state_physics_update(delta):
 		else :
 			return	
 	
+	if owner.velocity.y >= 0:
+		transitioned.emit(self, "fall")
+		
 func state_enter():
 	animated_sprite.play("jump")
 	if owner.is_on_floor():

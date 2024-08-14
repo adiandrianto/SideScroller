@@ -61,6 +61,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	call_deferred("free")
 	get_tree().reload_current_scene()
 
 func SetShader_BlinkIntensity(newValue : float):
@@ -76,3 +77,7 @@ func timefreeze(timescale, duration):
 	Engine.time_scale = timescale
 	await get_tree().create_timer(duration * timescale).timeout
 	Engine.time_scale = 1.0
+
+
+func _on_health_component_health_changed() -> void:
+	PickupManager.emit_signal("player_health_changed")

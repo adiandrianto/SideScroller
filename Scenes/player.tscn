@@ -1,10 +1,10 @@
-[gd_scene load_steps=39 format=3 uid="uid://ddhv81dvrtjb3"]
+[gd_scene load_steps=40 format=3 uid="uid://ddhv81dvrtjb3"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_e0se1"]
-[ext_resource type="Texture2D" uid="uid://heclpv4e7vl1" path="res://Assets/Player Sprite/player_pistol_jump-fall.png" id="2_18gb1"]
 [ext_resource type="Shader" path="res://Scenes/player.gdshader" id="2_n73ur"]
 [ext_resource type="Texture2D" uid="uid://c7oo0oelwxbe6" path="res://Assets/Player Sprite/player_idle.png" id="3_mf4u5"]
 [ext_resource type="Texture2D" uid="uid://dvvmjvo8hspcg" path="res://Assets/Player Sprite/player-climb-side.png" id="3_r8cay"]
+[ext_resource type="Texture2D" uid="uid://c44x7kb8pjcni" path="res://Assets/Player Sprite/fall.png" id="4_amnaq"]
 [ext_resource type="Texture2D" uid="uid://cc6wbqjfnrfj3" path="res://Assets/Player Sprite/player_pistol_jump-jump.png" id="4_t4nrx"]
 [ext_resource type="Texture2D" uid="uid://dlyjntdemxt3d" path="res://Assets/Player Sprite/player_run_without_arm.png" id="5_biwir"]
 [ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="6_xwy6r"]
@@ -43,9 +43,13 @@ region = Rect2(96, 0, 48, 48)
 atlas = ExtResource("3_r8cay")
 region = Rect2(144, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mc788"]
-atlas = ExtResource("2_18gb1")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6l4sc"]
+atlas = ExtResource("4_amnaq")
 region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0a4y"]
+atlas = ExtResource("4_amnaq")
+region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tm88j"]
 atlas = ExtResource("3_mf4u5")
@@ -120,7 +124,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mc788")
+"texture": SubResource("AtlasTexture_6l4sc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0a4y")
 }],
 "loop": true,
 "name": &"fall",
@@ -201,8 +208,9 @@ shape = SubResource("CapsuleShape2D_pupvq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_6eh7k")
 sprite_frames = SubResource("SpriteFrames_6wen4")
-animation = &"climb"
+animation = &"fall"
 autoplay = "idle"
+frame_progress = 0.607054
 offset = Vector2(0, -7)
 
 [node name="Label" type="Label" parent="."]
@@ -215,8 +223,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 
 [node name="HealthComponent" parent="." instance=ExtResource("6_xwy6r")]
-max_health = 3
-current_health = 1
+max_health = 6
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") groups=["player"] instance=ExtResource("7_6bgoq")]
 collision_layer = 256
@@ -275,6 +282,7 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="area_entered" from="HurtBoxComponent" to="." method="_on_hurt_box_component_area_entered"]
 [connection signal="being_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_component_being_hit"]
 [connection signal="body_entered" from="HurtBoxComponent" to="." method="_on_hurt_box_component_body_entered"]
