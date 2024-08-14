@@ -11,6 +11,12 @@ class_name Player
 @onready var hurt_sfx: AudioStreamPlayer2D = $HurtSFX
 @onready var state_machine: Node = $StateMachine
 @export var grenade_count:int
+@onready var camera_2d: Camera2D = $"../Camera2D"
+
+var screen_width = get_viewport_rect().size.x
+var camera_target
+var target_distance = 125
+var camera_speed = 0.5 
 
 var direction = Input.get_axis("left", "right")
 
@@ -35,6 +41,13 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta):
 	label.text = str(state_machine.current_state.name)
 	
+	if animated_sprite.flip_h == false :
+		camera_target = owner.position.x + target_distance - screen_width/2
+		camera_2d.offset.x = min(camera_2d.offset.x + camera_speed, camera_target)
+	else:
+		camera_target = owner.position.x - target_distance - screen_width/2
+		camera_2d.offset.x = max(camera_2d.offset.x - camera_speed, camera_target)
+	camera_2d.offset.y = owner.position.y
 func _physics_process(delta):
 	if weapon != null:
 		if Input.is_action_pressed("up"):

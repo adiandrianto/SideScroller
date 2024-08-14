@@ -510,7 +510,7 @@ fill_to = Vector2(1, 0.0642202)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efmni"]
 size = Vector2(478.568, 35)
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node2D"]
 
 [node name="PickupManager" parent="." instance=ExtResource("1_uh81h")]
 
@@ -538,7 +538,7 @@ script = ExtResource("8_7peqx")
 
 [node name="Player" parent="." instance=ExtResource("1_gfy2y")]
 z_index = 4096
-position = Vector2(6694, 132)
+position = Vector2(85, 191)
 grenade_count = 6
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
@@ -553,6 +553,10 @@ environment = SubResource("Environment_72a32")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(241, 135)
+process_callback = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
 script = ExtResource("5_arswg")
 smooth_value = 3
 
@@ -883,7 +887,8 @@ summon_markers = [NodePath("../Marker2D1"), NodePath("../Marker2D2"), NodePath("
 
 [node name="EnemyA" parent="." instance=ExtResource("12_ek4mn")]
 position = Vector2(3997, 202)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 is_inside = true
 
 [connection signal="area_entered" from="BossAreaDetector" to="BossAreaDetector" method="_on_area_entered"]
