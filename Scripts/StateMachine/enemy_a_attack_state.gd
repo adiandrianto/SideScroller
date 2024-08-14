@@ -29,9 +29,9 @@ func state_physics_update(delta):
 	if distance.length() < 85 && not ray_cast.is_colliding():
 		transitioned.emit(self, "moveaway")
 	if player.global_position.x - enemy.global_position.x < 0 :
-		sprite.flip_h = false
-	else :
 		sprite.flip_h = true
+	else :
+		sprite.flip_h = false
 	
 	if distance.length() > 450 :
 		transitioned.emit(self, "idle")

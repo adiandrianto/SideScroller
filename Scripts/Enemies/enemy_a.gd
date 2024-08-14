@@ -12,6 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var state_machine: Node = $StateMachine
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var ray_cast: RayCast2D = $RayCast2D
+
 const ENEMY_A_DEATH_SCENE = preload("res://Scenes/Enemies/enemy_a_death_scene.tscn")
 
 func _physics_process(delta: float) -> void:
@@ -22,7 +23,7 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state_label.text = str(health_component.current_health)
-	
+		
 	if is_inside && DimensionManager.is_inside:
 		can_be_seen()
 	elif is_inside && not DimensionManager.is_inside:
@@ -34,9 +35,11 @@ func _process(delta: float) -> void:
 		
 func invincible():
 	visible = false
+	hurt_box_component.monitorable = false
 	
 func can_be_seen():
 	visible = true
+	hurt_box_component.monitorable = true
 	
 func _on_health_component_died() -> void:
 

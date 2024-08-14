@@ -1,7 +1,6 @@
 extends CharacterBody2D
 class_name Player
 
-@export var speed : float
 @onready var label = $Label
 @onready var health_component = $HealthComponent
 @onready var weapon = get_tree().get_first_node_in_group("weapon")
@@ -18,13 +17,15 @@ var direction = Input.get_axis("left", "right")
 func _ready() -> void:
 	PickupManager.add_grenade.connect(on_add_grenade)
 	PickupManager.add_health.connect(on_add_health)
+	DimensionManager.door_open.connect(on_door_open)
+	DimensionManager.door_close.connect(on_door_close)
 	
 func on_add_grenade():
 	grenade_count += 1
 	PickupManager.grenade_changed.emit()
 	
 func on_add_health():
-	health_component.current_health += 1
+	health_component.current_health += 2
 	health_component.health_changed.emit()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -45,7 +46,7 @@ func _physics_process(delta):
 			weapon.sprite.rotation = deg_to_rad(0.0)
 			
 	if Input.is_action_just_pressed("Throw") && grenade_count > 0 :
-		var grenade_x_force: int = 350
+		var grenade_x_force: int = 300
 		var grenade_y_force: int = -400
 		var grenade = grenade_scene.instantiate()
 		var target = get_global_mouse_position()
@@ -61,7 +62,6 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	call_deferred("free")
 	get_tree().reload_current_scene()
 
 func SetShader_BlinkIntensity(newValue : float):
@@ -78,6 +78,12 @@ func timefreeze(timescale, duration):
 	await get_tree().create_timer(duration * timescale).timeout
 	Engine.time_scale = 1.0
 
-
 func _on_health_component_health_changed() -> void:
 	PickupManager.emit_signal("player_health_changed")
+	
+func on_door_open():
+	animated_sprite.play("open_door")
+		
+func on_door_close():
+	animated_sprite.play("close_door")
+	

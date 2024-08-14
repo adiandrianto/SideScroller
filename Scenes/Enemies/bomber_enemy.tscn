@@ -205,6 +205,7 @@ _data = {
 }
 
 [node name="Bomber" type="CharacterBody2D"]
+z_index = 100
 collision_layer = 68
 collision_mask = 128
 script = ExtResource("1_widm1")

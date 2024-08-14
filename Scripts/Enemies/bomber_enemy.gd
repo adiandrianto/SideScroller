@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var last_pitch = 1.0
+@export var drop_scene: PackedScene
 @onready var bullet_scene = preload("res://Scenes/Bullets/enemy_ball.tscn")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var player = get_tree().get_first_node_in_group("player")
@@ -34,6 +35,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		audio_stream_player.play()
 
 func _on_health_component_died() -> void:
+	var drop = drop_scene.instantiate()
+	drop.global_position = global_position
+	get_tree().root.add_child(drop)
+	queue_free()
 	deadSFX()
 	bloodSFX()
 	alive = false

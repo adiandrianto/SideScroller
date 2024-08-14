@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://dg17dt74ttirh"]
-
-[ext_resource type="Texture2D" uid="uid://dib668o07b72m" path="res://Assets/blood1.png" id="1_t1jsh"]
-[ext_resource type="Script" path="res://blood.gd" id="2_hd3bv"]
-
-[node name="Node2D" type="Sprite2D"]
-texture = ExtResource("1_t1jsh")
-script = ExtResource("2_hd3bv")

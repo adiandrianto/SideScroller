@@ -1,9 +1,10 @@
-[gd_scene load_steps=59 format=3 uid="uid://1gm8yfxkfox4"]
+[gd_scene load_steps=62 format=3 uid="uid://1gm8yfxkfox4"]
 
 [ext_resource type="Texture2D" uid="uid://cnlxucnbad27i" path="res://Assets/Enemy Sprite/Gravity-Sheet.png" id="1_fpfi7"]
 [ext_resource type="Script" path="res://Scripts/Enemies/boss.gd" id="1_p3ro2"]
 [ext_resource type="Texture2D" uid="uid://ccx6rtwk63dg5" path="res://Assets/Enemy Sprite/boss_front.png" id="2_b0iuc"]
-[ext_resource type="PackedScene" uid="uid://dg17dt74ttirh" path="res://Scenes/blood.tscn" id="2_e7y1g"]
+[ext_resource type="Texture2D" uid="uid://dib668o07b72m" path="res://Assets/blood1.png" id="2_v6a3u"]
+[ext_resource type="Script" path="res://blood.gd" id="3_b2k1e"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="4_wboy4"]
 [ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="5_cbxsc"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/boss_side_attack_state.gd" id="5_ft2pq"]
@@ -17,12 +18,26 @@
 [ext_resource type="Material" uid="uid://bv3bavguqjynk" path="res://Shader/flash_shader.tres" id="10_n42h4"]
 [ext_resource type="Texture2D" uid="uid://bflxww33glovf" path="res://Assets/Enemy Sprite/boss_shield.png" id="10_t2dyq"]
 [ext_resource type="AudioStream" uid="uid://be8t1iaafx4tv" path="res://Assets/Audio/SFX/Boss/Alien Well well well.wav" id="11_4343k"]
+[ext_resource type="Script" path="res://Scenes/Enemies/boss_idle_state.gd" id="12_00bud"]
 [ext_resource type="AudioStream" uid="uid://lx7dfg5vvt3s" path="res://Assets/Audio/SFX/Boss/Alien What are you.wav" id="12_pbgh5"]
 [ext_resource type="Texture2D" uid="uid://dtilirthowc05" path="res://Assets/splatter_green.png" id="13_enore"]
 [ext_resource type="AudioStream" uid="uid://wsiok3a834qw" path="res://Assets/Audio/SFX/enemy die 1.wav" id="14_fvlya"]
 [ext_resource type="AudioStream" uid="uid://det27s7i26mke" path="res://Assets/Audio/SFX/Alien Death_06.wav" id="16_e0v60"]
 [ext_resource type="Script" path="res://Scenes/Enemies/boss_talk.gd" id="18_t5bxk"]
 [ext_resource type="AudioStream" uid="uid://c17gujwas2v07" path="res://Assets/Audio/SFX/Boss/Alien Growl_03.wav" id="23_vnj1i"]
+
+[sub_resource type="PackedScene" id="PackedScene_8jhy8"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Node2D", "Sprite2D", "texture", "script"),
+"node_count": 1,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0),
+"variants": [ExtResource("2_v6a3u"), ExtResource("3_b2k1e")],
+"version": 3
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_264ck"]
 
@@ -948,7 +963,7 @@ collision_layer = 64
 collision_mask = 128
 script = ExtResource("1_p3ro2")
 summon_markers = [null, null, null, null]
-blood = ExtResource("2_e7y1g")
+blood = SubResource("PackedScene_8jhy8")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)
@@ -979,7 +994,7 @@ hframes = 3
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_wboy4")
-initial_state = NodePath("Wait")
+initial_state = NodePath("Idle")
 
 [node name="SideAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("boss")]
 script = ExtResource("5_ft2pq")
@@ -1004,6 +1019,9 @@ vulnerable_time = 3.0
 [node name="Death" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("8_bi2im")
 enemy = NodePath("../..")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("12_00bud")
 
 [node name="AlienHealth" parent="." instance=ExtResource("5_h1bo7")]
 max_health = 400

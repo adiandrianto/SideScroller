@@ -19,11 +19,15 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("interact") && can_open && label.visible:
-		open()
 		DimensionManager.is_inside = true
+		DimensionManager.emit_signal("door_open")
+		open()
+		
 	if Input.is_action_pressed("interact") && not can_open && label.visible:
-		close()
 		DimensionManager.is_inside = false
+		DimensionManager.emit_signal("door_close")
+		close()
+		
 
 func open():
 	animation_player.play("open")

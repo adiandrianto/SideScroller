@@ -11,13 +11,11 @@ func state_enter():
 		player = get_tree().get_first_node_in_group("player")
 		animation_player.play("attack")
 			
-		
 func to_idle():
 	transitioned.emit(self, "idle")
 
 func SetShader_BlinkIntensity(newValue : float):
 	sprite.material.set_shader_parameter("blink_intensity", newValue)
-
 
 func _on_hurt_box_component_being_hit():
 	var tween = get_tree().create_tween()

@@ -71,6 +71,7 @@ _data = {
 }
 
 [node name="EnemyLaserBullet" type="CharacterBody2D"]
+z_index = 100
 script = ExtResource("1_1dl18")
 bullet_speed = 80
 
