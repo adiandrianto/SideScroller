@@ -31,7 +31,7 @@ func on_add_grenade():
 	PickupManager.grenade_changed.emit()
 	
 func on_add_health():
-	health_component.current_health += 2
+	health_component.current_health = max(2 + health_component.current_health, health_component.max_health)
 	health_component.health_changed.emit()
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -16,7 +16,7 @@ func _physics_process(_delta: float) -> void:
 		
 		if smoothing_enabled :
 			weight = float(11-smooth_value) /10
-			camera_pos = lerp(global_position, player.global_position, 1)
+			camera_pos = lerp(global_position, player.global_position, weight)
 		else :
 			camera_pos = player.global_position
 			

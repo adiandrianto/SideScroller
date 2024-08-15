@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ckvoiwx40mj15"]
+[gd_scene load_steps=23 format=3 uid="uid://ckvoiwx40mj15"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/flying_enemy.gd" id="1_10uvs"]
 [ext_resource type="Texture2D" uid="uid://bg2jlsxlksvo7" path="res://Assets/Enemy Sprite/flying_alien.png" id="1_senvq"]
@@ -7,12 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="3_tqy2k"]
 [ext_resource type="PackedScene" uid="uid://be4lfovfuvq74" path="res://Scenes/Components/hit_box_component.tscn" id="4_ij2d5"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="6_1bq3e"]
-[ext_resource type="AudioStream" uid="uid://fnp81gndaj7q" path="res://Assets/Audio/SFX/flying enemy explode.wav" id="6_jvuqb"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/flying_enemy_idle_state.gd" id="7_l44ce"]
-[ext_resource type="AudioStream" uid="uid://c4k4dwgit0g1a" path="res://Assets/Audio/SFX/flying enemy laser.wav" id="7_mhnus"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/flying_enemy_attack_state.gd" id="8_lpd2t"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/flying_enemy_chase_state.gd" id="10_ng17f"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/enemy_hurt_state.gd" id="12_7mhnt"]
+[ext_resource type="AudioStream" uid="uid://fnp81gndaj7q" path="res://Assets/Audio/SFX/flying enemy explode.wav" id="13_e3psi"]
 [ext_resource type="Texture2D" uid="uid://tatbhgngq5dq" path="res://Assets/Circular 7 - 128x128.png" id="14_nn8ut"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6o23w"]
@@ -104,21 +103,6 @@ tracks/2/keys = {
 "method": &"to_idle"
 }]
 }
-tracks/3/type = "audio"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AudioStreamPlayer")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("7_mhnus")
-}],
-"times": PackedFloat32Array(0.966667)
-}
-tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_2fyj8"]
 resource_name = "death"
@@ -149,21 +133,6 @@ tracks/1/keys = {
 "method": &"queue_free"
 }]
 }
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AudioStreamPlayer")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("6_jvuqb")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/2/use_blend = false
 
 [sub_resource type="Animation" id="Animation_fqlpb"]
 resource_name = "hurt"
@@ -286,11 +255,9 @@ enemy = NodePath("../..")
 script = ExtResource("8_lpd2t")
 enemy = NodePath("../..")
 
-[node name="Hurt" type="Node" parent="StateMachine"]
+[node name="Hurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("12_7mhnt")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
+enemy = NodePath("../..")
 
 [node name="StateLabel" type="Label" parent="."]
 visible = false
@@ -298,6 +265,10 @@ offset_left = -10.0
 offset_top = -57.0
 offset_right = 30.0
 offset_bottom = -34.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_e3psi")
+volume_db = -10.0
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="being_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_component_being_hit"]
