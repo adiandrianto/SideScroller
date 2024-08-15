@@ -65,7 +65,7 @@ func _physics_process(delta):
 			
 	if Input.is_action_just_pressed("Throw") && grenade_count > 0 :
 		var grenade_x_force: int = get_local_mouse_position().x
-		var grenade_y_force: int = -400
+		var grenade_y_force: int = -500
 		var grenade = grenade_scene.instantiate()
 		var target = get_global_mouse_position()
 		if animated_sprite.flip_h == true:
