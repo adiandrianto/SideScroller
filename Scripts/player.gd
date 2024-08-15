@@ -64,7 +64,7 @@ func _physics_process(delta):
 			weapon.sprite.rotation = deg_to_rad(0.0)
 			
 	if Input.is_action_just_pressed("Throw") && grenade_count > 0 :
-		var grenade_x_force: int = 300
+		var grenade_x_force: int = get_local_mouse_position().x
 		var grenade_y_force: int = -400
 		var grenade = grenade_scene.instantiate()
 		var target = get_global_mouse_position()
