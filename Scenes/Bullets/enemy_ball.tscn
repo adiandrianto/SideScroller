@@ -55,6 +55,7 @@ _data = {
 }
 
 [node name="RigidBody2D" type="RigidBody2D"]
+z_index = 99
 collision_layer = 68
 collision_mask = 385
 physics_material_override = SubResource("PhysicsMaterial_wu5m4")
@@ -106,6 +107,12 @@ libraries = {
 "": SubResource("AnimationLibrary_5fspt")
 }
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
 [connection signal="area_entered" from="HitBoxComponent" to="." method="_on_hit_box_component_area_entered"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

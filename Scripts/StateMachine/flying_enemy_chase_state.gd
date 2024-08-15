@@ -19,7 +19,7 @@ func state_physics_update(delta):
 	if distance_x < 15:
 		if DimensionManager.is_inside == false :
 			transitioned.emit(self, "attack")
-	elif distance_x > 175:
+	elif distance_x > 150:
 		transitioned.emit(self, "idle")
 		
 func state_exit():

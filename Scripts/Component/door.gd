@@ -14,14 +14,20 @@ var can_open = true
 
 func _ready() -> void:
 	label.visible = false
+	second_dimension.collision_enabled = false
+	tile_map.visible = true
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("interact") && can_open && label.visible:
-		open()
 		DimensionManager.is_inside = true
+		DimensionManager.emit_signal("door_open")
+		open()
+		
 	if Input.is_action_pressed("interact") && not can_open && label.visible:
-		close()
 		DimensionManager.is_inside = false
+		DimensionManager.emit_signal("door_close")
+		close()
+		
 
 func open():
 	animation_player.play("open")
@@ -41,5 +47,6 @@ func _on_interaction_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
 		label.visible = true
 
-func _on_interaction_area_area_shape_exited(area: Area2D) -> void:
-	label.visible = false
+func _on_interaction_area_area_exited(area: Area2D) -> void:
+	if area.is_in_group("player"):
+		label.visible = false

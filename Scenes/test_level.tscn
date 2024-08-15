@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://b4n73h3xwykh1"]
+[gd_scene load_steps=36 format=4 uid="uid://b4n73h3xwykh1"]
 
 [ext_resource type="Script" path="res://Scenes/ground_tile.gd" id="1_a22vf"]
 [ext_resource type="PackedScene" uid="uid://dpq85atgs6uk7" path="res://Scenes/Components/door_component.tscn" id="1_prje3"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://ctuy78wbdejks" path="res://Scenes/UI/health_ui.tscn" id="12_5woi3"]
 [ext_resource type="PackedScene" uid="uid://n3lrqlddh4s1" path="res://Scenes/Components/heart_pickup.tscn" id="14_36s80"]
 [ext_resource type="PackedScene" uid="uid://nt1kquei12yu" path="res://Scenes/Components/machine_gun_pickup.tscn" id="14_xraac"]
+[ext_resource type="PackedScene" uid="uid://qgvefke0us0x" path="res://Scenes/Components/sword_pickup.tscn" id="15_l6xch"]
 [ext_resource type="PackedScene" uid="uid://ds3vgr08eolu7" path="res://Scenes/Components/grenade_pickup.tscn" id="15_qaw0j"]
 [ext_resource type="PackedScene" uid="uid://b6naww1axjgso" path="res://Scenes/Enemies/enemy_a.tscn" id="17_48u07"]
 
@@ -549,6 +550,7 @@ bus = &"Music"
 
 [node name="Box" parent="." instance=ExtResource("9_a5on3")]
 position = Vector2(71, 205)
+drop_scene = ExtResource("15_l6xch")
 
 [node name="Ladder3" parent="." instance=ExtResource("4_i113j")]
 position = Vector2(1165, 133)

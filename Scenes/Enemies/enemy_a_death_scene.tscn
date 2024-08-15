@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://d0lmrsghbybd2"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_A_death_scene.gd" id="1_lo1r1"]
-[ext_resource type="Texture2D" uid="uid://erijbmfhe02u" path="res://Assets/Enemy Sprite/enemyA.png" id="2_iuawj"]
+[ext_resource type="Texture2D" uid="uid://buas7bs4ln45n" path="res://Assets/Enemy Sprite/enemyA2.png" id="2_excfk"]
 [ext_resource type="Texture2D" uid="uid://b414shg5hp4od" path="res://Assets/splatter.png" id="3_oenqf"]
 [ext_resource type="AudioStream" uid="uid://d2hc0vffoypmd" path="res://Assets/Audio/SFX/Alien_A_Scream.mp3" id="4_euav7"]
 [ext_resource type="AudioStream" uid="uid://c8khfxyllxkm1" path="res://Assets/Audio/SFX/Blood-Spill-Hit.wav" id="5_edvqc"]
@@ -128,9 +128,9 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5, 0.566667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [0, 1, 2, 3, 4, 5]
 }
 tracks/2/type = "method"
@@ -182,12 +182,10 @@ _data = {
 script = ExtResource("1_lo1r1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_iuawj")
+texture = ExtResource("2_excfk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
-position = Vector2(-2, -6)
 sprite_frames = SubResource("SpriteFrames_tpn48")
-autoplay = "default"
 frame = 5
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

@@ -1,14 +1,16 @@
-[gd_scene load_steps=39 format=3 uid="uid://ddhv81dvrtjb3"]
+[gd_scene load_steps=46 format=3 uid="uid://ddhv81dvrtjb3"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_e0se1"]
-[ext_resource type="Texture2D" uid="uid://heclpv4e7vl1" path="res://Assets/Player Sprite/player_pistol_jump-fall.png" id="2_18gb1"]
 [ext_resource type="Shader" path="res://Scenes/player.gdshader" id="2_n73ur"]
 [ext_resource type="Texture2D" uid="uid://c7oo0oelwxbe6" path="res://Assets/Player Sprite/player_idle.png" id="3_mf4u5"]
 [ext_resource type="Texture2D" uid="uid://dvvmjvo8hspcg" path="res://Assets/Player Sprite/player-climb-side.png" id="3_r8cay"]
+[ext_resource type="Texture2D" uid="uid://c44x7kb8pjcni" path="res://Assets/Player Sprite/fall.png" id="4_amnaq"]
+[ext_resource type="Texture2D" uid="uid://be42x8p7yp65u" path="res://Assets/Player Sprite/player_close_door.png" id="4_mkaq1"]
 [ext_resource type="Texture2D" uid="uid://cc6wbqjfnrfj3" path="res://Assets/Player Sprite/player_pistol_jump-jump.png" id="4_t4nrx"]
 [ext_resource type="Texture2D" uid="uid://dlyjntdemxt3d" path="res://Assets/Player Sprite/player_run_without_arm.png" id="5_biwir"]
 [ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="6_xwy6r"]
 [ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="7_6bgoq"]
+[ext_resource type="Texture2D" uid="uid://cx4tr37dxheuw" path="res://Assets/Player Sprite/player_open_door.png" id="8_1cvdk"]
 [ext_resource type="AudioStream" uid="uid://dk0vudek7j813" path="res://Assets/Audio/SFX/PlayerSFX/05. Damage Grunt (Male).wav" id="9_rgoey"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="11_o4213"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/player_idle_state.gd" id="12_e7h83"]
@@ -43,9 +45,21 @@ region = Rect2(96, 0, 48, 48)
 atlas = ExtResource("3_r8cay")
 region = Rect2(144, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mc788"]
-atlas = ExtResource("2_18gb1")
+[sub_resource type="AtlasTexture" id="AtlasTexture_attkf"]
+atlas = ExtResource("4_mkaq1")
 region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbxqi"]
+atlas = ExtResource("4_mkaq1")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6l4sc"]
+atlas = ExtResource("4_amnaq")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0a4y"]
+atlas = ExtResource("4_amnaq")
+region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tm88j"]
 atlas = ExtResource("3_mf4u5")
@@ -74,6 +88,14 @@ region = Rect2(48, 0, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_5y7mb"]
 atlas = ExtResource("4_t4nrx")
 region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7014x"]
+atlas = ExtResource("8_1cvdk")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_borq4"]
+atlas = ExtResource("8_1cvdk")
+region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k5ntr"]
 atlas = ExtResource("5_biwir")
@@ -120,7 +142,24 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mc788")
+"texture": SubResource("AtlasTexture_attkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbxqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_attkf")
+}],
+"loop": false,
+"name": &"close_door",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6l4sc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0a4y")
 }],
 "loop": true,
 "name": &"fall",
@@ -159,6 +198,20 @@ animations = [{
 "loop": false,
 "name": &"jump",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7014x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_borq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7014x")
+}],
+"loop": false,
+"name": &"open_door",
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.4,
@@ -201,7 +254,7 @@ shape = SubResource("CapsuleShape2D_pupvq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_6eh7k")
 sprite_frames = SubResource("SpriteFrames_6wen4")
-animation = &"climb"
+animation = &"open_door"
 autoplay = "idle"
 offset = Vector2(0, -7)
 
@@ -215,8 +268,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 
 [node name="HealthComponent" parent="." instance=ExtResource("6_xwy6r")]
-max_health = 3
-current_health = 1
+max_health = 6
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") groups=["player"] instance=ExtResource("7_6bgoq")]
 collision_layer = 256
@@ -246,15 +298,17 @@ slow_down_speed = 250
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("13_u236u")
-speed = 150
-max_horizontal_speed = 75
+speed = 100
+max_horizontal_speed = 60
 
 [node name="Climb" type="Node" parent="StateMachine"]
 script = ExtResource("14_4qdod")
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("15_0uodt")
-jump_horizontal_speed = 100
+jump_height = -250
+jump_horizontal_speed = 85
+max_jump_horizontal_speed = 65
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("15_4ki7g")
@@ -275,6 +329,7 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="area_entered" from="HurtBoxComponent" to="." method="_on_hurt_box_component_area_entered"]
 [connection signal="being_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_component_being_hit"]
 [connection signal="body_entered" from="HurtBoxComponent" to="." method="_on_hurt_box_component_body_entered"]

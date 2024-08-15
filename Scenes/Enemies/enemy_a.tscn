@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6naww1axjgso"]
+[gd_scene load_steps=16 format=3 uid="uid://b6naww1axjgso"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_a.gd" id="1_2wlea"]
 [ext_resource type="Material" uid="uid://bv3bavguqjynk" path="res://Shader/flash_shader.tres" id="2_1puhj"]
-[ext_resource type="Texture2D" uid="uid://erijbmfhe02u" path="res://Assets/Enemy Sprite/enemyA.png" id="2_kqcam"]
+[ext_resource type="Texture2D" uid="uid://buas7bs4ln45n" path="res://Assets/Enemy Sprite/enemyA2.png" id="3_c82vr"]
 [ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="3_is3qx"]
 [ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="4_vfun2"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="5_i5r7g"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/enemy_a_attack_state.gd" id="7_wdkut"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86hr5"]
-size = Vector2(18, 36)
+size = Vector2(18, 39)
 
 [sub_resource type="Animation" id="Animation_7eoyl"]
 length = 0.001
@@ -79,6 +79,9 @@ _data = {
 radius = 7.0
 height = 34.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p62v4"]
+size = Vector2(331, 216)
+
 [node name="EnemyA" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 68
 collision_mask = 128
@@ -87,8 +90,7 @@ script = ExtResource("1_2wlea")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = ExtResource("2_1puhj")
-texture = ExtResource("2_kqcam")
-flip_h = true
+texture = ExtResource("3_c82vr")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_is3qx")]
 max_health = 50
@@ -100,14 +102,14 @@ collision_mask = 2
 health_component = NodePath("../HealthComponent")
 
 [node name="HurtBoxCollision" type="CollisionShape2D" parent="HurtBoxComponent"]
-position = Vector2(0, 6)
+position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_86hr5")
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
-position = Vector2(-13, -1)
+position = Vector2(-13, 6)
 
 [node name="MarkerRight" type="Marker2D" parent="."]
-position = Vector2(17, -1)
+position = Vector2(17, 6)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_i5r7g")
@@ -144,5 +146,16 @@ target_position = Vector2(31, 0)
 position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_mh1m4")
 
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+z_index = 100
+position = Vector2(175.5, 0)
+shape = SubResource("RectangleShape2D_p62v4")
+
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
+[connection signal="health_changed" from="HealthComponent" to="StateMachine/Idle" method="_on_health_component_health_changed"]
+[connection signal="area_entered" from="DetectionArea" to="StateMachine/Idle" method="_on_detection_area_area_entered"]

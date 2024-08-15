@@ -14,23 +14,24 @@ var can_shoot = true
 const SPEED := 50
 
 func state_enter():
-	#animation_player.play("attack")
 	player = get_tree().get_first_node_in_group("player")
 
 func state_physics_update(delta):
 	enemy.velocity = lerp(enemy.velocity, Vector2.ZERO,0.1)
-	if DimensionManager.is_inside == false:
+	if DimensionManager.is_inside ==false && owner.is_inside == false:
 		shoot()
-	else:
+	elif DimensionManager.is_inside == true && owner.is_inside == true:
+		shoot()
+	else :
 		return
+		
 	var distance = enemy.global_position - player.global_position
-	#print(distance)
-	if distance.length() < 80 && not ray_cast.is_colliding():
+	if distance.length() < 85 && not ray_cast.is_colliding():
 		transitioned.emit(self, "moveaway")
 	if player.global_position.x - enemy.global_position.x < 0 :
-		sprite.flip_h = false
-	else :
 		sprite.flip_h = true
+	else :
+		sprite.flip_h = false
 	
 	if distance.length() > 450 :
 		transitioned.emit(self, "idle")
