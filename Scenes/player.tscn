@@ -307,8 +307,9 @@ script = ExtResource("14_4qdod")
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("15_0uodt")
 jump_height = -250
-jump_horizontal_speed = 85
+jump_horizontal_speed = 65
 max_jump_horizontal_speed = 65
+jump_gravity = 860
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("15_4ki7g")
