@@ -7,3 +7,4 @@ signal door_close
 
 signal boss_started
 signal player_died
+signal boss_defeated

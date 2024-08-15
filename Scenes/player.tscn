@@ -313,6 +313,7 @@ jump_gravity = 860
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("15_4ki7g")
+speed = 75
 
 [node name="RayCastUp" type="RayCast2D" parent="."]
 position = Vector2(4, 14)

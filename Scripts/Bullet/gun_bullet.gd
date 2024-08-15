@@ -1,11 +1,13 @@
 extends CharacterBody2D
 class_name Bullet
 
-@export var bullet_speed := 300
+@export var visible_notifier: VisibleOnScreenNotifier2D
+@export var bullet_speed : int
 @export var shattered_collision: Area2D
 @export var animation_player: AnimationPlayer
 
 func _ready() -> void:
+	visible_notifier.screen_exited.connect(_on_visible_on_screen_notifier_2d_screen_exited)
 	animation_player.play("shoot")
 	shattered_collision.body_entered.connect(on_contact)
 	shattered_collision.area_entered.connect(on_contact)

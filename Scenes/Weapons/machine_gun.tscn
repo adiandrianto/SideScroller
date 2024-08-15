@@ -47,7 +47,7 @@ marker_left = NodePath("MarkerLeft")
 marker_right = NodePath("MarkerRight")
 marker_up = NodePath("MarkerUp")
 bullet_scene = ExtResource("2_lh4mo")
-shoot_delay = 0.1
+shoot_delay = 0.15
 animation_player = NodePath("AnimationPlayer")
 
 [node name="Sprite" type="Sprite2D" parent="."]

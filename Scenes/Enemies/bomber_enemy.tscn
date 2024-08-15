@@ -250,6 +250,7 @@ stream = ExtResource("6_jo04t")
 pitch_scale = 1.9
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -2.0
 offset_top = -38.0
 offset_right = 38.0

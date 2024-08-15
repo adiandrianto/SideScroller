@@ -16,7 +16,7 @@ class_name Player
 var screen_width = get_viewport_rect().size.x
 var camera_target
 var target_distance = 125
-var camera_speed = 2
+var camera_speed = 3
 
 var direction = Input.get_axis("left", "right")
 
@@ -47,7 +47,7 @@ func _process(delta):
 	else:
 		camera_target = owner.position.x - target_distance - screen_width/2
 		camera_2d.offset.x = max(camera_2d.offset.x - camera_speed, camera_target)
-	camera_2d.offset.y = owner.position.y
+	camera_2d.offset.y = owner.position.y - 50
 	
 	if health_component.current_health <= 0:
 		DimensionManager.emit_signal("player_died")

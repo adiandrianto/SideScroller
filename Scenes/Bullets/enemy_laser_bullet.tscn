@@ -70,10 +70,11 @@ _data = {
 "shoot": SubResource("Animation_pqhbd")
 }
 
-[node name="EnemyLaserBullet" type="CharacterBody2D"]
+[node name="EnemyLaserBullet" type="CharacterBody2D" node_paths=PackedStringArray("visible_notifier")]
 z_index = 100
 script = ExtResource("1_1dl18")
 bullet_speed = 80
+visible_notifier = NodePath("VisibleOnScreenNotifier2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -1)

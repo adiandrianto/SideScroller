@@ -36,10 +36,12 @@ func _process(delta: float) -> void:
 func invincible():
 	visible = false
 	hurt_box_component.monitorable = false
+	hurt_box_component.monitoring = false
 	
 func can_be_seen():
 	visible = true
 	hurt_box_component.monitorable = true
+	hurt_box_component.monitoring = true
 	
 func _on_health_component_died() -> void:
 
@@ -54,16 +56,3 @@ func SetShader_BlinkIntensity(newValue : float):
 func _on_health_component_health_changed() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_method(SetShader_BlinkIntensity, 1.0,0.0,0.2)
-
-#<<<<<<<<<<<<<<<<<<<NEW SIGNALS HERE>>>>>>>>>>>>>>>>>>>>>>>
-#func _on_door_dimension_change() -> void:
-	#if can_shoot == true:
-		#can_shoot = false
-	#else:
-		#can_shoot = true
-		
-#func _on_door_dimension_1() -> void:
-	#can_shoot = true
-#
-#func _on_door_dimension_2() -> void:
-	#can_shoot = false

@@ -1,9 +1,8 @@
-[gd_scene load_steps=49 format=4 uid="uid://prdqngk2fp8c"]
+[gd_scene load_steps=52 format=4 uid="uid://prdqngk2fp8c"]
 
 [ext_resource type="PackedScene" uid="uid://1qjbnii0rrri" path="res://Scenes/dimension_manager.tscn" id="1_cnxul"]
 [ext_resource type="PackedScene" uid="uid://ddhv81dvrtjb3" path="res://Scenes/player.tscn" id="1_gfy2y"]
 [ext_resource type="PackedScene" uid="uid://c3paj8v8u8yny" path="res://Scenes/pickup_manager.tscn" id="1_uh81h"]
-[ext_resource type="Texture2D" uid="uid://b6yr3hviibdnu" path="res://Assets/Tileset/Clouds 3/3.png" id="2_236pe"]
 [ext_resource type="Texture2D" uid="uid://43eqtbqal6wd" path="res://Assets/player.png" id="2_f4j8k"]
 [ext_resource type="Texture2D" uid="uid://cgr3auue316fs" path="res://Assets/Tileset/Clouds 3/1.png" id="2_fulhc"]
 [ext_resource type="Script" path="res://Scenes/ground_tile.gd" id="2_uo2ft"]
@@ -12,11 +11,13 @@
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="5_arswg"]
 [ext_resource type="PackedScene" uid="uid://ewaovw0m3vvb" path="res://Scenes/death_popup.tscn" id="6_8ovp7"]
 [ext_resource type="PackedScene" uid="uid://cv03uet6ywynh" path="res://Scenes/UI/grenade_ammo_ui.tscn" id="6_yf373"]
+[ext_resource type="Script" path="res://Scenes/victory_screen.gd" id="7_8hv1l"]
+[ext_resource type="PackedScene" uid="uid://c6ebf742lmbwt" path="res://Scenes/victory_screen.tscn" id="7_eq7er"]
 [ext_resource type="PackedScene" uid="uid://ctuy78wbdejks" path="res://Scenes/UI/health_ui.tscn" id="7_s66jy"]
-[ext_resource type="Script" path="res://Scenes/label.gd" id="8_7peqx"]
 [ext_resource type="PackedScene" uid="uid://b4juscy5r14s5" path="res://Scenes/Weapons/pistol.tscn" id="8_30eif"]
-[ext_resource type="Texture2D" uid="uid://dvxm57l7r25nu" path="res://Assets/Tileset/Night/5.png" id="10_lkpav"]
 [ext_resource type="PackedScene" uid="uid://b6naww1axjgso" path="res://Scenes/Enemies/enemy_a.tscn" id="12_ek4mn"]
+[ext_resource type="Texture2D" uid="uid://ddl13txlc7mr8" path="res://Assets/Tileset/Night/3.png" id="13_278w3"]
+[ext_resource type="Texture2D" uid="uid://ofk7fwdmriyl" path="res://Assets/Tileset/Clouds 3/2.png" id="14_0deun"]
 [ext_resource type="PackedScene" uid="uid://brag2e0jicm06" path="res://Scenes/Components/box.tscn" id="14_ybdr2"]
 [ext_resource type="PackedScene" uid="uid://c4ecgcx26c5k1" path="res://Scenes/Components/pistol_pickup.tscn" id="16_hyfd7"]
 [ext_resource type="PackedScene" uid="uid://ds3vgr08eolu7" path="res://Scenes/Components/grenade_pickup.tscn" id="17_ljtha"]
@@ -32,6 +33,8 @@
 [ext_resource type="PackedScene" uid="uid://ckvoiwx40mj15" path="res://Scenes/Enemies/flying_enemy.tscn" id="24_3scrj"]
 [ext_resource type="AudioStream" uid="uid://dr08ri1tbree5" path="res://Assets/Audio/Music/Juhani Junkala [Retro Game Music Pack] Level 1.wav" id="25_sd0wj"]
 [ext_resource type="Script" path="res://Scenes/boss_area_detector.gd" id="26_44c1v"]
+[ext_resource type="Script" path="res://Scenes/audio_stream_player.gd" id="26_l77w2"]
+[ext_resource type="AudioStream" uid="uid://b5elocdjdk46w" path="res://Assets/Audio/Music/Juhani Junkala [Retro Game Music Pack] Ending.wav" id="29_1mhtb"]
 
 [sub_resource type="Environment" id="Environment_72a32"]
 background_mode = 3
@@ -50,10 +53,15 @@ texture = ExtResource("4_x7857")
 1:13/0 = 0
 2:13/0 = 0
 0:18/0 = 0
+0:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 8, 0, 8)
 1:18/0 = 0
+1:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:18/0 = 0
+2:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:18/0 = 0
+3:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:18/0 = 0
+4:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, -8, -8, -8, 8, 0, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yahuo"]
 texture = ExtResource("3_wh4jr")
@@ -527,17 +535,12 @@ offset_bottom = 25.0
 
 [node name="HealthUI" parent="UI" instance=ExtResource("7_s66jy")]
 
-[node name="Label" type="Label" parent="UI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-grow_horizontal = 2
-script = ExtResource("8_7peqx")
-
 [node name="DeathPopup" parent="UI" instance=ExtResource("6_8ovp7")]
+visible = false
+
+[node name="Control" parent="UI" instance=ExtResource("7_eq7er")]
+visible = false
+script = ExtResource("7_8hv1l")
 
 [node name="Player" parent="." instance=ExtResource("1_gfy2y")]
 z_index = 4096
@@ -567,7 +570,7 @@ smooth_value = 1
 [node name="Parallax" type="Node2D" parent="."]
 
 [node name="Sky" type="Parallax2D" parent="Parallax"]
-scroll_scale = Vector2(0.1, 0)
+scroll_scale = Vector2(0.2, 0)
 repeat_size = Vector2(576, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Sky"]
@@ -577,23 +580,24 @@ offset = Vector2(0, -30)
 
 [node name="Clouds" type="Parallax2D" parent="Parallax"]
 visible = false
-scroll_scale = Vector2(0.4, 0.8)
-repeat_size = Vector2(288, 0)
+scroll_scale = Vector2(0.25, 0.8)
+repeat_size = Vector2(576, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Clouds"]
+modulate = Color(0.238956, 0.653844, 0.895409, 1)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_236pe")
-offset = Vector2(0, 164)
+texture = ExtResource("13_278w3")
+centered = false
+offset = Vector2(0, 150)
 
 [node name="Woods" type="Parallax2D" parent="Parallax"]
-visible = false
-scroll_scale = Vector2(0.3, 0)
+scroll_scale = Vector2(0.1, 0)
 repeat_size = Vector2(576, 324)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Woods"]
 modulate = Color(0.5, 0.5, 0.5, 1)
 texture_filter = 1
-texture = ExtResource("10_lkpav")
+texture = ExtResource("14_0deun")
 centered = false
 offset = Vector2(0, -70)
 
@@ -607,7 +611,7 @@ tile_set = SubResource("TileSet_ps4u2")
 
 [node name="OnStreet" type="TileMapLayer" parent="TileMap"]
 z_index = 4
-tile_map_data = PackedByteArray("AAATAAsAAAAAAAgAAAAdAAwAAgAMAAsAAAAaAA0AAAAEAA0AAAAkAA0AAAAOAAUAAAAlAA0AAAAOAAUAAAAmAA0AAAAOAAUAAAAnAA0AAAAOAAUAAAAoAA0AAAAOAAUAAAApAA0AAAAOAAUAAAAqAA0AAAAOAAUAAAArAA0AAAAOAAUAAAAsAA0AAAAOAAUAAAAtAA0AAAAPAAUAAAAXAAwAAAATAAIAAAAgAAwAAAATAAIAAAAjAAsAAAAAAAgAAAA4AAsAAAAMAAYAAAAfAA0AAAAMAAkAAAAjAA0AAAANAAUAAAA9AAsAAAAPAAsAAABKAAsAAAAPAAsAABBGAAsAAAAMAAkAAABXAAkAAAARAAkAAABNAAsAAAATAAIAAABaAAoAAAAMAAsAAABaAAcAAAAEAAUAAABnAAkAAAACAA8AAABqAAkAAAACAA8AAABhAAoAAAAMAAcAAABrAAoAAAAPAAsAAABfAAoAAAAMAAYAAABlAAkAAAATAAIAAACFAAwAAAANAAUAAACGAAwAAAAOAAUAAACHAAwAAAAOAAUAAACIAAwAAAAOAAUAAACJAAwAAAAOAAUAAACKAAwAAAAOAAUAAACLAAwAAAAOAAUAAACMAAwAAAAOAAUAAACNAAwAAAAOAAUAAACOAAwAAAAOAAUAAACPAAwAAAAOAAUAAACQAAwAAAAOAAUAAACRAAwAAAAOAAUAAACSAAwAAAAOAAUAAACTAAwAAAAOAAUAAACUAAwAAAAOAAUAAACVAAwAAAAOAAUAAACWAAwAAAAPAAUAAACAAAwAAAAPAAAAAACYAAkAAAAEAAUAAAB1AAkAAAASAAUAAAACAQoAAgAOAAcAAAABAQoAAgANAAcAAAAAAQoAAgANAAcAAAD/AAoAAgANAAcAAAD+AAoAAgANAAcAAAD9AAoAAgAMAAcAAAD9AAkAAgAMAAYAAAD+AAkAAgANAAYAAAD/AAkAAgANAAYAAAAAAQkAAgANAAYAAAABAQkAAgANAAYAAAACAQkAAgAOAAYAAAAQAQQAAgAKAAcAAAAPAQQAAgAIAAcAAAAPAQEAAgAIAAcAAAAQAQEAAgAKAAcAAAAKAQEAAgAKAAcAAAAJAQEAAgAIAAcAAAAJAQQAAgAIAAcAAAAKAQQAAgAKAAcAAAANAQEAAgAKAAcAAAAMAQEAAgAIAAcAAAAHAQ0AAAAPAAAAAAD0AAwAAAACAA8AAAAXAQsAAAAQAAUAAAAZAQsAAAAQAAUAAAAbAQsAAAAQAAUAABAdAQsAAAAQAAUAAAADAQ0AAAAPAAoAAAAsAQwAAAAPAAoAAAAUAQsAAAARAAkAAAAkAQsAAAARAAkAAABUAQ0AAAAMAAAAAADoAAoAAAAMAAAAAAA0AQwAAAAPAAAAAADwAA0AAAAMAAYAAADiAAkAAgAMAAkAAABHARIAAgAMAAkAAABpAQ0AAgABAAkAAABoAQ0AAgABAAkAAACmABAAAgABAAkAAACqABAAAgABAAkAAACuABAAAgABAAkAAACyABAAAgABAAkAAAA=")
+tile_map_data = PackedByteArray("AAATAAsAAAAAAAgAAAAdAAwAAgAMAAsAAAAaAA0AAAAEAA0AAAAkAA0AAAAOAAUAAAAlAA0AAAAOAAUAAAAmAA0AAAAOAAUAAAAnAA0AAAAOAAUAAAAoAA0AAAAOAAUAAAApAA0AAAAOAAUAAAAqAA0AAAAOAAUAAAArAA0AAAAOAAUAAAAsAA0AAAAOAAUAAAAtAA0AAAAPAAUAAAAXAAwAAAATAAIAAAAgAAwAAAATAAIAAAAjAAsAAAAAAAgAAAA4AAsAAAAMAAYAAAAfAA0AAAAMAAkAAAAjAA0AAAANAAUAAAA9AAsAAAAPAAsAAABKAAsAAAAPAAsAABBGAAsAAAAMAAkAAABXAAkAAAARAAkAAABNAAsAAAATAAIAAABaAAoAAAAMAAsAAABaAAcAAAAEAAUAAABnAAkAAAACAA8AAABqAAkAAAACAA8AAABhAAoAAAAMAAcAAABrAAoAAAAPAAsAAABfAAoAAAAMAAYAAABlAAkAAAATAAIAAACFAAwAAAANAAUAAACGAAwAAAAOAAUAAACHAAwAAAAOAAUAAACIAAwAAAAOAAUAAACJAAwAAAAOAAUAAACKAAwAAAAOAAUAAACLAAwAAAAOAAUAAACMAAwAAAAOAAUAAACNAAwAAAAOAAUAAACOAAwAAAAOAAUAAACPAAwAAAAOAAUAAACQAAwAAAAOAAUAAACRAAwAAAAOAAUAAACSAAwAAAAOAAUAAACTAAwAAAAOAAUAAACUAAwAAAAOAAUAAACVAAwAAAAOAAUAAACWAAwAAAAPAAUAAACAAAwAAAAPAAAAAACYAAkAAAAEAAUAAAB1AAkAAAASAAUAAAACAQoAAgAOAAcAAAABAQoAAgANAAcAAAAAAQoAAgANAAcAAAD/AAoAAgANAAcAAAD+AAoAAgANAAcAAAD9AAoAAgAMAAcAAAD9AAkAAgAMAAYAAAD+AAkAAgANAAYAAAD/AAkAAgANAAYAAAAAAQkAAgANAAYAAAABAQkAAgANAAYAAAACAQkAAgAOAAYAAAAQAQQAAgAKAAcAAAAPAQQAAgAIAAcAAAAPAQEAAgAIAAcAAAAQAQEAAgAKAAcAAAAKAQEAAgAKAAcAAAAJAQEAAgAIAAcAAAAJAQQAAgAIAAcAAAAKAQQAAgAKAAcAAAANAQEAAgAKAAcAAAAMAQEAAgAIAAcAAAAHAQ0AAAAPAAAAAAD0AAwAAAACAA8AAAAXAQsAAAAQAAUAAAAZAQsAAAAQAAUAAAAbAQsAAAAQAAUAABAdAQsAAAAQAAUAAAADAQ0AAAAPAAoAAAAsAQwAAAAPAAoAAAAUAQsAAAARAAkAAAAkAQsAAAARAAkAAABUAQ0AAAAMAAAAAADoAAoAAAAMAAAAAAA0AQwAAAAPAAAAAADwAA0AAAAMAAYAAADiAAkAAgAMAAkAAABHARIAAgAMAAkAAABpAQ0AAgABAAkAAABoAQ0AAgABAAkAAACmABAAAgABAAkAAACqABAAAgABAAkAAACuABAAAgABAAkAAACyABAAAgABAAkAAAABAA0AAgABAAkAAAADAA0AAgABAAkAAAACAA0AAgABAAkAAAAMAA0AAgABAAkAAAANAA0AAgABAAkAAAAOAA0AAgABAAkAAAA=")
 tile_set = SubResource("TileSet_atnrp")
 
 [node name="GroundTile" type="TileMap" parent="."]
@@ -803,22 +807,11 @@ position = Vector2(4221, 82)
 [node name="Ladder6" parent="------- Ladder & Door -------" instance=ExtResource("18_cdnhp")]
 position = Vector2(4221, 42)
 
-[node name="BOSSMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("21_fm578")
-volume_db = -8.0
-
-[node name="MusicA" type="AudioStreamPlayer" parent="." groups=["music"]]
-stream = ExtResource("25_sd0wj")
-volume_db = -8.0
-autoplay = true
-bus = &"SFX"
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." groups=["music"]]
+script = ExtResource("26_l77w2")
+audio_list = Array[AudioStream]([ExtResource("25_sd0wj"), ExtResource("21_fm578"), ExtResource("29_1mhtb")])
 
 [node name="------- Enemy -------" type="Node" parent="."]
-
-[node name="EnemyA" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
-z_index = 100
-position = Vector2(1086, 169)
-scale = Vector2(-1, 1)
 
 [node name="Bomber" parent="------- Enemy -------" instance=ExtResource("23_8sdja")]
 position = Vector2(5330, 296)
@@ -839,14 +832,6 @@ position = Vector2(3644.97, 34.1332)
 position = Vector2(4344, -56)
 drop_scene = ExtResource("19_0dktt")
 
-[node name="EnemyA4" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
-position = Vector2(4748, 185)
-scale = Vector2(-1, 1)
-
-[node name="EnemyA5" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
-position = Vector2(4860, 185)
-scale = Vector2(-1, 1)
-
 [node name="EnemyA6" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
 position = Vector2(6271, 184)
 scale = Vector2(-1, 1)
@@ -860,8 +845,23 @@ position = Vector2(6477, 85)
 [node name="EnemyA7" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
 position = Vector2(5748, 202)
 
+[node name="EnemyA3" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
+position = Vector2(1801, 155)
+
+[node name="EnemyA8" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
+position = Vector2(1338, 88)
+
+[node name="EnemyA" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
+position = Vector2(1049, 167)
+
+[node name="EnemyA4" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
+position = Vector2(4774, 184)
+
+[node name="EnemyA5" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
+position = Vector2(4866, 185)
+
 [node name="EnemyA2" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
-position = Vector2(2407, 182)
+position = Vector2(2394, 183)
 
 [node name="Marker2D1" type="Marker2D" parent="."]
 position = Vector2(6902, 316)
@@ -890,9 +890,10 @@ position = Vector2(7120, 400)
 summon_markers = [NodePath("../Marker2D1"), NodePath("../Marker2D2"), NodePath("../Marker2D3"), NodePath("../Marker2D4")]
 
 [node name="EnemyA" parent="." instance=ExtResource("12_ek4mn")]
-position = Vector2(3997, 202)
+position = Vector2(4002, 201)
 rotation = -3.14159
 scale = Vector2(1, -1)
 is_inside = true
 
+[connection signal="area_entered" from="BossAreaDetector" to="AudioStreamPlayer" method="_on_boss_area_detector_area_entered"]
 [connection signal="area_entered" from="BossAreaDetector" to="BossAreaDetector" method="_on_area_entered"]

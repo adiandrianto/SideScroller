@@ -23,3 +23,6 @@ func SetShader_BlinkIntensity(newValue : float):
 func _on_alien_health_health_changed() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_method(SetShader_BlinkIntensity, 1.0,0.0,0.1)
+	
+func emit_boss_defeated():
+	DimensionManager.boss_defeated.emit()

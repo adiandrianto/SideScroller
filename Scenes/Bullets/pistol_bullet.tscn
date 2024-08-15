@@ -79,11 +79,13 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_hsdei"]
 radius = 2.0
 
-[node name="PistolBullet" type="CharacterBody2D" node_paths=PackedStringArray("shattered_collision", "animation_player")]
+[node name="PistolBullet" type="CharacterBody2D" node_paths=PackedStringArray("visible_notifier", "shattered_collision", "animation_player")]
 z_index = 100
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_1gevw")
+visible_notifier = NodePath("VisibleOnScreenNotifier2D")
+bullet_speed = 300
 shattered_collision = NodePath("ShatteredCollision")
 animation_player = NodePath("AnimationPlayer")
 

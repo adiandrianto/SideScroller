@@ -14,7 +14,7 @@ func state_enter():
 	#animation_player.play("idle")
 	player = get_tree().get_first_node_in_group("player")
 	
-	if sprite.flip_h == false:
+	if sprite.flip_h == true:
 		detection_area.scale *= -1
 
 func state_physics_update(delta):

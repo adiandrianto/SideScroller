@@ -2,7 +2,7 @@ extends State
 
 @onready var animated_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var speed = 100
+@export var speed:int
 
 func state_enter():
 	animated_sprite.play("fall")
