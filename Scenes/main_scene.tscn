@@ -871,16 +871,16 @@ is_inside = true
 position = Vector2(2826, 120)
 
 [node name="Marker2D1" type="Marker2D" parent="."]
-position = Vector2(6902, 316)
+position = Vector2(6902, 325)
 
 [node name="Marker2D2" type="Marker2D" parent="."]
-position = Vector2(6902, 384)
+position = Vector2(6902, 389)
 
 [node name="Marker2D3" type="Marker2D" parent="."]
-position = Vector2(7336, 315)
+position = Vector2(7337, 324)
 
 [node name="Marker2D4" type="Marker2D" parent="."]
-position = Vector2(7338, 387)
+position = Vector2(7338, 389)
 
 [node name="BossAreaDetector" type="Area2D" parent="."]
 position = Vector2(6776.86, 49.6803)
@@ -889,7 +889,7 @@ collision_mask = 256
 script = ExtResource("26_44c1v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossAreaDetector"]
-position = Vector2(343.853, 132.82)
+position = Vector2(345.14, 172.32)
 shape = SubResource("RectangleShape2D_efmni")
 
 [node name="BOSS" parent="." node_paths=PackedStringArray("summon_markers") instance=ExtResource("20_pg0b5")]
