@@ -28,7 +28,7 @@ func state_physics_update(delta):
 		animated_sprite.pause()
 	if not ray_cast_up.is_colliding():
 		animated_sprite.play("ledge_climb")
-		transitioned.emit(self, "idle")
+		transitioned.emit(self, "climbledge")
 		
 	#if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		#transitioned.emit(self, "fall")

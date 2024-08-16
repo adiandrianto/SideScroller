@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://b4n73h3xwykh1"]
+[gd_scene load_steps=34 format=4 uid="uid://b4n73h3xwykh1"]
 
 [ext_resource type="Script" path="res://Scenes/ground_tile.gd" id="1_a22vf"]
 [ext_resource type="PackedScene" uid="uid://dpq85atgs6uk7" path="res://Scenes/Components/door_component.tscn" id="1_prje3"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://nt1kquei12yu" path="res://Scenes/Components/machine_gun_pickup.tscn" id="14_xraac"]
 [ext_resource type="PackedScene" uid="uid://qgvefke0us0x" path="res://Scenes/Components/sword_pickup.tscn" id="15_l6xch"]
 [ext_resource type="PackedScene" uid="uid://ds3vgr08eolu7" path="res://Scenes/Components/grenade_pickup.tscn" id="15_qaw0j"]
-[ext_resource type="PackedScene" uid="uid://ckvoiwx40mj15" path="res://Scenes/Enemies/flying_enemy.tscn" id="20_pc5tx"]
 
 [sub_resource type="Environment" id="Environment_o7nvf"]
 background_mode = 3
@@ -516,7 +515,7 @@ smoothing_enabled = true
 smooth_value = 2
 
 [node name="Player" parent="." instance=ExtResource("2_y14ms")]
-position = Vector2(161, 203)
+position = Vector2(113, 77)
 collision_mask = 128
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -562,7 +561,7 @@ position = Vector2(110, 212)
 scale = Vector2(1, 0.719998)
 
 [node name="Ladder2" parent="." instance=ExtResource("4_i113j")]
-position = Vector2(110, 148)
+position = Vector2(110, 154)
 scale = Vector2(1, 0.719998)
 
 [node name="MachineGunPickup" parent="." instance=ExtResource("14_xraac")]
@@ -573,6 +572,3 @@ position = Vector2(893, 134)
 
 [node name="HeartPickup" parent="." instance=ExtResource("14_36s80")]
 position = Vector2(770, 184)
-
-[node name="FlyingEnemy" parent="." instance=ExtResource("20_pc5tx")]
-position = Vector2(272, 104)
