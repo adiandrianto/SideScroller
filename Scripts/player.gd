@@ -79,9 +79,6 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
-#func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	#get_tree().reload_current_scene()
-
 func SetShader_BlinkIntensity(newValue : float):
 	animated_sprite.material.set_shader_parameter("blink_intensity", newValue)
 

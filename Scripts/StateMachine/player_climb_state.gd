@@ -27,14 +27,13 @@ func state_physics_update(delta):
 		owner.velocity.y = 0
 		animated_sprite.pause()
 	if not ray_cast_up.is_colliding():
+		animated_sprite.play("ledge_climb")
 		transitioned.emit(self, "idle")
 		
-	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
-		transitioned.emit(self, "fall")
+	#if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+		#transitioned.emit(self, "fall")
 	
 func state_exit():
 	if owner.weapon != null:
 		owner.can_shoot_pistol = true
 		owner.weapon.visible = true
-	#if not ray_cast.is_colliding():
-		#transitioned.emit(self, "idle")

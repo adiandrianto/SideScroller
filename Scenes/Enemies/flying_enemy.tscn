@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ckvoiwx40mj15"]
+[gd_scene load_steps=25 format=3 uid="uid://ckvoiwx40mj15"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/flying_enemy.gd" id="1_10uvs"]
 [ext_resource type="Texture2D" uid="uid://bg2jlsxlksvo7" path="res://Assets/Enemy Sprite/flying_alien.png" id="1_senvq"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="2_rs8n4"]
 [ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="3_tqy2k"]
 [ext_resource type="PackedScene" uid="uid://be4lfovfuvq74" path="res://Scenes/Components/hit_box_component.tscn" id="4_ij2d5"]
+[ext_resource type="Texture2D" uid="uid://43eqtbqal6wd" path="res://Assets/player.png" id="5_lfwfl"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/state_machine.gd" id="6_1bq3e"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/flying_enemy_idle_state.gd" id="7_l44ce"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/flying_enemy_attack_state.gd" id="8_lpd2t"]
@@ -62,6 +63,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/PointLight2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_8q8m0"]
 resource_name = "attack"
@@ -107,7 +120,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_2fyj8"]
 resource_name = "death"
-length = 0.4
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -115,7 +128,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"times": PackedFloat32Array(0, 0.133333, 0.3, 0.433333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [11, 12, 13, 14]
@@ -127,7 +140,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -181,6 +194,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 1]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/PointLight2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.2, 0.366667, 0.4, 0.566667, 0.6, 0.766667, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, -37), Vector2(1, -37), Vector2(1, -35), Vector2(1, -35), Vector2(1, -33), Vector2(1, -33), Vector2(1, -35), Vector2(1, -35), Vector2(1, -37)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fb1wj"]
 _data = {
@@ -193,22 +218,38 @@ _data = {
 
 [node name="FlyingEnemy" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 192
+collision_mask = 4
 script = ExtResource("1_10uvs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = ExtResource("2_4cmld")
-position = Vector2(0, 83)
+position = Vector2(0, 119)
 texture = ExtResource("1_senvq")
 hframes = 15
 
 [node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
-position = Vector2(0.999997, -3.65178)
+position = Vector2(1, 0)
 rotation = -3.14159
 scale = Vector2(1, 0.835948)
 color = Color(0.883596, 0.572658, 0.83668, 1)
 energy = 2.0
 texture = ExtResource("14_nn8ut")
+texture_scale = 1.5
+
+[node name="PointLight2D2" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(19, -121)
+scale = Vector2(0.0839843, 0.0761719)
+color = Color(1, 0.0909423, 0.0594644, 1)
+energy = 2.0
+texture = ExtResource("5_lfwfl")
+texture_scale = 1.5
+
+[node name="PointLight2D3" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(-19, -121)
+scale = Vector2(0.0839843, 0.0761719)
+color = Color(1, 0.0909423, 0.0594644, 1)
+energy = 2.0
+texture = ExtResource("5_lfwfl")
 texture_scale = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

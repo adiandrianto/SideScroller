@@ -10,7 +10,8 @@ func state_enter():
 	if DimensionManager.is_inside == false:
 		player = get_tree().get_first_node_in_group("player")
 		animation_player.play("attack")
-			
+		owner.velocity = lerp(owner.velocity, Vector2.ZERO, 0.2)
+		
 func to_idle():
 	transitioned.emit(self, "idle")
 
