@@ -101,7 +101,10 @@ func _on_health_component_health_changed() -> void:
 	
 func on_door_open():
 	animated_sprite.play("open_door")
+	if weapon != null:
+		weapon.visible = false
 		
 func on_door_close():
 	animated_sprite.play("close_door")
-	
+	if weapon != null:
+		weapon.visible = false

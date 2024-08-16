@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://b4n73h3xwykh1"]
+[gd_scene load_steps=35 format=4 uid="uid://b4n73h3xwykh1"]
 
 [ext_resource type="Script" path="res://Scenes/ground_tile.gd" id="1_a22vf"]
 [ext_resource type="PackedScene" uid="uid://dpq85atgs6uk7" path="res://Scenes/Components/door_component.tscn" id="1_prje3"]
@@ -20,8 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://qgvefke0us0x" path="res://Scenes/Components/sword_pickup.tscn" id="15_l6xch"]
 [ext_resource type="PackedScene" uid="uid://ds3vgr08eolu7" path="res://Scenes/Components/grenade_pickup.tscn" id="15_qaw0j"]
 [ext_resource type="PackedScene" uid="uid://b6naww1axjgso" path="res://Scenes/Enemies/enemy_a.tscn" id="17_48u07"]
-
-[sub_resource type="GDScript" id="GDScript_i5s2s"]
 
 [sub_resource type="Environment" id="Environment_o7nvf"]
 background_mode = 3
@@ -453,7 +451,6 @@ physics_layer_0/collision_layer = 128
 sources/0 = SubResource("TileSetAtlasSource_tujkt")
 
 [node name="TestLevel" type="Node2D"]
-script = SubResource("GDScript_i5s2s")
 
 [node name="DimensionManager" parent="." instance=ExtResource("1_qsr4u")]
 

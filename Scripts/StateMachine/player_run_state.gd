@@ -4,7 +4,7 @@ extends State
 @export var speed: int
 @export var max_horizontal_speed : int
 @onready var ray_cast: RayCast2D = $"../../RayCastFront"
-
+	
 func state_physics_update(delta):
 	var direction = Input.get_axis("left", "right")
 	
@@ -38,5 +38,9 @@ func state_physics_update(delta):
 	
 func state_enter():
 	animated_sprite.play("run")
+	if owner.weapon != null:
+		owner.weapon.visible = true
+	else :
+		return
 	
 	
