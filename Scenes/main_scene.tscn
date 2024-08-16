@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://prdqngk2fp8c"]
+[gd_scene load_steps=51 format=4 uid="uid://prdqngk2fp8c"]
 
 [ext_resource type="PackedScene" uid="uid://1qjbnii0rrri" path="res://Scenes/dimension_manager.tscn" id="1_cnxul"]
 [ext_resource type="PackedScene" uid="uid://ddhv81dvrtjb3" path="res://Scenes/player.tscn" id="1_gfy2y"]
@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://ds3vgr08eolu7" path="res://Scenes/Components/grenade_pickup.tscn" id="17_ljtha"]
 [ext_resource type="PackedScene" uid="uid://nt1kquei12yu" path="res://Scenes/Components/machine_gun_pickup.tscn" id="17_rl22v"]
 [ext_resource type="PackedScene" uid="uid://b7v1vgaqydiex" path="res://Scenes/ladder.tscn" id="18_cdnhp"]
-[ext_resource type="PackedScene" uid="uid://qgvefke0us0x" path="res://Scenes/Components/sword_pickup.tscn" id="19_0dktt"]
 [ext_resource type="PackedScene" uid="uid://dpq85atgs6uk7" path="res://Scenes/Components/door_component.tscn" id="19_4ka2x"]
 [ext_resource type="PackedScene" uid="uid://n3lrqlddh4s1" path="res://Scenes/Components/heart_pickup.tscn" id="20_ld3e8"]
 [ext_resource type="PackedScene" uid="uid://1gm8yfxkfox4" path="res://Scenes/Enemies/boss.tscn" id="20_pg0b5"]
@@ -815,7 +814,6 @@ audio_list = Array[AudioStream]([ExtResource("25_sd0wj"), ExtResource("21_fm578"
 
 [node name="Bomber" parent="------- Enemy -------" instance=ExtResource("23_8sdja")]
 position = Vector2(5330, 296)
-drop_scene = ExtResource("17_ljtha")
 
 [node name="FlyingEnemy" parent="------- Enemy -------" instance=ExtResource("24_3scrj")]
 z_index = 100
@@ -823,14 +821,12 @@ position = Vector2(5365, 157)
 
 [node name="Bomber2" parent="------- Enemy -------" instance=ExtResource("23_8sdja")]
 position = Vector2(3389, 152)
-drop_scene = ExtResource("17_rl22v")
 
 [node name="FlyingEnemy2" parent="------- Enemy -------" instance=ExtResource("24_3scrj")]
 position = Vector2(3644.97, 34.1332)
 
 [node name="Bomber3" parent="------- Enemy -------" instance=ExtResource("23_8sdja")]
 position = Vector2(4344, -56)
-drop_scene = ExtResource("19_0dktt")
 
 [node name="EnemyA6" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
 position = Vector2(6271, 184)

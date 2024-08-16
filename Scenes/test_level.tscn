@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://b4n73h3xwykh1"]
+[gd_scene load_steps=35 format=4 uid="uid://b4n73h3xwykh1"]
 
 [ext_resource type="Script" path="res://Scenes/ground_tile.gd" id="1_a22vf"]
 [ext_resource type="PackedScene" uid="uid://dpq85atgs6uk7" path="res://Scenes/Components/door_component.tscn" id="1_prje3"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://brag2e0jicm06" path="res://Scenes/Components/box.tscn" id="9_a5on3"]
 [ext_resource type="AudioStream" uid="uid://dr08ri1tbree5" path="res://Assets/Audio/Music/Juhani Junkala [Retro Game Music Pack] Level 1.wav" id="9_g50uf"]
 [ext_resource type="PackedScene" uid="uid://cv03uet6ywynh" path="res://Scenes/UI/grenade_ammo_ui.tscn" id="10_btjk7"]
+[ext_resource type="PackedScene" uid="uid://bg4qgy6incsek" path="res://Scenes/Enemies/bomber_enemy.tscn" id="10_mfj6b"]
 [ext_resource type="Script" path="res://Scenes/label.gd" id="11_r35ag"]
 [ext_resource type="PackedScene" uid="uid://ctuy78wbdejks" path="res://Scenes/UI/health_ui.tscn" id="12_5woi3"]
 [ext_resource type="PackedScene" uid="uid://n3lrqlddh4s1" path="res://Scenes/Components/heart_pickup.tscn" id="14_36s80"]
@@ -572,3 +573,6 @@ position = Vector2(893, 134)
 
 [node name="HeartPickup" parent="." instance=ExtResource("14_36s80")]
 position = Vector2(770, 184)
+
+[node name="Bomber" parent="." instance=ExtResource("10_mfj6b")]
+position = Vector2(282, 199)
