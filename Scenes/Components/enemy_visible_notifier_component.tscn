@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://r2lnjgv0j4c6"]
+
+[ext_resource type="Script" path="res://enemy_visible_notifier.gd" id="1_jkiwv"]
+
+[node name="EnemyVisibleNotifierComponent" type="VisibleOnScreenNotifier2D"]
+script = ExtResource("1_jkiwv")
+
+[connection signal="screen_exited" from="." to="." method="_on_screen_exited"]

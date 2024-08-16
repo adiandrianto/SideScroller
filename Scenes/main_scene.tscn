@@ -852,7 +852,7 @@ position = Vector2(1801, 155)
 position = Vector2(1338, 88)
 
 [node name="EnemyA" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
-position = Vector2(1049, 167)
+position = Vector2(192, 199)
 
 [node name="EnemyA4" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
 position = Vector2(4774, 184)

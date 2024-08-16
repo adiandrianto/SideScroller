@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bg4qgy6incsek"]
+[gd_scene load_steps=16 format=3 uid="uid://bg4qgy6incsek"]
 
 [ext_resource type="Texture2D" uid="uid://df4kb3hxcddu5" path="res://Assets/Enemy Sprite/bomber_enemy.png" id="1_i554a"]
 [ext_resource type="Script" path="res://Scripts/Enemies/bomber_enemy.gd" id="1_widm1"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://c0kudx8gvt3iq" path="res://Assets/Audio/SFX/bomb_hit.wav" id="6_jo04t"]
 [ext_resource type="AudioStream" uid="uid://dhnet3uan6k6j" path="res://Assets/Audio/SFX/Alien_C_Scream,.mp3" id="7_umx10"]
 [ext_resource type="AudioStream" uid="uid://c8khfxyllxkm1" path="res://Assets/Audio/SFX/Blood-Spill-Hit.wav" id="8_fmil2"]
+[ext_resource type="PackedScene" uid="uid://r2lnjgv0j4c6" path="res://Scenes/Components/enemy_visible_notifier_component.tscn" id="9_u04wu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7i2m"]
 size = Vector2(53, 37)
@@ -261,6 +262,8 @@ stream = ExtResource("7_umx10")
 
 [node name="BloodSplatter" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_fmil2")
+
+[node name="EnemyVisibleNotifierComponent" parent="." instance=ExtResource("9_u04wu")]
 
 [connection signal="area_entered" from="Shield" to="." method="_on_area_2d_area_entered"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
