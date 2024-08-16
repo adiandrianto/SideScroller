@@ -19,7 +19,6 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 
 func on_contact(body):
-	print(body.name)
 	velocity = Vector2.ZERO
 	animation_player.play("shattered")
 	

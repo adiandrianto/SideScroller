@@ -15,8 +15,8 @@ func state_enter():
 func state_physics_update(delta):
 	enemy.velocity = lerp(enemy.velocity, Vector2.ZERO,0.1)
 	var distance_x = enemy.global_position.x - player.global_position.x
-	#print(distance)
-	if distance_x < 220:
+	
+	if distance_x < 220 && distance_x > -220:
 		transitioned.emit(self, "chase")
 		
 func state_exit():

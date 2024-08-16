@@ -10,6 +10,7 @@ size = Vector2(32, 21)
 [sub_resource type="Animation" id="Animation_7l56j"]
 resource_name = "idle"
 length = 2.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -98,7 +99,7 @@ shape = SubResource("RectangleShape2D_m6gny")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
-skew = -0.122173
+skew = -0.0994003
 texture = ExtResource("1_vce21")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

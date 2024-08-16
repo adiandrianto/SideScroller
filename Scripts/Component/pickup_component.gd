@@ -38,8 +38,6 @@ func _on_area_entered(area: Area2D) -> void:
 		if pickup_type == "weapon":
 			PickupManager.change_weapon(pickup_path)
 		elif pickup_type == "heart":
-			print("heart picked")
 			PickupManager.add_health.emit()
 		elif pickup_type == "grenade":
-			print("grenade picked")
 			PickupManager.add_grenade.emit()

@@ -8,10 +8,9 @@
 [ext_resource type="Script" path="res://Scenes/ground_tile.gd" id="2_uo2ft"]
 [ext_resource type="Texture2D" uid="uid://dp5gxubw1ois4" path="res://Assets/Tileset/tileset_city_free.png" id="3_wh4jr"]
 [ext_resource type="Texture2D" uid="uid://gbgtu7pqi1j0" path="res://Assets/Tileset/tileset1.png" id="4_x7857"]
-[ext_resource type="Script" path="res://Scripts/camera.gd" id="5_arswg"]
 [ext_resource type="PackedScene" uid="uid://ewaovw0m3vvb" path="res://Scenes/death_popup.tscn" id="6_8ovp7"]
 [ext_resource type="PackedScene" uid="uid://cv03uet6ywynh" path="res://Scenes/UI/grenade_ammo_ui.tscn" id="6_yf373"]
-[ext_resource type="Script" path="res://Scenes/victory_screen.gd" id="7_8hv1l"]
+[ext_resource type="Script" path="res://Scripts/UI/victory_screen.gd" id="7_8hv1l"]
 [ext_resource type="PackedScene" uid="uid://c6ebf742lmbwt" path="res://Scenes/victory_screen.tscn" id="7_eq7er"]
 [ext_resource type="PackedScene" uid="uid://ctuy78wbdejks" path="res://Scenes/UI/health_ui.tscn" id="7_s66jy"]
 [ext_resource type="PackedScene" uid="uid://b4juscy5r14s5" path="res://Scenes/Weapons/pistol.tscn" id="8_30eif"]
@@ -23,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://ds3vgr08eolu7" path="res://Scenes/Components/grenade_pickup.tscn" id="17_ljtha"]
 [ext_resource type="PackedScene" uid="uid://nt1kquei12yu" path="res://Scenes/Components/machine_gun_pickup.tscn" id="17_rl22v"]
 [ext_resource type="PackedScene" uid="uid://b7v1vgaqydiex" path="res://Scenes/ladder.tscn" id="18_cdnhp"]
+[ext_resource type="PackedScene" uid="uid://qgvefke0us0x" path="res://Scenes/Components/sword_pickup.tscn" id="19_0dktt"]
 [ext_resource type="PackedScene" uid="uid://dpq85atgs6uk7" path="res://Scenes/Components/door_component.tscn" id="19_4ka2x"]
 [ext_resource type="PackedScene" uid="uid://n3lrqlddh4s1" path="res://Scenes/Components/heart_pickup.tscn" id="20_ld3e8"]
 [ext_resource type="PackedScene" uid="uid://1gm8yfxkfox4" path="res://Scenes/Enemies/boss.tscn" id="20_pg0b5"]
@@ -543,7 +543,7 @@ script = ExtResource("7_8hv1l")
 
 [node name="Player" parent="." instance=ExtResource("1_gfy2y")]
 z_index = 4096
-position = Vector2(85, 191)
+position = Vector2(75, 201)
 grenade_count = 6
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
@@ -555,16 +555,6 @@ texture_scale = 2.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_72a32")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(241, 135)
-process_callback = 0
-limit_smoothed = true
-position_smoothing_enabled = true
-rotation_smoothing_enabled = true
-script = ExtResource("5_arswg")
-smoothing_enabled = true
-smooth_value = 1
 
 [node name="Parallax" type="Node2D" parent="."]
 
@@ -610,7 +600,7 @@ tile_set = SubResource("TileSet_ps4u2")
 
 [node name="OnStreet" type="TileMapLayer" parent="TileMap"]
 z_index = 4
-tile_map_data = PackedByteArray("AAATAAsAAAAAAAgAAAAdAAwAAgAMAAsAAAAaAA0AAAAEAA0AAAAkAA0AAAAOAAUAAAAlAA0AAAAOAAUAAAAmAA0AAAAOAAUAAAAnAA0AAAAOAAUAAAAoAA0AAAAOAAUAAAApAA0AAAAOAAUAAAAqAA0AAAAOAAUAAAArAA0AAAAOAAUAAAAsAA0AAAAOAAUAAAAtAA0AAAAPAAUAAAAXAAwAAAATAAIAAAAgAAwAAAATAAIAAAAjAAsAAAAAAAgAAAA4AAsAAAAMAAYAAAAfAA0AAAAMAAkAAAAjAA0AAAANAAUAAAA9AAsAAAAPAAsAAABKAAsAAAAPAAsAABBGAAsAAAAMAAkAAABXAAkAAAARAAkAAABNAAsAAAATAAIAAABaAAoAAAAMAAsAAABaAAcAAAAEAAUAAABnAAkAAAACAA8AAABqAAkAAAACAA8AAABhAAoAAAAMAAcAAABrAAoAAAAPAAsAAABfAAoAAAAMAAYAAABlAAkAAAATAAIAAACFAAwAAAANAAUAAACGAAwAAAAOAAUAAACHAAwAAAAOAAUAAACIAAwAAAAOAAUAAACJAAwAAAAOAAUAAACKAAwAAAAOAAUAAACLAAwAAAAOAAUAAACMAAwAAAAOAAUAAACNAAwAAAAOAAUAAACOAAwAAAAOAAUAAACPAAwAAAAOAAUAAACQAAwAAAAOAAUAAACRAAwAAAAOAAUAAACSAAwAAAAOAAUAAACTAAwAAAAOAAUAAACUAAwAAAAOAAUAAACVAAwAAAAOAAUAAACWAAwAAAAPAAUAAACAAAwAAAAPAAAAAACYAAkAAAAEAAUAAAB1AAkAAAASAAUAAAACAQoAAgAOAAcAAAABAQoAAgANAAcAAAAAAQoAAgANAAcAAAD/AAoAAgANAAcAAAD+AAoAAgANAAcAAAD9AAoAAgAMAAcAAAD9AAkAAgAMAAYAAAD+AAkAAgANAAYAAAD/AAkAAgANAAYAAAAAAQkAAgANAAYAAAABAQkAAgANAAYAAAACAQkAAgAOAAYAAAAQAQQAAgAKAAcAAAAPAQQAAgAIAAcAAAAPAQEAAgAIAAcAAAAQAQEAAgAKAAcAAAAKAQEAAgAKAAcAAAAJAQEAAgAIAAcAAAAJAQQAAgAIAAcAAAAKAQQAAgAKAAcAAAANAQEAAgAKAAcAAAAMAQEAAgAIAAcAAAAHAQ0AAAAPAAAAAAD0AAwAAAACAA8AAAAXAQsAAAAQAAUAAAAZAQsAAAAQAAUAAAAbAQsAAAAQAAUAABAdAQsAAAAQAAUAAAADAQ0AAAAPAAoAAAAsAQwAAAAPAAoAAAAUAQsAAAARAAkAAAAkAQsAAAARAAkAAABUAQ0AAAAMAAAAAADoAAoAAAAMAAAAAAA0AQwAAAAPAAAAAADwAA0AAAAMAAYAAADiAAkAAgAMAAkAAABHARIAAgAMAAkAAABpAQ0AAgABAAkAAABoAQ0AAgABAAkAAACmABAAAgABAAkAAACqABAAAgABAAkAAACuABAAAgABAAkAAACyABAAAgABAAkAAAABAA0AAgABAAkAAAADAA0AAgABAAkAAAACAA0AAgABAAkAAAAMAA0AAgABAAkAAAANAA0AAgABAAkAAAAOAA0AAgABAAkAAAA=")
+tile_map_data = PackedByteArray("AAATAAsAAAAAAAgAAAAdAAwAAgAMAAsAAAAaAA0AAAAEAA0AAAAkAA0AAAAOAAUAAAAlAA0AAAAOAAUAAAAmAA0AAAAOAAUAAAAnAA0AAAAOAAUAAAAoAA0AAAAOAAUAAAApAA0AAAAOAAUAAAAqAA0AAAAOAAUAAAArAA0AAAAOAAUAAAAsAA0AAAAOAAUAAAAtAA0AAAAPAAUAAAAXAAwAAAATAAIAAAAgAAwAAAATAAIAAAAjAAsAAAAAAAgAAAA4AAsAAAAMAAYAAAAfAA0AAAAMAAkAAAAjAA0AAAANAAUAAAA9AAsAAAAPAAsAAABKAAsAAAAPAAsAABBGAAsAAAAMAAkAAABXAAkAAAARAAkAAABNAAsAAAATAAIAAABaAAoAAAAMAAsAAABaAAcAAAAEAAUAAABnAAkAAAACAA8AAABqAAkAAAACAA8AAABhAAoAAAAMAAcAAABrAAoAAAAPAAsAAABfAAoAAAAMAAYAAABlAAkAAAATAAIAAACFAAwAAAANAAUAAACGAAwAAAAOAAUAAACHAAwAAAAOAAUAAACIAAwAAAAOAAUAAACJAAwAAAAOAAUAAACKAAwAAAAOAAUAAACLAAwAAAAOAAUAAACMAAwAAAAOAAUAAACNAAwAAAAOAAUAAACOAAwAAAAOAAUAAACPAAwAAAAOAAUAAACQAAwAAAAOAAUAAACRAAwAAAAOAAUAAACSAAwAAAAOAAUAAACTAAwAAAAOAAUAAACUAAwAAAAOAAUAAACVAAwAAAAOAAUAAACWAAwAAAAPAAUAAACAAAwAAAAPAAAAAACYAAkAAAAEAAUAAAB1AAkAAAASAAUAAAACAQoAAgAOAAcAAAABAQoAAgANAAcAAAAAAQoAAgANAAcAAAD/AAoAAgANAAcAAAD+AAoAAgANAAcAAAD9AAoAAgAMAAcAAAD9AAkAAgAMAAYAAAD+AAkAAgANAAYAAAD/AAkAAgANAAYAAAAAAQkAAgANAAYAAAABAQkAAgANAAYAAAACAQkAAgAOAAYAAAAQAQQAAgAKAAcAAAAPAQQAAgAIAAcAAAAPAQEAAgAIAAcAAAAQAQEAAgAKAAcAAAAKAQEAAgAKAAcAAAAJAQEAAgAIAAcAAAAJAQQAAgAIAAcAAAAKAQQAAgAKAAcAAAANAQEAAgAKAAcAAAAMAQEAAgAIAAcAAAAHAQ0AAAAPAAAAAAD0AAwAAAACAA8AAAAXAQsAAAAQAAUAAAAZAQsAAAAQAAUAAAAbAQsAAAAQAAUAABAdAQsAAAAQAAUAAAADAQ0AAAAPAAoAAAAsAQwAAAAPAAoAAAAUAQsAAAARAAkAAAAkAQsAAAARAAkAAABUAQ0AAAAMAAAAAADoAAoAAAAMAAAAAAA0AQwAAAAPAAAAAADwAA0AAAAMAAYAAADiAAkAAgAMAAkAAABHARIAAgAMAAkAAABpAQ0AAgABAAkAAABoAQ0AAgABAAkAAACmABAAAgABAAkAAACqABAAAgABAAkAAACuABAAAgABAAkAAACyABAAAgABAAkAAAABAA0AAgABAAkAAAADAA0AAgABAAkAAAACAA0AAgABAAkAAAAMAA0AAgABAAkAAAANAA0AAgABAAkAAAAOAA0AAgABAAkAAABWAQ0AAAAOAAUAAABXAQ0AAAAOAAUAAABYAQ0AAAAOAAUAAABZAQ0AAAAOAAUAAABaAQ0AAAAOAAUAAABbAQ0AAAAOAAUAAABcAQ0AAAAOAAUAAABdAQ0AAAAOAAUAAABeAQ0AAAAOAAUAAABfAQ0AAAAOAAUAAABgAQ0AAAAOAAUAAABhAQ0AAAAOAAUAAABiAQ0AAAAOAAUAAABjAQ0AAAAOAAUAAABkAQ0AAAAOAAUAAABlAQ0AAAAPAAUAAABVAQ0AAAANAAUAAABRAQ0AAAAMAAcAAAA=")
 tile_set = SubResource("TileSet_atnrp")
 
 [node name="GroundTile" type="TileMap" parent="."]
@@ -760,13 +750,27 @@ drop_scene = ExtResource("20_ld3e8")
 position = Vector2(6725, 150)
 
 [node name="MachineGunPickup" parent="------- Pickup -------" instance=ExtResource("17_rl22v")]
-position = Vector2(6492, 198)
+position = Vector2(6573, 77)
 
 [node name="GrenadePickup2" parent="------- Pickup -------" instance=ExtResource("17_ljtha")]
 position = Vector2(6658, 149)
 
 [node name="PistolPickup" parent="------- Pickup -------" instance=ExtResource("16_hyfd7")]
 position = Vector2(4255, 190)
+is_inside = true
+
+[node name="Box2" parent="------- Pickup -------" instance=ExtResource("14_ybdr2")]
+position = Vector2(2033, 195)
+drop_scene = ExtResource("17_rl22v")
+
+[node name="PistolPickup2" parent="------- Pickup -------" instance=ExtResource("16_hyfd7")]
+position = Vector2(6703, 78)
+
+[node name="SwordPickup2" parent="------- Pickup -------" instance=ExtResource("19_0dktt")]
+position = Vector2(6810, 79)
+
+[node name="SwordPickup" parent="------- Pickup -------" instance=ExtResource("19_0dktt")]
+position = Vector2(4004, 215)
 is_inside = true
 
 [node name="------- Ladder & Door -------" type="Node" parent="."]
@@ -790,10 +794,10 @@ second_dimension = NodePath("../../GroundTile/2ndDimension")
 position = Vector2(3965, 208)
 
 [node name="Ladder3" parent="------- Ladder & Door -------" instance=ExtResource("18_cdnhp")]
-position = Vector2(3965, 168)
+position = Vector2(3965, 177)
 
 [node name="Ladder4" parent="------- Ladder & Door -------" instance=ExtResource("18_cdnhp")]
-position = Vector2(5373, 304)
+position = Vector2(5373, 305)
 
 [node name="DoorBig" parent="------- Ladder & Door -------" node_paths=PackedStringArray("tile_map", "second_dimension") instance=ExtResource("22_8b60e")]
 position = Vector2(4080, 223)
@@ -804,7 +808,7 @@ second_dimension = NodePath("../../GroundTile/2ndDimension")
 position = Vector2(4221, 82)
 
 [node name="Ladder6" parent="------- Ladder & Door -------" instance=ExtResource("18_cdnhp")]
-position = Vector2(4221, 42)
+position = Vector2(4221, 49)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." groups=["music"]]
 script = ExtResource("26_l77w2")
@@ -833,7 +837,7 @@ position = Vector2(6271, 184)
 scale = Vector2(-1, 1)
 
 [node name="FlyingEnemy3" parent="------- Enemy -------" instance=ExtResource("24_3scrj")]
-position = Vector2(6364, 89)
+position = Vector2(6364, 85)
 
 [node name="FlyingEnemy4" parent="------- Enemy -------" instance=ExtResource("24_3scrj")]
 position = Vector2(6477, 85)
@@ -848,7 +852,7 @@ position = Vector2(1801, 155)
 position = Vector2(1338, 88)
 
 [node name="EnemyA" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
-position = Vector2(192, 199)
+position = Vector2(810, 168)
 
 [node name="EnemyA4" parent="------- Enemy -------" instance=ExtResource("12_ek4mn")]
 position = Vector2(4774, 184)

@@ -12,7 +12,6 @@ func on_boss_defeated():
 	stream = audio_list[2]
 	play()
 
-
 func _on_boss_area_detector_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
 		stream = audio_list[1]

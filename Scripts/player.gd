@@ -11,12 +11,12 @@ class_name Player
 @onready var hurt_sfx: AudioStreamPlayer2D = $HurtSFX
 @onready var state_machine: Node = $StateMachine
 @export var grenade_count:int
-@onready var camera_2d: Camera2D = $"../Camera2D"
-
-var screen_width = get_viewport_rect().size.x
-var camera_target
-var target_distance = 125
-var camera_speed = 3
+@onready var camera_2d: Camera2D = $Camera2D
+var is_boss_fight:= false
+#var screen_width = get_viewport_rect().size.x
+#var camera_target
+#var target_distance = 125
+#var camera_speed = 3
 
 var direction = Input.get_axis("left", "right")
 
@@ -25,6 +25,7 @@ func _ready() -> void:
 	PickupManager.add_health.connect(on_add_health)
 	DimensionManager.door_open.connect(on_door_open)
 	DimensionManager.door_close.connect(on_door_close)
+	DimensionManager.boss_started.connect(on_boss_started)
 	
 func on_add_grenade():
 	grenade_count += 1
@@ -41,17 +42,20 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta):
 	label.text = str(state_machine.current_state.name)
 	
-	if animated_sprite.flip_h == false :
-		camera_target = owner.position.x + target_distance - screen_width/2
-		camera_2d.offset.x = min(camera_2d.offset.x + camera_speed, camera_target)
-	else:
-		camera_target = owner.position.x - target_distance - screen_width/2
-		camera_2d.offset.x = max(camera_2d.offset.x - camera_speed, camera_target)
-	camera_2d.offset.y = owner.position.y - 50
+	#if animated_sprite.flip_h == false :
+		#camera_target = owner.position.x + target_distance - screen_width/2
+		#camera_2d.offset.x = min(camera_2d.offset.x + camera_speed, camera_target)
+	#else:
+		#camera_target = owner.position.x - target_distance - screen_width/2
+		#camera_2d.offset.x = max(camera_2d.offset.x - camera_speed, camera_target)
+	#camera_2d.offset.y = owner.position.y - 50
 	
 	if health_component.current_health <= 0:
 		DimensionManager.emit_signal("player_died")
 		get_tree().paused = true
+	
+	if is_boss_fight:
+		camera_2d.offset.x = move_toward(camera_2d.offset.x, 0, 0.5)
 		
 func _physics_process(delta):
 	if weapon != null:
@@ -105,3 +109,7 @@ func on_door_close():
 	animated_sprite.play("close_door")
 	if weapon != null:
 		weapon.visible = false
+
+func on_boss_started():
+	is_boss_fight = true
+	

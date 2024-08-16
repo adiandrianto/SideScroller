@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ckvoiwx40mj15"]
+[gd_scene load_steps=26 format=3 uid="uid://ckvoiwx40mj15"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/flying_enemy.gd" id="1_10uvs"]
 [ext_resource type="Texture2D" uid="uid://bg2jlsxlksvo7" path="res://Assets/Enemy Sprite/flying_alien.png" id="1_senvq"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://fnp81gndaj7q" path="res://Assets/Audio/SFX/flying enemy explode.wav" id="13_e3psi"]
 [ext_resource type="Texture2D" uid="uid://tatbhgngq5dq" path="res://Assets/Circular 7 - 128x128.png" id="14_nn8ut"]
 [ext_resource type="PackedScene" uid="uid://r2lnjgv0j4c6" path="res://Scenes/Components/enemy_visible_notifier_component.tscn" id="14_wkt3v"]
+[ext_resource type="AudioStream" uid="uid://c4k4dwgit0g1a" path="res://Assets/Audio/SFX/flying enemy laser.wav" id="16_kwkuh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6o23w"]
 radius = 14.0
@@ -23,7 +24,7 @@ radius = 14.0
 radius = 14.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40h16"]
-size = Vector2(9, 204)
+size = Vector2(9, 239)
 
 [sub_resource type="Animation" id="Animation_2hm3o"]
 length = 0.001
@@ -75,6 +76,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(1, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("laser:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_8q8m0"]
 resource_name = "attack"
@@ -116,6 +129,18 @@ tracks/2/keys = {
 "args": [],
 "method": &"to_idle"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("laser:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(-0.0333334, 0.866667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_2fyj8"]
@@ -252,6 +277,38 @@ energy = 2.0
 texture = ExtResource("5_lfwfl")
 texture_scale = 1.5
 
+[node name="PointLight2D4" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(-10, -118)
+scale = Vector2(0.0839843, 0.0761719)
+color = Color(1, 0.0909423, 0.0594644, 1)
+energy = 2.0
+texture = ExtResource("5_lfwfl")
+texture_scale = 1.5
+
+[node name="PointLight2D5" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(11, -119)
+scale = Vector2(0.0839843, 0.0761719)
+color = Color(1, 0.0909423, 0.0594644, 1)
+energy = 2.0
+texture = ExtResource("5_lfwfl")
+texture_scale = 1.5
+
+[node name="PointLight2D6" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(5, -117)
+scale = Vector2(0.0839843, 0.0761719)
+color = Color(1, 0.0909423, 0.0594644, 1)
+energy = 2.0
+texture = ExtResource("5_lfwfl")
+texture_scale = 1.5
+
+[node name="PointLight2D7" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(-4, -117)
+scale = Vector2(0.0839843, 0.0761719)
+color = Color(1, 0.0909423, 0.0594644, 1)
+energy = 2.0
+texture = ExtResource("5_lfwfl")
+texture_scale = 1.5
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6o23w")
 
@@ -273,7 +330,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
-position = Vector2(0.5, 117)
+position = Vector2(0.5, 134.5)
 shape = SubResource("RectangleShape2D_40h16")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -313,6 +370,11 @@ stream = ExtResource("13_e3psi")
 volume_db = -10.0
 
 [node name="EnemyVisibleNotifierComponent" parent="." instance=ExtResource("14_wkt3v")]
+
+[node name="laser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_kwkuh")
+volume_db = -6.0
+bus = &"SFX"
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="being_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_component_being_hit"]

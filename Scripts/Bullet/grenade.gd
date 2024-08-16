@@ -12,5 +12,4 @@ func explode():
 	queue_free()
 
 func _on_hit_box_component_area_entered(area: Area2D) -> void:
-	print(area.name)
 	explode()
