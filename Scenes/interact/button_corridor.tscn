@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyvvo8gwnwdqt"]
+
+[ext_resource type="Shader" uid="uid://ci2wrqhnocdw7" path="res://Shader/give_outline.tres" id="1_0xfe2"]
+[ext_resource type="Texture2D" uid="uid://cc7hbwbdo1yy0" path="res://Assets/button_corridor.png" id="1_37eko"]
+[ext_resource type="Script" path="res://Scenes/interact/button_corridor.gd" id="2_li0mg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j46yu"]
+shader = ExtResource("1_0xfe2")
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/frequency = 0.5
+shader_parameter/highlight_speed = 4.0
+shader_parameter/highlight_width = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mu7kx"]
+size = Vector2(38, 37)
+
+[node name="ButtonCorridor" type="Sprite2D" node_paths=PackedStringArray("interaction_area")]
+material = SubResource("ShaderMaterial_j46yu")
+texture = ExtResource("1_37eko")
+hframes = 2
+script = ExtResource("2_li0mg")
+interaction_area = NodePath("Area2D")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 257
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_mu7kx")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = -7.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "[F]"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
