@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxqojxjxcqjin"]
+[gd_scene load_steps=14 format=3 uid="uid://cxqojxjxcqjin"]
 
 [ext_resource type="Texture2D" uid="uid://b4t8qaljmgaqc" path="res://Assets/Dog Sprite/Idle.png" id="1_5jro8"]
+[ext_resource type="Texture2D" uid="uid://dqiysfhc1f3vf" path="res://Assets/Dog Sprite/Walk.png" id="2_7f2d1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4nsx5"]
 atlas = ExtResource("1_5jro8")
@@ -18,6 +19,30 @@ region = Rect2(96, 0, 48, 48)
 atlas = ExtResource("1_5jro8")
 region = Rect2(144, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcnmm"]
+atlas = ExtResource("2_7f2d1")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j71pm"]
+atlas = ExtResource("2_7f2d1")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frcrc"]
+atlas = ExtResource("2_7f2d1")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46yim"]
+atlas = ExtResource("2_7f2d1")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3pxy"]
+atlas = ExtResource("2_7f2d1")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0yfi"]
+atlas = ExtResource("2_7f2d1")
+region = Rect2(240, 0, 48, 48)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_41yde"]
 animations = [{
 "frames": [{
@@ -34,8 +59,31 @@ animations = [{
 "texture": SubResource("AtlasTexture_08chy")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcnmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j71pm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frcrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46yim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3pxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0yfi")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
 }]
 
 [node name="Dog" type="AnimatedSprite2D"]
@@ -44,5 +92,6 @@ position = Vector2(-50, 200)
 rotation = 3.14159
 scale = Vector2(1, -1)
 sprite_frames = SubResource("SpriteFrames_41yde")
-autoplay = "default"
-frame_progress = 0.0442409
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0323751

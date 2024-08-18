@@ -8,9 +8,13 @@ extends State
 func state_physics_update(delta):
 	var direction = Input.get_axis("left", "right")
 	
-	if direction :
+	if direction && owner.weapon != null:
 		owner.velocity.x += direction * speed
 		owner.velocity.x = clamp(owner.velocity.x, -max_horizontal_speed, max_horizontal_speed)
+		
+	elif direction && owner.weapon == null:
+		owner.velocity.x += direction * speed
+		owner.velocity.x = clamp(owner.velocity.x, -max_horizontal_speed/2, max_horizontal_speed/2)
 		
 	if direction!=0:
 		if direction > 0.0:
@@ -37,10 +41,10 @@ func state_physics_update(delta):
 	owner.move_and_slide()
 	
 func state_enter():
-	animated_sprite.play("run")
 	if owner.weapon != null:
+		animated_sprite.play("run")
 		owner.weapon.visible = true
-	else :
-		return
+	elif owner.weapon == null:
+		animated_sprite.play("walk")
 	
 	

@@ -4,9 +4,9 @@ extends AudioStreamPlayer
 
 func _ready() -> void:
 	DimensionManager.boss_defeated.connect(on_boss_defeated)
-	stream = audio_list[0]
-	volume_db = -7
-	play()
+	#stream = audio_list[0]
+	#volume_db = -7
+	#play()
 	
 func on_boss_defeated():
 	stream = audio_list[2]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cbgdhyjm4ty4p"
+path="res://.godot/imported/Sci Fi Beam 3.wav-4b3c965f97c23c7af7989a5271581c3b.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/Sci Fi Beam 3.wav"
+dest_files=["res://.godot/imported/Sci Fi Beam 3.wav-4b3c965f97c23c7af7989a5271581c3b.sample"]
+
+[params]
+
+force/8_bit=true
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

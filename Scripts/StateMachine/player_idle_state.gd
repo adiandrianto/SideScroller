@@ -10,7 +10,10 @@ var direction := Vector2.LEFT
 const SPEED := 50
 
 func state_enter():
-	animated_sprite.play("idle")
+	if owner.weapon != null:
+		animated_sprite.play("idle")
+	elif owner.weapon == null:
+		animated_sprite.play("idle_with_arm")
 		
 func state_process(delta):
 	pass

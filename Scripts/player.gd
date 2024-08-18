@@ -1,6 +1,10 @@
 extends CharacterBody2D
 class_name Player
 
+@export var grenade_count:int
+@export var camera_left_limit: int
+@export var camera_right_limit: int
+@export var cutscene_animation_player: AnimationPlayer
 @onready var label = $Label
 @onready var health_component = $HealthComponent
 @onready var weapon = get_tree().get_first_node_in_group("weapon")
@@ -10,7 +14,6 @@ class_name Player
 @onready var visible_on_screen_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var hurt_sfx: AudioStreamPlayer2D = $HurtSFX
 @onready var state_machine: Node = $StateMachine
-@export var grenade_count:int
 @onready var camera_2d: Camera2D = $Camera2D
 var is_boss_fight:= false
 #var screen_width = get_viewport_rect().size.x
@@ -26,6 +29,8 @@ func _ready() -> void:
 	DimensionManager.door_open.connect(on_door_open)
 	DimensionManager.door_close.connect(on_door_close)
 	DimensionManager.boss_started.connect(on_boss_started)
+	camera_2d.limit_left = camera_left_limit
+	camera_2d.limit_right = camera_right_limit
 	
 func on_add_grenade():
 	grenade_count += 1
