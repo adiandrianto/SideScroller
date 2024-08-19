@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://prdqngk2fp8c"]
+[gd_scene load_steps=67 format=4 uid="uid://prdqngk2fp8c"]
 
 [ext_resource type="Script" path="res://Scenes/main_scene.gd" id="1_4g3r8"]
 [ext_resource type="PackedScene" uid="uid://1qjbnii0rrri" path="res://Scenes/dimension_manager.tscn" id="1_cnxul"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scenes/ground_tile.gd" id="2_uo2ft"]
 [ext_resource type="AudioStream" uid="uid://br3pkpxva4kbu" path="res://Assets/Audio/Music/ufo.wav" id="2_yic10"]
 [ext_resource type="AudioStream" uid="uid://cbgdhyjm4ty4p" path="res://Assets/Audio/Music/Sci Fi Beam 3.wav" id="3_3qq6r"]
+[ext_resource type="Script" path="res://Scenes/ufo_sound.gd" id="3_ksgcp"]
 [ext_resource type="Texture2D" uid="uid://dp5gxubw1ois4" path="res://Assets/Tileset/tileset_city_free.png" id="3_wh4jr"]
 [ext_resource type="Texture2D" uid="uid://c7c8iisvbyxwp" path="res://Assets/UFO.png" id="4_dgiqf"]
 [ext_resource type="Texture2D" uid="uid://gbgtu7pqi1j0" path="res://Assets/Tileset/tileset1.png" id="4_x7857"]
@@ -18,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://c6ebf742lmbwt" path="res://Scenes/victory_screen.tscn" id="7_eq7er"]
 [ext_resource type="PackedScene" uid="uid://ctuy78wbdejks" path="res://Scenes/UI/health_ui.tscn" id="7_s66jy"]
 [ext_resource type="PackedScene" uid="uid://cxqojxjxcqjin" path="res://Scenes/dog.tscn" id="8_4nel1"]
+[ext_resource type="Texture2D" uid="uid://buas7bs4ln45n" path="res://Assets/Enemy Sprite/enemyA2.png" id="8_6i6iy"]
 [ext_resource type="PackedScene" uid="uid://b6naww1axjgso" path="res://Scenes/Enemies/enemy_a.tscn" id="12_ek4mn"]
 [ext_resource type="Texture2D" uid="uid://ddl13txlc7mr8" path="res://Assets/Tileset/Night/3.png" id="13_278w3"]
 [ext_resource type="Texture2D" uid="uid://ofk7fwdmriyl" path="res://Assets/Tileset/Clouds 3/2.png" id="14_0deun"]
@@ -128,12 +130,69 @@ tracks/6/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("------- Cutscene -------/KidnapSound:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("------- Cutscene -------/Sprite2D/PointLight2D:energy")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("------- Cutscene -------/Sprite2D:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(62, 11)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("------- Cutscene -------/Alien:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(73, 198)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("------- Cutscene -------/RichTextLabel:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-273, 155)]
+}
 
 [sub_resource type="Animation" id="Animation_8d0ll"]
 resource_name = "ending"
-
-[sub_resource type="Animation" id="Animation_ab0qp"]
-resource_name = "opening_2"
 
 [sub_resource type="Animation" id="Animation_8pi4p"]
 resource_name = "opening_1"
@@ -145,7 +204,7 @@ tracks/0/path = NodePath("------- Cutscene -------/Dog:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 4.16667, 10.8, 12.2),
+"times": PackedFloat32Array(0, 10.7667, 10.8, 12.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [&"idle", &"idle", &"walk", &"walk"]
@@ -181,7 +240,7 @@ tracks/3/path = NodePath("------- Cutscene -------/Dog:flip_h")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 10.8),
+"times": PackedFloat32Array(0, 10.1667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -193,10 +252,10 @@ tracks/4/path = NodePath("------- Cutscene -------/Dog:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6, 10.7333, 10.8333, 10.9333, 11.0333, 11.1333, 11.2333, 11.3333, 11.4333, 11.5333, 11.6333, 11.7333, 11.8333, 11.9333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6, 4.8, 5, 5.2, 5.4, 5.6, 5.8, 6, 6.2, 6.4, 6.6, 6.8, 7, 7.2, 7.4, 7.6, 7.8, 8, 8.2, 8.4, 8.6, 8.8, 9, 9.2, 9.4, 9.6, 9.8, 10, 10.2, 10.4, 10.6, 10.7333, 10.8333, 10.9333, 11.0333, 11.1333, 11.2333, 11.3333, 11.4333, 11.5333, 11.6333, 11.7333, 11.8333, 11.9333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0]
+"values": [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -257,6 +316,123 @@ tracks/7/keys = {
 "args": [],
 "method": &"end_cutscene"
 }]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("------- Cutscene -------/UFO")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(10.0333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_sound"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ab0qp"]
+resource_name = "opening_2"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("------- Cutscene -------/Dog:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.96667, 2.13333, 5.76667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(58, 197), Vector2(58, 197), Vector2(58, -25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("------- Cutscene -------/KidnapSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.03333, 2.2, 5.63333, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("------- Cutscene -------/Sprite2D/PointLight2D:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5.76667, 6.63333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [5.0, 5.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("------- Cutscene -------/Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(7.2, 9.16667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(62, 11), Vector2(214, -6)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("------- Cutscene -------/Alien:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.13333, 5.73333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(73, 198), Vector2(72, -24)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("------- Cutscene -------/RichTextLabel:text")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.866667, 4.96667, 9.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": ["Wha..?! Are those aliens?
+Hey give me back my dog !", "Where are you taking him?
+DAMN YOU !!", "I have to save Jax from those creature.
+Better take my gun inside the house."]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("------- Cutscene -------/RichTextLabel:visible_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.866667, 1.8, 2.9, 2.96667, 4.9, 6.2, 7.63333, 7.73333, 9.2, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("------- Cutscene -------/RichTextLabel:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-66, 134)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6jhat"]
@@ -862,16 +1038,19 @@ script = ExtResource("1_4g3r8")
 
 [node name="UFO" type="AudioStreamPlayer" parent="------- Cutscene -------"]
 stream = ExtResource("2_yic10")
+script = ExtResource("3_ksgcp")
 
 [node name="KidnapSound" type="AudioStreamPlayer" parent="------- Cutscene -------"]
 stream = ExtResource("3_3qq6r")
 
 [node name="Sprite2D" type="Sprite2D" parent="------- Cutscene -------"]
-position = Vector2(0, 10)
+z_index = 4096
+position = Vector2(62, 11)
 texture = ExtResource("4_dgiqf")
 
 [node name="PointLight2D" type="PointLight2D" parent="------- Cutscene -------/Sprite2D"]
-position = Vector2(-2, 182)
+position = Vector2(1, 146)
+scale = Vector2(0.723958, 1.07813)
 color = Color(0, 0.72, 0.516, 1)
 energy = 5.0
 texture = ExtResource("5_kmt4e")
@@ -882,8 +1061,8 @@ z_index = 4096
 custom_minimum_size = Vector2(200, 60)
 offset_left = -273.0
 offset_top = 155.0
-offset_right = -233.0
-offset_bottom = 195.0
+offset_right = -73.0
+offset_bottom = 215.0
 mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
@@ -899,6 +1078,11 @@ position = Vector2(-199, 199)
 animation = &"default"
 autoplay = ""
 frame_progress = 0.0
+
+[node name="Alien" type="Sprite2D" parent="------- Cutscene -------"]
+z_index = 99
+position = Vector2(73, 198)
+texture = ExtResource("8_6i6iy")
 
 [node name="Player" parent="." node_paths=PackedStringArray("cutscene_animation_player") instance=ExtResource("1_gfy2y")]
 position = Vector2(-251, 206)
