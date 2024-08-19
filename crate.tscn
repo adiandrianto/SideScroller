@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds7h1awrn2fkd"]
+
+[ext_resource type="Script" path="res://crate.gd" id="1_6hi5h"]
+[ext_resource type="Texture2D" uid="uid://7ogqn6pma1xp" path="res://Assets/crate.png" id="1_81bgm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3k8aq"]
+size = Vector2(40, 34)
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 512
+collision_mask = 256
+script = ExtResource("1_6hi5h")
+pickup_path = "res://Scenes/Weapons/pistol.tscn"
+is_inside = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_81bgm")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 7)
+shape = SubResource("RectangleShape2D_3k8aq")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -33.0
+offset_right = 30.0
+offset_bottom = -10.0
+theme_override_constants/outline_size = 3
+text = "[F]"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

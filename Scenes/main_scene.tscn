@@ -1,14 +1,13 @@
-[gd_scene load_steps=67 format=4 uid="uid://prdqngk2fp8c"]
+[gd_scene load_steps=71 format=4 uid="uid://prdqngk2fp8c"]
 
 [ext_resource type="Script" path="res://Scenes/main_scene.gd" id="1_4g3r8"]
 [ext_resource type="PackedScene" uid="uid://1qjbnii0rrri" path="res://Scenes/dimension_manager.tscn" id="1_cnxul"]
 [ext_resource type="PackedScene" uid="uid://ddhv81dvrtjb3" path="res://Scenes/player.tscn" id="1_gfy2y"]
 [ext_resource type="PackedScene" uid="uid://c3paj8v8u8yny" path="res://Scenes/pickup_manager.tscn" id="1_uh81h"]
+[ext_resource type="AudioStream" uid="uid://ddlul705s4e10" path="res://Assets/Audio/SFX/Flying Passby-001.wav" id="2_25h05"]
 [ext_resource type="Texture2D" uid="uid://cgr3auue316fs" path="res://Assets/Tileset/Clouds 3/1.png" id="2_fulhc"]
 [ext_resource type="Script" path="res://Scenes/ground_tile.gd" id="2_uo2ft"]
-[ext_resource type="AudioStream" uid="uid://br3pkpxva4kbu" path="res://Assets/Audio/Music/ufo.wav" id="2_yic10"]
 [ext_resource type="AudioStream" uid="uid://cbgdhyjm4ty4p" path="res://Assets/Audio/Music/Sci Fi Beam 3.wav" id="3_3qq6r"]
-[ext_resource type="Script" path="res://Scenes/ufo_sound.gd" id="3_ksgcp"]
 [ext_resource type="Texture2D" uid="uid://dp5gxubw1ois4" path="res://Assets/Tileset/tileset_city_free.png" id="3_wh4jr"]
 [ext_resource type="Texture2D" uid="uid://c7c8iisvbyxwp" path="res://Assets/UFO.png" id="4_dgiqf"]
 [ext_resource type="Texture2D" uid="uid://gbgtu7pqi1j0" path="res://Assets/Tileset/tileset1.png" id="4_x7857"]
@@ -20,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://ctuy78wbdejks" path="res://Scenes/UI/health_ui.tscn" id="7_s66jy"]
 [ext_resource type="PackedScene" uid="uid://cxqojxjxcqjin" path="res://Scenes/dog.tscn" id="8_4nel1"]
 [ext_resource type="Texture2D" uid="uid://buas7bs4ln45n" path="res://Assets/Enemy Sprite/enemyA2.png" id="8_6i6iy"]
+[ext_resource type="AudioStream" uid="uid://obmfmh1xobvy" path="res://Assets/Audio/SFX/Spaceship Manoeuvres-003.wav" id="9_3a4is"]
+[ext_resource type="AudioStream" uid="uid://pm4kgprkafir" path="res://Assets/Audio/SFX/Dog bark 2.wav" id="9_r1cvu"]
 [ext_resource type="PackedScene" uid="uid://b6naww1axjgso" path="res://Scenes/Enemies/enemy_a.tscn" id="12_ek4mn"]
 [ext_resource type="Texture2D" uid="uid://ddl13txlc7mr8" path="res://Assets/Tileset/Night/3.png" id="13_278w3"]
 [ext_resource type="Texture2D" uid="uid://ofk7fwdmriyl" path="res://Assets/Tileset/Clouds 3/2.png" id="14_0deun"]
@@ -41,8 +42,18 @@
 [ext_resource type="Script" path="res://Scenes/boss_area_detector.gd" id="26_44c1v"]
 [ext_resource type="Script" path="res://Scenes/audio_stream_player.gd" id="26_l77w2"]
 [ext_resource type="AudioStream" uid="uid://b5elocdjdk46w" path="res://Assets/Audio/Music/Juhani Junkala [Retro Game Music Pack] Ending.wav" id="29_1mhtb"]
+[ext_resource type="PackedScene" uid="uid://ds7h1awrn2fkd" path="res://crate.tscn" id="31_wpeku"]
 [ext_resource type="PackedScene" uid="uid://cyvvo8gwnwdqt" path="res://Scenes/interact/button_corridor.tscn" id="35_cjf4e"]
 [ext_resource type="PackedScene" uid="uid://ghwddvegijsf" path="res://Scenes/interact/gate_corridor.tscn" id="36_mtvmb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxmj3"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="Animation" id="Animation_hag82"]
 length = 20.0
@@ -80,7 +91,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -109,86 +120,135 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("------- Cutscene -------/RichTextLabel:text")
+tracks/5/path = NodePath("------- Cutscene -------/KidnapSound:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["Well, partner, it’s just us now."]
+"values": [false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("------- Cutscene -------/RichTextLabel:visible_ratio")
+tracks/6/path = NodePath("------- Cutscene -------/Sprite2D/PointLight2D:energy")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [5.0]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("------- Cutscene -------/KidnapSound:playing")
+tracks/7/path = NodePath("------- Cutscene -------/Sprite2D:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(62, 11)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("------- Cutscene -------/Sprite2D/PointLight2D:energy")
+tracks/8/path = NodePath("------- Cutscene -------/Alien:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [5.0]
+"values": [Vector2(73, 198)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("------- Cutscene -------/Sprite2D:position")
+tracks/9/path = NodePath("------- Cutscene -------/Alien:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(62, 11)]
+"update": 1,
+"values": [false]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("------- Cutscene -------/Alien:position")
+tracks/10/path = NodePath("------- Cutscene -------/SpaceshipFly:playing")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(73, 198)]
+"update": 1,
+"values": [false]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("------- Cutscene -------/RichTextLabel:position")
+tracks/11/path = NodePath("------- Cutscene -------/Sprite2D:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("------- Cutscene -------/PanelContainer:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("------- Cutscene -------/PanelContainer:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [Vector2(-273, 155)]
+"values": []
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("------- Cutscene -------/PanelContainer/RichTextLabel:visible_ratio")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("------- Cutscene -------/PanelContainer/RichTextLabel:text")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["I have to save Jax from those creature.
+Better take my gun inside the house."]
 }
 
 [sub_resource type="Animation" id="Animation_8d0ll"]
@@ -260,20 +320,20 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("------- Cutscene -------/RichTextLabel:text")
+tracks/5/path = NodePath("------- Cutscene -------/PanelContainer/RichTextLabel:text")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(2.03333, 3.1, 4.1, 5.4, 6.96667, 8.06667, 9.06667, 12.2667, 12.3, 13.2667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": ["Well, Jax, it’s just us now.", "Seems like a lifetime ago we were out there, walking the beat, keeping the streets safe.", "You were always by my side, weren’t you? My best backup, my most trusted friend.", "I can still remember those nights on patrol, the way you’d sniff out trouble before I even knew it was there. You had a sense about people, about situations.", "Retirement’s been an adjustment, hasn’t it? No more late nights, no more chasing down bad guys.", "We’ve done our duty, served our time, and now we get to enjoy these quiet days.", "", "", "What's wrong Jax ?!
+"values": ["Well, Jax, it’s just us now.", "Seems like a lifetime ago we were out there, walking the beat, keeping the streets safe.", "You were always by my side, weren’t you? My best backup, my most trusted friend.", "I can still remember those nights on patrol, the way you’d sniff out trouble before I even knew it was there.", "Retirement’s been an adjustment, hasn’t it? No more late nights, no more chasing down bad guys.", "We’ve done our duty, served our time, and now we get to enjoy these quiet days.", "", "", "What's wrong Jax ?!
 I better check it out !", ""]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("------- Cutscene -------/RichTextLabel:visible_ratio")
+tracks/6/path = NodePath("------- Cutscene -------/PanelContainer/RichTextLabel:visible_ratio")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -289,7 +349,7 @@ tracks/7/path = NodePath(".")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(3.03333, 4.03333, 5.33333, 6.9, 8, 9.03333, 13.2333, 13.5),
+"times": PackedFloat32Array(3.03333, 4.03333, 5.33333, 6.9, 8, 9.03333, 13.2333, 13.9667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
@@ -317,24 +377,89 @@ tracks/7/keys = {
 "method": &"end_cutscene"
 }]
 }
-tracks/8/type = "method"
+tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("------- Cutscene -------/UFO")
+tracks/8/path = NodePath("------- Cutscene -------/Alien:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(10.0333),
+"times": PackedFloat32Array(13.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("------- Cutscene -------/Sprite2D:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(13.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("------- Cutscene -------/PanelContainer:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 9.03333, 9.1, 12.0667, 12.2333, 13.2667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, false, true, false]
+}
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("------- Cutscene -------/UFO")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(9.1, 13.9667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("------- Cutscene -------/PanelContainer:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-291, 233)]
+}
+tracks/13/type = "method"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("------- Cutscene -------/DogBark")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(10.6333),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"play_sound"
+"args": [0.0],
+"method": &"play"
 }]
 }
 
 [sub_resource type="Animation" id="Animation_ab0qp"]
 resource_name = "opening_2"
-length = 10.0
+length = 15.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -378,7 +503,7 @@ tracks/3/path = NodePath("------- Cutscene -------/Sprite2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(7.2, 9.16667),
+"times": PackedFloat32Array(7.2, 8.53333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(62, 11), Vector2(214, -6)]
@@ -398,41 +523,273 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("------- Cutscene -------/RichTextLabel:text")
+tracks/5/path = NodePath("------- Cutscene -------/PanelContainer/RichTextLabel:text")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.866667, 4.96667, 9.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.866667, 4.96667, 9.2, 14.8667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": ["Wha..?! Are those aliens?
 Hey give me back my dog !", "Where are you taking him?
 DAMN YOU !!", "I have to save Jax from those creature.
+Better take my gun inside the house.", "I have to save Jax from those creature.
 Better take my gun inside the house."]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("------- Cutscene -------/RichTextLabel:visible_ratio")
+tracks/6/path = NodePath("------- Cutscene -------/PanelContainer/RichTextLabel:visible_ratio")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.866667, 1.8, 2.9, 2.96667, 4.9, 6.2, 7.63333, 7.73333, 9.2, 10),
+"times": PackedFloat32Array(0.866667, 1.8, 2.9, 2.96667, 4.9, 6.2, 7.63333, 7.73333, 9.2, 10.4333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("------- Cutscene -------/RichTextLabel:position")
+tracks/7/path = NodePath("------- Cutscene -------/Alien:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("------- Cutscene -------/Dog:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(12.7333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end_cutscene"
+}]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("------- Cutscene -------/SpaceshipFly:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(6.33333, 6.43333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("------- Cutscene -------/PanelContainer:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-66, 134)]
+"values": [Vector2(-120, 235)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("------- Cutscene -------/PanelContainer:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 14.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Player/Camera2D:offset")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 1.23333, 9, 10.3333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(50, 0), Vector2(50, -25), Vector2(50, -25), Vector2(50, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Player/Camera2D:zoom")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 1.23333, 9, 10.3333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.95, 0.95), Vector2(0.95, 0.95), Vector2(1, 1)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("------- Cutscene -------/Sprite2D:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "method"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("------- Cutscene -------/Alien")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(13.0667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/17/type = "method"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("------- Cutscene -------/SpaceshipFly")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(11.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/18/type = "method"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("------- Cutscene -------/KidnapSound")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/19/type = "method"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("------- Cutscene -------/Sprite2D")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(11.8667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_gl8rq"]
+resource_name = "opening_3"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("------- Cutscene -------/PanelContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-291, 234)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("------- Cutscene -------/PanelContainer/RichTextLabel:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 3.76667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["Now put on some MUSIC and let the MISSION BEGIN !", "Now put on some MUSIC and let the MISSION BEGIN !"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("------- Cutscene -------/PanelContainer/RichTextLabel:visible_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"facing_right"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.93333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_level_music"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("------- Cutscene -------/PanelContainer:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0333333, 3.86667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6jhat"]
@@ -440,7 +797,8 @@ _data = {
 "RESET": SubResource("Animation_hag82"),
 "ending": SubResource("Animation_8d0ll"),
 "opening_1": SubResource("Animation_8pi4p"),
-"opening_2": SubResource("Animation_ab0qp")
+"opening_2": SubResource("Animation_ab0qp"),
+"opening_3": SubResource("Animation_gl8rq")
 }
 
 [sub_resource type="Environment" id="Environment_72a32"]
@@ -1037,13 +1395,14 @@ script = ExtResource("1_4g3r8")
 [node name="------- Cutscene -------" type="Node" parent="."]
 
 [node name="UFO" type="AudioStreamPlayer" parent="------- Cutscene -------"]
-stream = ExtResource("2_yic10")
-script = ExtResource("3_ksgcp")
+stream = ExtResource("2_25h05")
+volume_db = -9.551
 
 [node name="KidnapSound" type="AudioStreamPlayer" parent="------- Cutscene -------"]
 stream = ExtResource("3_3qq6r")
 
 [node name="Sprite2D" type="Sprite2D" parent="------- Cutscene -------"]
+visible = false
 z_index = 4096
 position = Vector2(62, 11)
 texture = ExtResource("4_dgiqf")
@@ -1056,45 +1415,58 @@ energy = 5.0
 texture = ExtResource("5_kmt4e")
 texture_scale = 3.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="------- Cutscene -------"]
-z_index = 4096
-custom_minimum_size = Vector2(200, 60)
-offset_left = -273.0
-offset_top = 155.0
-offset_right = -73.0
-offset_bottom = 215.0
-mouse_filter = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 1
-theme_override_font_sizes/normal_font_size = 10
-text = "Well, partner, it’s just us now."
-scroll_active = false
-tab_size = 1
-visible_characters = 0
-visible_ratio = 0.0
-
 [node name="Dog" parent="------- Cutscene -------" instance=ExtResource("8_4nel1")]
+visible = false
 position = Vector2(-199, 199)
 animation = &"default"
 autoplay = ""
 frame_progress = 0.0
 
 [node name="Alien" type="Sprite2D" parent="------- Cutscene -------"]
+visible = false
 z_index = 99
 position = Vector2(73, 198)
 texture = ExtResource("8_6i6iy")
 
+[node name="SpaceshipFly" type="AudioStreamPlayer" parent="------- Cutscene -------"]
+stream = ExtResource("9_3a4is")
+
+[node name="PanelContainer" type="PanelContainer" parent="------- Cutscene -------"]
+z_index = 4096
+offset_left = -291.0
+offset_top = 233.0
+offset_right = -89.0
+offset_bottom = 284.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oxmj3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="------- Cutscene -------/PanelContainer"]
+z_index = 4096
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 10
+text = "I have to save Jax from those creature.
+Better take my gun inside the house."
+scroll_active = false
+tab_size = 1
+
+[node name="DogBark" type="AudioStreamPlayer" parent="------- Cutscene -------"]
+stream = ExtResource("9_r1cvu")
+volume_db = -5.0
+
 [node name="Player" parent="." node_paths=PackedStringArray("cutscene_animation_player") instance=ExtResource("1_gfy2y")]
-position = Vector2(-251, 206)
+z_index = 4000
+position = Vector2(-257, 205)
 camera_left_limit = -500
-camera_right_limit = 10000000000
+camera_right_limit = 100000000
 cutscene_animation_player = NodePath("../AnimationPlayer")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-98, -33)
 scale = Vector2(2.04, 1)
-offset = Vector2(50, -10)
+offset = Vector2(50, 0)
 limit_left = -500
-limit_right = 2000
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_right_margin = 0.0
@@ -1350,6 +1722,10 @@ drop_scene = ExtResource("17_rl22v")
 [node name="SwordPickup" parent="------- Pickup -------" instance=ExtResource("19_0dktt")]
 position = Vector2(4004, 215)
 is_inside = true
+
+[node name="Area2D" parent="------- Pickup -------" node_paths=PackedStringArray("animation_player") instance=ExtResource("31_wpeku")]
+position = Vector2(-331, 198)
+animation_player = NodePath("../../AnimationPlayer")
 
 [node name="------- Ladder & Door -------" type="Node" parent="."]
 

@@ -14,7 +14,7 @@ func state_enter():
 		animated_sprite.play("idle")
 	elif owner.weapon == null:
 		animated_sprite.play("idle_with_arm")
-		
+	
 func state_process(delta):
 	pass
 		
@@ -29,7 +29,7 @@ func state_physics_update(delta):
 	if not owner.is_on_floor():
 		transitioned.emit(self, "fall")
 		
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") && owner.weapon != null:
 		transitioned.emit(self, "jump")
 	
 	if ray_cast.is_colliding():

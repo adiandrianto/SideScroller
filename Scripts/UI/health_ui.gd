@@ -7,11 +7,13 @@ var max_hearts := 6
 @onready var progress_bar: TextureProgressBar = $TextureProgressBar
 
 func _ready() -> void:
+	progress_bar.visible = false
 	progress_bar.value = 6
 	PickupManager.player_health_changed.connect(on_player_health_changed)
-	#hearts = player.health_component.current_health
-	#max_hearts = player.health_component.max_health
-	#progress_bar.value = player.health_component.current_health
+	DimensionManager.game_start.connect(on_game_start)
+	
+func on_game_start():
+	progress_bar.visible = true
 	
 func _set_health(value:int):
 	hearts = clamp(value, 0, max_hearts)

@@ -25,7 +25,9 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_pressed("interact") && not can_open && label.visible:
 		DimensionManager.is_inside = false
-		DimensionManager.emit_signal("door_close")
+		DimensionManager.emit_signal("door_close") 
+		DimensionManager.emit_signal("opening_cue")
+		DimensionManager.is_opening_scene = false
 		close()
 		
 

@@ -41,6 +41,7 @@ _data = {
 }
 
 [node name="MachineGun" type="Node2D" node_paths=PackedStringArray("sprite", "marker_left", "marker_right", "marker_up", "animation_player") groups=["weapon"]]
+z_index = 4096
 script = ExtResource("1_drm17")
 sprite = NodePath("Sprite")
 marker_left = NodePath("MarkerLeft")

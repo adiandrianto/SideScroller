@@ -29,7 +29,8 @@ func state_physics_update(delta):
 		transitioned.emit(self, "idle")
 	if not owner.is_on_floor():
 		transitioned.emit(self, "fall")
-	if Input.is_action_just_pressed("jump"):
+		
+	if Input.is_action_just_pressed("jump") && owner.weapon != null:
 		transitioned.emit(self, "jump")
 	
 	if ray_cast.is_colliding():

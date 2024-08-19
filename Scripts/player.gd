@@ -122,3 +122,5 @@ func on_door_close():
 func on_boss_started():
 	is_boss_fight = true
 	
+func facing_right():
+	animated_sprite.flip_h = false

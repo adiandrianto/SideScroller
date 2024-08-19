@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ddlul705s4e10"
+path="res://.godot/imported/Flying Passby-001.wav-8373a6cda77c59014acaa7a5adba4099.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/Flying Passby-001.wav"
+dest_files=["res://.godot/imported/Flying Passby-001.wav-8373a6cda77c59014acaa7a5adba4099.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

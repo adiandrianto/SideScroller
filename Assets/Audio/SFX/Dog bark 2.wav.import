@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://pm4kgprkafir"
+path="res://.godot/imported/Dog bark 2.wav-af5e51822a52e1ea369c7fa983b3f6d9.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/Dog bark 2.wav"
+dest_files=["res://.godot/imported/Dog bark 2.wav-af5e51822a52e1ea369c7fa983b3f6d9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

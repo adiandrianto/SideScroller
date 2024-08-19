@@ -42,6 +42,7 @@ _data = {
 }
 
 [node name="Sword" type="Node2D" node_paths=PackedStringArray("sprite", "marker_left", "marker_right", "marker_up", "animation_player")]
+z_index = 4096
 script = ExtResource("1_xncv1")
 sprite = NodePath("Sprite")
 marker_left = NodePath("MarkerLeft")
