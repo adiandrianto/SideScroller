@@ -50,8 +50,8 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(240.25, 135.25)
-scale = Vector2(0.125524, 0.125466)
+position = Vector2(239, 141.5)
+scale = Vector2(0.138743, 0.153166)
 texture = ExtResource("2_gtxaw")
 
 [node name="CreditsContainer" type="Control" parent="."]
