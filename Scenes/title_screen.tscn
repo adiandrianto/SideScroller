@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bitge2vxmkqrp"]
+[gd_scene load_steps=9 format=3 uid="uid://bitge2vxmkqrp"]
 
 [ext_resource type="Script" path="res://Scripts/UI/title_screen.gd" id="1_6t8xu"]
 [ext_resource type="Texture2D" uid="uid://p80ndd82gj30" path="res://Assets/TitleScreen/TitleScreenBG2.jpg" id="2_ta5vs"]
 [ext_resource type="FontFile" uid="uid://dtpew0jy7sjbf" path="res://Assets/Fonts/PeaberryDoublespace.ttf" id="2_wdnx0"]
+[ext_resource type="AudioStream" uid="uid://dyv0nbqau84hi" path="res://Assets/Audio/SFX/UI Button/Ui Hover.wav" id="4_8la31"]
+[ext_resource type="AudioStream" uid="uid://bplo8duute5w2" path="res://Assets/Audio/SFX/UI Button/Ui Click.wav" id="5_56wci"]
 
 [sub_resource type="Animation" id="Animation_hxjeu"]
 length = 0.001
@@ -91,6 +93,16 @@ theme_override_fonts/font = ExtResource("2_wdnx0")
 theme_override_font_sizes/font_size = 16
 text = "Exit"
 
+[node name="Hover" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(193, 110)
+stream = ExtResource("4_8la31")
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_56wci")
+
+[connection signal="mouse_entered" from="Start" to="." method="_on_start_mouse_entered"]
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="Credits" to="." method="_on_credits_mouse_entered"]
 [connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
+[connection signal="mouse_entered" from="Exit" to="." method="_on_exit_mouse_entered"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
