@@ -12,6 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var state_machine: Node = $StateMachine
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var ray_cast: RayCast2D = $RayCast2D
+@onready var blood_splatter: AnimatedSprite2D = $Blood_Splatter
 
 const ENEMY_A_DEATH_SCENE = preload("res://Scenes/Enemies/enemy_a_death_scene.tscn")
 
@@ -54,5 +55,9 @@ func SetShader_BlinkIntensity(newValue : float):
 	sprite.material.set_shader_parameter("blink_intensity", newValue)
 
 func _on_health_component_health_changed() -> void:
+	blood_splatter.visible = true
+	blood_splatter.play("blood_splatter")
 	var tween = get_tree().create_tween()
 	tween.tween_method(SetShader_BlinkIntensity, 1.0,0.0,0.2)
+	await blood_splatter.animation_finished
+	blood_splatter.visible = false

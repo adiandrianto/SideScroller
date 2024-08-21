@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var hurt: AnimationPlayer = $Hurt
+@export var randomStrength: float = 1.0
+@export var shakeFade: float = 9.0
 @export var grenade_count:int
 @export var camera_left_limit: int
 @export var camera_right_limit: int
@@ -15,11 +18,17 @@ class_name Player
 @onready var hurt_sfx: AudioStreamPlayer2D = $HurtSFX
 @onready var state_machine: Node = $StateMachine
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var hurt_box_collision: CollisionShape2D = $HurtBoxComponent/CollisionShape2D
+
+var flag = false
+var rng = RandomNumberGenerator.new()
+var shake_strength: float = 0.0
 var is_boss_fight:= false
 #var screen_width = get_viewport_rect().size.x
 #var camera_target
 #var target_distance = 125
 #var camera_speed = 3
+
 
 var direction = Input.get_axis("left", "right")
 
@@ -59,6 +68,12 @@ func _process(delta):
 		DimensionManager.emit_signal("player_died")
 		get_tree().paused = true
 	
+	if flag == true:
+		apply_shake()
+		if shake_strength > 0:
+			shake_strength = lerpf(shake_strength, 0, shakeFade * delta)
+			camera_2d.offset = randomOffset()
+	
 	if is_boss_fight:
 		camera_2d.offset.x = move_toward(camera_2d.offset.x, 0, 0.5)
 		
@@ -97,9 +112,17 @@ func SetShader_BlinkIntensity(newValue : float):
 
 func _on_hurt_box_component_being_hit() -> void:
 	timefreeze(0.05, 0.5)
+	hurt.play("blink_hurt")
 	hurt_sfx.play(0.0)
+	flag = true
 	var tween = get_tree().create_tween()
 	tween.tween_method(SetShader_BlinkIntensity, 1.0,0.0,0.5)
+	hurt_box_collision.set_deferred("disabled", true)
+	await get_tree().create_timer(1.5).timeout
+	hurt_box_collision.set_deferred("disabled", false)
+	flag = false
+
+
 
 func timefreeze(timescale, duration):
 	Engine.time_scale = timescale
@@ -108,7 +131,8 @@ func timefreeze(timescale, duration):
 
 func _on_health_component_health_changed() -> void:
 	PickupManager.emit_signal("player_health_changed")
-	
+
+
 func on_door_open():
 	animated_sprite.play("open_door")
 	if weapon != null:
@@ -124,3 +148,8 @@ func on_boss_started():
 	
 func facing_right():
 	animated_sprite.flip_h = false
+
+func apply_shake():
+	shake_strength = randomStrength
+func randomOffset() -> Vector2:
+	return Vector2(rng.randf_range(-shake_strength, shake_strength), rng.randf_range(-shake_strength, shake_strength))
