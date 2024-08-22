@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b6naww1axjgso"]
+[gd_scene load_steps=26 format=3 uid="uid://b6naww1axjgso"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_a.gd" id="1_2wlea"]
 [ext_resource type="Material" uid="uid://bv3bavguqjynk" path="res://Shader/flash_shader.tres" id="2_1puhj"]
@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/enemy_a_move_state.gd" id="7_acnuy"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/enemy_a_attack_state.gd" id="7_wdkut"]
 [ext_resource type="PackedScene" uid="uid://r2lnjgv0j4c6" path="res://Scenes/Components/enemy_visible_notifier_component.tscn" id="10_6r6ak"]
-[ext_resource type="Texture2D" uid="uid://b414shg5hp4od" path="res://Assets/splatter.png" id="11_q03fh"]
+[ext_resource type="Texture2D" uid="uid://dtilirthowc05" path="res://Assets/splatter_green.png" id="11_ckjko"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86hr5"]
 size = Vector2(18, 39)
@@ -84,50 +84,57 @@ height = 34.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p62v4"]
 size = Vector2(331, 216)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ytpk"]
-atlas = ExtResource("11_q03fh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbgrd"]
+atlas = ExtResource("11_ckjko")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x6bi4"]
-atlas = ExtResource("11_q03fh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_71wch"]
+atlas = ExtResource("11_ckjko")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_msjvy"]
-atlas = ExtResource("11_q03fh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnyf0"]
+atlas = ExtResource("11_ckjko")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o1djy"]
-atlas = ExtResource("11_q03fh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqony"]
+atlas = ExtResource("11_ckjko")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qbm1j"]
-atlas = ExtResource("11_q03fh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7f7d"]
+atlas = ExtResource("11_ckjko")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ikbtk"]
-atlas = ExtResource("11_q03fh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_shugd"]
+atlas = ExtResource("11_ckjko")
 region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_serft"]
+atlas = ExtResource("11_ckjko")
+region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_th8rk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7ytpk")
+"texture": SubResource("AtlasTexture_pbgrd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x6bi4")
+"texture": SubResource("AtlasTexture_71wch")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_msjvy")
+"texture": SubResource("AtlasTexture_qnyf0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o1djy")
+"texture": SubResource("AtlasTexture_kqony")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qbm1j")
+"texture": SubResource("AtlasTexture_x7f7d")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ikbtk")
+"texture": SubResource("AtlasTexture_shugd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_serft")
 }],
 "loop": false,
 "name": &"blood_splatter",
@@ -212,11 +219,11 @@ shape = SubResource("RectangleShape2D_p62v4")
 [node name="EnemyVisibleNotifierComponent" parent="." instance=ExtResource("10_6r6ak")]
 
 [node name="Blood_Splatter" type="AnimatedSprite2D" parent="."]
-visible = false
+z_index = 101
 position = Vector2(0, 11)
 sprite_frames = SubResource("SpriteFrames_th8rk")
 animation = &"blood_splatter"
-frame = 5
+frame = 6
 frame_progress = 1.0
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
