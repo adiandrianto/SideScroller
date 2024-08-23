@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=4 uid="uid://prdqngk2fp8c"]
+[gd_scene load_steps=74 format=4 uid="uid://prdqngk2fp8c"]
 
 [ext_resource type="Script" path="res://Scenes/main_scene.gd" id="1_4g3r8"]
 [ext_resource type="PackedScene" uid="uid://1qjbnii0rrri" path="res://Scenes/dimension_manager.tscn" id="1_cnxul"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cxqojxjxcqjin" path="res://Scenes/dog.tscn" id="8_4nel1"]
 [ext_resource type="Texture2D" uid="uid://buas7bs4ln45n" path="res://Assets/Enemy Sprite/enemyA2.png" id="8_6i6iy"]
 [ext_resource type="AudioStream" uid="uid://obmfmh1xobvy" path="res://Assets/Audio/SFX/Spaceship Manoeuvres-003.wav" id="9_3a4is"]
+[ext_resource type="FontFile" uid="uid://d3d0wi2vagy5i" path="res://Assets/Fonts/mago1.ttf" id="9_gku2d"]
 [ext_resource type="AudioStream" uid="uid://pm4kgprkafir" path="res://Assets/Audio/SFX/Dog bark 2.wav" id="9_r1cvu"]
 [ext_resource type="PackedScene" uid="uid://b4juscy5r14s5" path="res://Scenes/Weapons/pistol.tscn" id="11_cmcr5"]
 [ext_resource type="PackedScene" uid="uid://b6naww1axjgso" path="res://Scenes/Enemies/enemy_a.tscn" id="12_ek4mn"]
@@ -353,7 +354,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(2.03333, 3.1, 4.1, 5.4, 6.96667, 8.06667, 9.06667, 12.2667, 12.3, 13.2667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": ["Well, Jax, it’s just us now.", "Seems like a lifetime ago we were out there, walking the beat, keeping the streets safe.", "You were always by my side, weren’t you? My best backup, my most trusted friend.", "I can still remember those nights on patrol, the way you’d sniff out trouble before I even knew it was there.", "Retirement’s been an adjustment, hasn’t it? No more late nights, no more chasing down bad guys.", "We’ve done our duty, served our time, and now we get to enjoy these quiet days.", "", "", "What's wrong Jax ?!
+"values": ["Well, Jax, it is just us now.", "Seems like a lifetime ago we were out there, walking the beat, keeping the streets safe.", "You were always by my side, weren’t you? My best backup, my most trusted friend.", "I can still remember those nights on patrol, the way you would sniff out trouble before I even knew it was there.", "Retirement has been an adjustment, hasn’t it? No more late nights, no more chasing down bad guys.", "We have done our duty, served our time, and now we get to enjoy these quiet days.", "", "", "What's wrong Jax ?!
 I better check it out !", ""]
 }
 tracks/6/type = "value"
@@ -1497,7 +1498,8 @@ custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 10
+theme_override_fonts/normal_font = ExtResource("9_gku2d")
+theme_override_font_sizes/normal_font_size = 16
 text = "I have to save Jax from those creature.
 Better take my gun inside the house."
 scroll_active = false
@@ -1517,7 +1519,7 @@ cutscene_animation_player = NodePath("../AnimationPlayer")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -50)
 scale = Vector2(2.04, 1)
-offset = Vector2(50, -0.624374)
+offset = Vector2(50, 0)
 limit_left = -500
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
