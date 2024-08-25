@@ -431,7 +431,7 @@ stream = ExtResource("9_rgoey")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_o4213")
-initial_state = NodePath("Idle")
+initial_state = NodePath("Off")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("12_e7h83")
