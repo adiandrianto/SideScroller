@@ -1,6 +1,86 @@
-[gd_scene load_steps=2 format=3 uid="uid://ewaovw0m3vvb"]
+[gd_scene load_steps=10 format=3 uid="uid://ewaovw0m3vvb"]
 
 [ext_resource type="Script" path="res://Scenes/death_popup.gd" id="1_fl8vd"]
+[ext_resource type="FontFile" uid="uid://dtpew0jy7sjbf" path="res://Assets/Fonts/PeaberryDoublespace.ttf" id="2_yhlom"]
+[ext_resource type="AudioStream" uid="uid://dyv0nbqau84hi" path="res://Assets/Audio/SFX/UI Button/Ui Hover.wav" id="3_habov"]
+[ext_resource type="AudioStream" uid="uid://bplo8duute5w2" path="res://Assets/Audio/SFX/UI Button/Ui Click.wav" id="4_r4i7b"]
+[ext_resource type="AudioStream" uid="uid://b6hwohkiy3pfq" path="res://Assets/Audio/SFX/PlayerSFX/mixkit-retro-lose-game-over-2033.wav" id="5_xh86u"]
+
+[sub_resource type="Animation" id="Animation_ba4et"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0980392, 0.0980392, 0.0980392, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_5hl1m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0980392, 0.0980392, 0.0980392, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6q7j4"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0.0980392, 0.0980392, 0.0980392, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_02g0v"]
+_data = {
+"RESET": SubResource("Animation_5hl1m"),
+"fade_in": SubResource("Animation_ba4et"),
+"fade_out": SubResource("Animation_6q7j4")
+}
 
 [node name="DeathPopup" type="TextureRect"]
 process_mode = 2
@@ -11,7 +91,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fl8vd")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(0.0980392, 0.0980392, 0.0980392, 0)
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -24,16 +111,39 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_yhlom")
+theme_override_font_sizes/font_size = 16
 text = "YOU ARE DEAD !!"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_yhlom")
+theme_override_font_sizes/font_size = 16
 text = "CONTINUE"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_yhlom")
+theme_override_font_sizes/font_size = 16
 text = "RESTART"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_02g0v")
+}
+
+[node name="Hover" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(193, 110)
+stream = ExtResource("3_habov")
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_r4i7b")
+
+[node name="lostSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_xh86u")
+
+[connection signal="mouse_entered" from="VBoxContainer/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Button2" to="." method="_on_button_2_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

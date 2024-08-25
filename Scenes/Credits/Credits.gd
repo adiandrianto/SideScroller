@@ -44,11 +44,13 @@ var credits = [
 	],[
 		"Sound Effects",
 		" ",
-		"SFX Name"
+		"https://mixkit.co/free-sound-effects/"
 	],[
 		"Font:",
 		" ",
-		"https://emhuo.itch.io/peaberry-pixel-font"
+		"https://emhuo.itch.io/peaberry-pixel-font",
+		" ",
+		"https://nimblebeastscollective.itch.io/magosfonts"
 	],[
 		"Other Assets: ",
 		"https://anokolisa.itch.io/sidescroller-shooter-central-city",
