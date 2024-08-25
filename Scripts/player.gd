@@ -19,6 +19,7 @@ class_name Player
 @onready var state_machine: Node = $StateMachine
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var hurt_box_collision: CollisionShape2D = $HurtBoxComponent/CollisionShape2D
+@onready var off: Node = $StateMachine/Off
 
 var flag = false
 var rng = RandomNumberGenerator.new()
@@ -38,6 +39,8 @@ func _ready() -> void:
 	DimensionManager.door_open.connect(on_door_open)
 	DimensionManager.door_close.connect(on_door_close)
 	DimensionManager.boss_started.connect(on_boss_started)
+	DimensionManager.closing_cue.connect(on_closing)
+	DimensionManager.cutscene_end.connect(on_cutscene_end)
 	camera_2d.limit_left = camera_left_limit
 	camera_2d.limit_right = camera_right_limit
 	
@@ -50,19 +53,11 @@ func on_add_health():
 	health_component.health_changed.emit()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("shoot") && can_shoot_pistol && weapon != null:
+	if Input.is_action_just_pressed("shoot") && can_shoot_pistol && weapon != null && state_machine.current_state != off:
 		weapon.shoot()
 
 func _process(delta):
 	label.text = str(state_machine.current_state.name)
-	
-	#if animated_sprite.flip_h == false :
-		#camera_target = owner.position.x + target_distance - screen_width/2
-		#camera_2d.offset.x = min(camera_2d.offset.x + camera_speed, camera_target)
-	#else:
-		#camera_target = owner.position.x - target_distance - screen_width/2
-		#camera_2d.offset.x = max(camera_2d.offset.x - camera_speed, camera_target)
-	#camera_2d.offset.y = owner.position.y - 50
 	
 	if health_component.current_health <= 0:
 		DimensionManager.emit_signal("player_died")
@@ -87,7 +82,7 @@ func _physics_process(delta):
 		else :
 			weapon.sprite.rotation = deg_to_rad(0.0)
 			
-	if Input.is_action_just_pressed("Throw") && grenade_count > 0 :
+	if Input.is_action_just_pressed("Throw") && grenade_count > 0 && state_machine.current_state != off:
 		var grenade_x_force: int
 		if animated_sprite.flip_h == false:
 			grenade_x_force = get_local_mouse_position().x
@@ -106,6 +101,12 @@ func _physics_process(delta):
 		PickupManager.grenade_changed.emit()
 		
 	move_and_slide()
+	
+func on_closing():
+	state_machine.current_state.transitioned.emit(state_machine.current_state, "off")
+	
+func on_cutscene_end():
+	state_machine.current_state.transitioned.emit(state_machine.current_state, "idle")
 
 func SetShader_BlinkIntensity(newValue : float):
 	animated_sprite.material.set_shader_parameter("blink_intensity", newValue)
@@ -122,8 +123,6 @@ func _on_hurt_box_component_being_hit() -> void:
 	hurt_box_collision.set_deferred("disabled", false)
 	flag = false
 
-
-
 func timefreeze(timescale, duration):
 	Engine.time_scale = timescale
 	await get_tree().create_timer(duration * timescale).timeout
@@ -131,7 +130,6 @@ func timefreeze(timescale, duration):
 
 func _on_health_component_health_changed() -> void:
 	PickupManager.emit_signal("player_health_changed")
-
 
 func on_door_open():
 	animated_sprite.play("open_door")
@@ -151,5 +149,6 @@ func facing_right():
 
 func apply_shake():
 	shake_strength = randomStrength
+	
 func randomOffset() -> Vector2:
 	return Vector2(rng.randf_range(-shake_strength, shake_strength), rng.randf_range(-shake_strength, shake_strength))

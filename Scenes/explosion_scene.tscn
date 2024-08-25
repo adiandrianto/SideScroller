@@ -56,13 +56,15 @@ _data = {
 }
 
 [node name="ExplosionScene" type="Node2D"]
+z_index = 4000
 script = ExtResource("1_qfjd0")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_p8j7x")
 volume_db = -15.0
 pitch_scale = 0.9
 autoplay = true
+max_distance = 500.0
 bus = &"SFX"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

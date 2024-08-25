@@ -121,6 +121,7 @@ _data = {
 }
 
 [node name="HeartPickup" type="Area2D" node_paths=PackedStringArray("animation_player", "audio_stream_player")]
+z_index = 4000
 collision_layer = 512
 collision_mask = 256
 script = ExtResource("1_ffewv")
@@ -134,7 +135,7 @@ shape = SubResource("RectangleShape2D_7h485")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2buva")
-position = Vector2(17, -8)
+position = Vector2(1, -11)
 skew = -0.118945
 texture = ExtResource("2_poe6p")
 

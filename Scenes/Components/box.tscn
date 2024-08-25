@@ -1,22 +1,77 @@
-[gd_scene load_steps=7 format=3 uid="uid://brag2e0jicm06"]
+[gd_scene load_steps=12 format=3 uid="uid://brag2e0jicm06"]
 
 [ext_resource type="Script" path="res://Scripts/Component/box.gd" id="1_r0ibe"]
-[ext_resource type="Texture2D" uid="uid://dmr7gu1alv25s" path="res://Assets/box.png" id="2_5dhqh"]
+[ext_resource type="Texture2D" uid="uid://c6li1n3ig2bbg" path="res://Assets/BoxBreak.png" id="2_djjxe"]
+[ext_resource type="Material" uid="uid://bv3bavguqjynk" path="res://Shader/flash_shader.tres" id="2_s8qrd"]
 [ext_resource type="PackedScene" uid="uid://bymo4b7emw3qo" path="res://Scenes/Components/health_component.tscn" id="3_nyhlu"]
 [ext_resource type="PackedScene" uid="uid://k7o0o1pidjrf" path="res://Scenes/Components/hurt_box_component.tscn" id="4_oy2xb"]
+[ext_resource type="AudioStream" uid="uid://c2basxnam5r6d" path="res://Assets/Audio/SFX/Impact Burst.wav" id="6_y77vm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6x2fo"]
-size = Vector2(30, 22)
+size = Vector2(30, 31)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8wx6"]
-size = Vector2(30, 22)
+size = Vector2(30, 31)
+
+[sub_resource type="Animation" id="Animation_xd88n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_7f3xc"]
+resource_name = "break"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0t1h4"]
+_data = {
+"RESET": SubResource("Animation_xd88n"),
+"break": SubResource("Animation_7f3xc")
+}
 
 [node name="Box" type="StaticBody2D"]
+z_index = 4000
 collision_layer = 128
 script = ExtResource("1_r0ibe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_5dhqh")
+material = ExtResource("2_s8qrd")
+texture = ExtResource("2_djjxe")
+hframes = 5
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_nyhlu")]
 
@@ -26,11 +81,21 @@ collision_mask = 3
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
-visible = false
+position = Vector2(0, 8.5)
 shape = SubResource("RectangleShape2D_6x2fo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8.5)
 shape = SubResource("RectangleShape2D_b8wx6")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0t1h4")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_y77vm")
+max_distance = 500.0
+
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
-[connection signal="being_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_component_being_hit"]
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]

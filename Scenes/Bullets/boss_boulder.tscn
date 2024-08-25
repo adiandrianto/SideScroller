@@ -47,6 +47,7 @@ _data = {
 }
 
 [node name="BossBoulder" type="CharacterBody2D"]
+z_index = 4000
 script = ExtResource("1_wjy08")
 bullet_speed = 150
 
@@ -57,6 +58,7 @@ hframes = 4
 vframes = 5
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 position = Vector2(-13, -5.68434e-14)
 rotation = -1.5708
 scale = Vector2(0.36, 0.9)

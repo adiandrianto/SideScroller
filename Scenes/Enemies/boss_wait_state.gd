@@ -10,6 +10,7 @@ func state_enter():
 	timer.start(wait_time)
 	enemy.visible = false
 	alien_hurt_box.monitoring = false
+	alien_hurt_box.monitorable = false
 	shield_hurt_box.monitoring = false
 	shield_hurt_box.monitorable = false
 	
@@ -19,6 +20,7 @@ func state_physics_update(delta):
 func state_exit():
 	enemy.visible = true
 	alien_hurt_box.monitoring = true
+	alien_hurt_box.monitorable = true
 	shield_hurt_box.monitoring = true
 	shield_hurt_box.monitorable = true
 

@@ -13,3 +13,5 @@ signal boss_defeated
 signal opening_cue
 signal cutscene_end
 signal game_start
+signal closing_cue
+signal closing_finished

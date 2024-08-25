@@ -256,6 +256,7 @@ _data = {
 }
 
 [node name="BossClone" type="CharacterBody2D"]
+z_index = 4000
 material = SubResource("ShaderMaterial_1hxrr")
 script = ExtResource("2_8j1is")
 

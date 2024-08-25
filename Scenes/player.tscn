@@ -395,7 +395,7 @@ shape = SubResource("CapsuleShape2D_pupvq")
 z_index = 4000
 material = SubResource("ShaderMaterial_6eh7k")
 sprite_frames = SubResource("SpriteFrames_6wen4")
-animation = &"idle_with_arm"
+animation = &"idle"
 autoplay = "idle_with_arm"
 offset = Vector2(0, -7)
 
