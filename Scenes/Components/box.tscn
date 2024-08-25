@@ -74,6 +74,7 @@ texture = ExtResource("2_djjxe")
 hframes = 5
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_nyhlu")]
+max_health = 50
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_oy2xb")]
 collision_layer = 68
