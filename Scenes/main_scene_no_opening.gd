@@ -8,11 +8,9 @@ extends Node2D
 
 func _ready() -> void:
 	button.pressed.connect(on_button_pressed)
-	DimensionManager.is_inside = true
-	firstdoor.open()
-	DimensionManager.opening_cue.connect(on_opening_cue)
-	animation_player.play("opening_1")
-	player.on_closing()
+	DimensionManager.is_opening_done = true
+	DimensionManager.emit_signal("cutscene_end")
+	DimensionManager.is_inside = false
 
 func on_button_pressed():
 	if not animation_player.is_playing():
@@ -30,13 +28,6 @@ func pause():
 	
 func end_cutscene():
 	DimensionManager.emit_signal("cutscene_end")
-	
-func on_opening_cue():
-	if DimensionManager.is_opening_scene == true:
-		animation_player.play("opening_2")
-		
-func opening_2_finished():
-	DimensionManager.is_opening_done = true
 	
 func _on_closing_cue_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):

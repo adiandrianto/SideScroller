@@ -37,7 +37,7 @@ func _on_button_2_pressed() -> void:
 	button.visible = false
 	button_2.visible = false
 	await animation_player.animation_finished
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://Scenes/main_scene_no_opening.tscn")
 
 func on_player_died():
 	lost_sfx.play()

@@ -6,7 +6,6 @@ class_name Player
 @export var camera_left_limit: int
 @export var camera_right_limit: int
 @export var cutscene_animation_player: AnimationPlayer
-@onready var label = $Label
 @onready var health_component = $HealthComponent
 @onready var weapon = get_tree().get_first_node_in_group("weapon")
 @onready var grenade_scene = preload("res://Scenes/Weapons/Grenade.tscn")
@@ -21,8 +20,6 @@ class_name Player
 
 var cameraShakeNoise : FastNoiseLite
 var is_boss_fight:= false
-
-
 
 var direction = Input.get_axis("left", "right")
 
@@ -50,14 +47,12 @@ func on_add_grenade():
 func on_add_health():
 	health_component.current_health = min(2 + health_component.current_health, health_component.max_health)
 	health_component.health_changed.emit()
-
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("shoot") && can_shoot_pistol && weapon != null && state_machine.current_state != off:
 		weapon.shoot()
 
 func _process(delta):
-	label.text = str(state_machine.current_state.name)
-	
 	if health_component.current_health <= 0:
 		DimensionManager.emit_signal("player_died")
 		get_tree().paused = true

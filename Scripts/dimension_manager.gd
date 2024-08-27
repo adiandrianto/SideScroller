@@ -1,8 +1,8 @@
 extends Node
 
-var is_inside: bool = false
-var is_opening_scene: bool = true
-var is_opening_done:= false
+@onready var is_inside: bool = true
+@onready var is_opening_scene: bool = true
+@onready var is_opening_done:= false
 
 signal door_open
 signal door_close
