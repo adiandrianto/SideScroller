@@ -7,6 +7,7 @@ extends Node2D
 @onready var button: Button = $UI/Button
 
 func _ready() -> void:
+	PickupManager.update_player()
 	button.pressed.connect(on_button_pressed)
 	DimensionManager.is_opening_done = true
 	DimensionManager.emit_signal("cutscene_end")

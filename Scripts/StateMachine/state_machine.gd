@@ -1,7 +1,6 @@
 extends Node
 
 @export var initial_state: State
-@onready var idle: Node = %Idle
 
 var current_state: State
 var states: Dictionary = {}

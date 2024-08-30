@@ -11,13 +11,9 @@ signal add_health
 signal grenade_changed
 signal player_health_changed
 
-#func _ready() -> void:
-	#if is_instance_valid(player):
-		#player_health_changed.connect(on_player_health_changed)
-	#else:
-		#var player: Player = get_tree().get_first_node_in_group("player")
-		#player_health_changed.connect(on_player_health_changed)
-
+func update_player():
+	player = get_tree().get_first_node_in_group("player")
+	
 func change_weapon(pickup):
 	var scene = load(pickup)
 	if is_instance_valid(player):
@@ -40,8 +36,3 @@ func change_weapon(pickup):
 #
 		new_player.add_child(new_weapon)
 		new_player.weapon = new_weapon
-		
-#
-#func on_player_health_changed():
-	#player_health = player.health_component.current_health
-	#max_player_health = player.health_component.max_health

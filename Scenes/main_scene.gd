@@ -5,6 +5,7 @@ extends Node2D
 @onready var player: Player = get_tree().get_first_node_in_group("player")
 @onready var closing_cue: Area2D = $"------- Cutscene -------/ClosingCue"
 @onready var button: Button = $UI/Button
+@onready var is_paused: bool = false
 
 func _ready() -> void:
 	button.pressed.connect(on_button_pressed)
@@ -20,11 +21,13 @@ func on_button_pressed():
 		button.visible = false
 		
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("next") && not animation_player.is_playing():
+	if event.is_action_pressed("next") && is_paused:
 		animation_player.play()
 		button.visible = false
+		is_paused = false
 
 func pause():
+	is_paused = true
 	animation_player.pause()
 	button.visible = true
 	

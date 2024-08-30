@@ -1,12 +1,10 @@
-[gd_scene load_steps=68 format=4 uid="uid://bh8ymqtwwtbwv"]
+[gd_scene load_steps=62 format=4 uid="uid://bh8ymqtwwtbwv"]
 
 [ext_resource type="Script" path="res://Scenes/main_scene_no_opening.gd" id="1_fykh5"]
 [ext_resource type="PackedScene" uid="uid://cxqojxjxcqjin" path="res://Scenes/dog.tscn" id="6_dx4be"]
 [ext_resource type="Texture2D" uid="uid://df0fmbcflncue" path="res://Assets/Enemy Sprite/boss_and_dog.png" id="10_4mdlw"]
 [ext_resource type="PackedScene" uid="uid://ddhv81dvrtjb3" path="res://Scenes/player.tscn" id="11_8g133"]
 [ext_resource type="PackedScene" uid="uid://b4juscy5r14s5" path="res://Scenes/Weapons/pistol.tscn" id="12_b04fb"]
-[ext_resource type="PackedScene" uid="uid://c3paj8v8u8yny" path="res://Scenes/pickup_manager.tscn" id="12_tk3nr"]
-[ext_resource type="PackedScene" uid="uid://1qjbnii0rrri" path="res://Scenes/dimension_manager.tscn" id="13_4flq8"]
 [ext_resource type="PackedScene" uid="uid://cv03uet6ywynh" path="res://Scenes/UI/grenade_ammo_ui.tscn" id="14_sx0uq"]
 [ext_resource type="PackedScene" uid="uid://ctuy78wbdejks" path="res://Scenes/UI/health_ui.tscn" id="15_7labi"]
 [ext_resource type="PackedScene" uid="uid://ewaovw0m3vvb" path="res://Scenes/death_popup.tscn" id="16_ibox2"]
@@ -31,10 +29,6 @@
 [ext_resource type="PackedScene" uid="uid://b7v1vgaqydiex" path="res://Scenes/ladder.tscn" id="35_82vit"]
 [ext_resource type="PackedScene" uid="uid://dpq85atgs6uk7" path="res://Scenes/Components/door_component.tscn" id="36_2n7ej"]
 [ext_resource type="PackedScene" uid="uid://bw1ry8f6oe5jk" path="res://Scenes/Components/door_big.tscn" id="37_1a5nr"]
-[ext_resource type="Script" path="res://Scenes/audio_stream_player.gd" id="38_roemh"]
-[ext_resource type="AudioStream" uid="uid://dr08ri1tbree5" path="res://Assets/Audio/Music/Juhani Junkala [Retro Game Music Pack] Level 1.wav" id="39_41rh5"]
-[ext_resource type="AudioStream" uid="uid://c7d05d7pg8tls" path="res://Assets/Audio/Music/Juhani Junkala [Retro Game Music Pack] Level 3.wav" id="40_hick3"]
-[ext_resource type="AudioStream" uid="uid://b5elocdjdk46w" path="res://Assets/Audio/Music/Juhani Junkala [Retro Game Music Pack] Ending.wav" id="41_q13je"]
 [ext_resource type="PackedScene" uid="uid://bg4qgy6incsek" path="res://Scenes/Enemies/bomber_enemy.tscn" id="42_dox0m"]
 [ext_resource type="PackedScene" uid="uid://ckvoiwx40mj15" path="res://Scenes/Enemies/flying_enemy.tscn" id="43_oc6qx"]
 [ext_resource type="PackedScene" uid="uid://b6naww1axjgso" path="res://Scenes/Enemies/enemy_a.tscn" id="44_2y1wu"]
@@ -903,10 +897,6 @@ libraries = {
 "": SubResource("AnimationLibrary_6jhat")
 }
 
-[node name="PickupManager" parent="." instance=ExtResource("12_tk3nr")]
-
-[node name="DimensionManager" parent="." instance=ExtResource("13_4flq8")]
-
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="GrenadeAmmoUI" parent="UI" instance=ExtResource("14_sx0uq")]
@@ -1344,10 +1334,6 @@ position = Vector2(6885, 207)
 tile_map = NodePath("../../TileMap")
 second_dimension = NodePath("../../GroundTile/2ndDimension")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." groups=["music"]]
-script = ExtResource("38_roemh")
-audio_list = Array[AudioStream]([ExtResource("39_41rh5"), ExtResource("40_hick3"), ExtResource("41_q13je")])
-
 [node name="------- Enemy -------" type="Node" parent="."]
 
 [node name="Bomber" parent="------- Enemy -------" instance=ExtResource("42_dox0m")]
@@ -1485,5 +1471,4 @@ position = Vector2(7672, -125)
 rotation = -1.5708
 
 [connection signal="area_entered" from="------- Cutscene -------/ClosingCue" to="." method="_on_closing_cue_area_entered"]
-[connection signal="area_entered" from="BossAreaDetector" to="AudioStreamPlayer" method="_on_boss_area_detector_area_entered"]
 [connection signal="area_entered" from="BossAreaDetector" to="BossAreaDetector" method="_on_area_entered"]

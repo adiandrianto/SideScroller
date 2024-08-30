@@ -1484,6 +1484,7 @@ editor_draw_drag_margin = true
 libraries = {
 "": SubResource("AnimationLibrary_6jhat")
 }
+autoplay = "opening_1"
 
 [node name="PickupManager" parent="." instance=ExtResource("1_uh81h")]
 
@@ -1534,6 +1535,8 @@ text = "I have to save Jax from those creature.
 Better take my gun inside the house."
 scroll_active = false
 tab_size = 1
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="Button" type="Button" parent="UI"]
 visible = false

@@ -26,7 +26,6 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("interact") && can_open && label.visible == true :
 			sprite.frame = 1
 			PickupManager.change_weapon(pickup_path)
-			DimensionManager.emit_signal("game_start")
 			can_open =  false
 			animation_player.play("opening_3")
 		
