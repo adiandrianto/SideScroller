@@ -542,7 +542,7 @@ tracks/5/keys = {
 "update": 1,
 "values": ["Wha..?! Are those aliens?
 Hey give me back my dog !", "Where are you taking him?
-DAMN YOU !!", "I have to save Jax from those creature.
+DAMN YOU !!", "I have to save Jax from those creatures.
 Better take my gun inside the house.", "I have to save Jax from those creature.
 Better take my gun inside the house."]
 }
@@ -1416,7 +1416,7 @@ stream = ExtResource("3_3qq6r")
 [node name="Sprite2D" type="Sprite2D" parent="------- Cutscene -------"]
 visible = false
 z_index = 4096
-position = Vector2(62, 11)
+position = Vector2(62, -6)
 texture = ExtResource("4_dgiqf")
 
 [node name="PointLight2D" type="PointLight2D" parent="------- Cutscene -------/Sprite2D"]
