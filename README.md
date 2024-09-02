@@ -1,0 +1,1 @@
+Game project developed for the Gaming Academy 4.0 Gamejam. This repository contains the source code and assets for our game, created within the time constraints of the game jam. Feel free to explore, fork, and learn from our project!
