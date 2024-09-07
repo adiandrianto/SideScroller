@@ -15,3 +15,4 @@ signal opening_cue
 signal cutscene_end
 signal closing_cue
 signal closing_finished
+signal game_start

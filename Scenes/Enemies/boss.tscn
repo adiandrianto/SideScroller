@@ -1016,7 +1016,7 @@ enemy = NodePath("../..")
 script = ExtResource("12_00bud")
 
 [node name="AlienHealth" parent="." instance=ExtResource("5_h1bo7")]
-max_health = 450
+max_health = 600
 
 [node name="ShieldHealth" parent="." instance=ExtResource("5_h1bo7")]
 max_health = 150

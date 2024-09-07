@@ -28,6 +28,7 @@ func _process(delta: float) -> void:
 			PickupManager.change_weapon(pickup_path)
 			can_open =  false
 			animation_player.play("opening_3")
+			DimensionManager.emit_signal("game_start")
 		
 func invincible():
 	visible = false

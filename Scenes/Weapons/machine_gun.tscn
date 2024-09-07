@@ -21,6 +21,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_4xxvg"]
 resource_name = "gunshoot"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -28,10 +29,10 @@ tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.366667),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0]
+"values": [1, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3b3ms"]
@@ -48,11 +49,12 @@ marker_left = NodePath("MarkerLeft")
 marker_right = NodePath("MarkerRight")
 marker_up = NodePath("MarkerUp")
 bullet_scene = ExtResource("2_lh4mo")
-shoot_delay = 0.15
+shoot_delay = 0.2
 animation_player = NodePath("AnimationPlayer")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("3_exnms")
+hframes = 2
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
 position = Vector2(-26, 0)

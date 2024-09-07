@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b6naww1axjgso"]
+[gd_scene load_steps=28 format=3 uid="uid://b6naww1axjgso"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_a.gd" id="1_2wlea"]
 [ext_resource type="Material" uid="uid://bv3bavguqjynk" path="res://Shader/flash_shader.tres" id="2_1puhj"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/enemy_a_attack_state.gd" id="7_wdkut"]
 [ext_resource type="PackedScene" uid="uid://r2lnjgv0j4c6" path="res://Scenes/Components/enemy_visible_notifier_component.tscn" id="10_6r6ak"]
 [ext_resource type="Texture2D" uid="uid://dtilirthowc05" path="res://Assets/splatter_green.png" id="11_ckjko"]
+[ext_resource type="Script" path="res://Scripts/Component/hit_box_component.gd" id="12_7bn5h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86hr5"]
 size = Vector2(18, 39)
@@ -77,10 +78,6 @@ _data = {
 "move": SubResource("Animation_2q8g0")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mh1m4"]
-radius = 7.0
-height = 34.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p62v4"]
 size = Vector2(331, 216)
 
@@ -140,6 +137,13 @@ animations = [{
 "name": &"blood_splatter",
 "speed": 10.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mh1m4"]
+radius = 7.0
+height = 34.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rx3gs"]
+size = Vector2(20, 34)
 
 [node name="EnemyA" type="CharacterBody2D" groups=["enemy"]]
 z_index = 99
@@ -202,10 +206,7 @@ libraries = {
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(31, 0)
-
-[node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
-shape = SubResource("CapsuleShape2D_mh1m4")
+collision_mask = 129
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -225,6 +226,19 @@ sprite_frames = SubResource("SpriteFrames_th8rk")
 animation = &"blood_splatter"
 frame = 6
 frame_progress = 1.0
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_mh1m4")
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 256
+script = ExtResource("12_7bn5h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_rx3gs")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
