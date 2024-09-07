@@ -17,6 +17,7 @@ func _ready() -> void:
 	
 func _on_button_pressed() -> void:
 	click.play()
+	await click.finished
 	animation_player.play("fade_out")
 	label.visible = false
 	button.visible = false
@@ -32,6 +33,7 @@ func _on_button_pressed() -> void:
 
 func _on_button_2_pressed() -> void:
 	click.play()
+	await click.finished
 	label.visible = false
 	button.visible = false
 	button_2.visible = false
@@ -49,6 +51,8 @@ func on_player_died():
 
 func _on_button_mouse_entered() -> void:
 	hover.play()
+	await hover.finished
 
 func _on_button_2_mouse_entered() -> void:
 	hover.play()
+	await hover.finished
