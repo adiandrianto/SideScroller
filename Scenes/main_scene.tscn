@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://prdqngk2fp8c"]
+[gd_scene load_steps=78 format=4 uid="uid://prdqngk2fp8c"]
 
 [ext_resource type="Script" path="res://Scenes/main_scene.gd" id="1_4g3r8"]
 [ext_resource type="PackedScene" uid="uid://1qjbnii0rrri" path="res://Scenes/dimension_manager.tscn" id="1_cnxul"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://obmfmh1xobvy" path="res://Assets/Audio/SFX/Spaceship Manoeuvres-003.wav" id="9_3a4is"]
 [ext_resource type="FontFile" uid="uid://d3d0wi2vagy5i" path="res://Assets/Fonts/mago1.ttf" id="9_gku2d"]
 [ext_resource type="AudioStream" uid="uid://pm4kgprkafir" path="res://Assets/Audio/SFX/Dog bark 2.wav" id="9_r1cvu"]
+[ext_resource type="AudioStream" uid="uid://bwmxlhqsultx3" path="res://Assets/Audio/textsound.sfxr" id="11_utqc0"]
 [ext_resource type="Texture2D" uid="uid://df0fmbcflncue" path="res://Assets/Enemy Sprite/boss_and_dog.png" id="12_c431r"]
 [ext_resource type="PackedScene" uid="uid://b6naww1axjgso" path="res://Scenes/Enemies/enemy_a.tscn" id="12_ek4mn"]
 [ext_resource type="Texture2D" uid="uid://ddl13txlc7mr8" path="res://Assets/Tileset/Night/3.png" id="13_278w3"]
@@ -152,6 +153,18 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("UI/PanelContainer/RichTextLabel:visible_ratio")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_oeqdw"]
 resource_name = "closing"
@@ -194,17 +207,41 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(2.1, 3.2, 4, 5.06667, 5.96667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.933333, 2, 2.1, 2.26667, 3.16667, 3.2, 3.3, 3.96667, 4, 4.33333, 5.03333, 5.06667, 5.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
-"method": &"pause"
+"method": &"timer_start"
+}, {
+"args": [],
+"method": &"timer_stop"
 }, {
 "args": [],
 "method": &"pause"
 }, {
 "args": [],
+"method": &"timer_start"
+}, {
+"args": [],
+"method": &"timer_stop"
+}, {
+"args": [],
 "method": &"pause"
+}, {
+"args": [],
+"method": &"timer_start"
+}, {
+"args": [],
+"method": &"timer_stop"
+}, {
+"args": [],
+"method": &"pause"
+}, {
+"args": [],
+"method": &"timer_start"
+}, {
+"args": [],
+"method": &"timer_stop"
 }, {
 "args": [],
 "method": &"pause"
@@ -359,26 +396,68 @@ tracks/7/path = NodePath(".")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(3.03333, 4.03333, 5.33333, 6.9, 8, 9.03333, 13.2333, 13.9667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(2.03333, 3, 3.03333, 3.1, 4, 4.03333, 4.1, 5.3, 5.33333, 5.4, 6.83333, 6.9, 6.96667, 7.96667, 8, 8.06667, 9, 9.03333, 12.3, 13.2, 13.2333, 13.9667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
-"method": &"pause"
+"method": &"timer_start"
+}, {
+"args": [],
+"method": &"timer_stop"
 }, {
 "args": [],
 "method": &"pause"
 }, {
 "args": [],
-"method": &"pause"
+"method": &"timer_start"
+}, {
+"args": [],
+"method": &"timer_stop"
 }, {
 "args": [],
 "method": &"pause"
 }, {
 "args": [],
-"method": &"pause"
+"method": &"timer_start"
+}, {
+"args": [],
+"method": &"timer_stop"
 }, {
 "args": [],
 "method": &"pause"
+}, {
+"args": [],
+"method": &"timer_start"
+}, {
+"args": [],
+"method": &"timer_stop"
+}, {
+"args": [],
+"method": &"pause"
+}, {
+"args": [],
+"method": &"timer_start"
+}, {
+"args": [],
+"method": &"timer_stop"
+}, {
+"args": [],
+"method": &"pause"
+}, {
+"args": [],
+"method": &"timer_start"
+}, {
+"args": [],
+"method": &"timer_stop"
+}, {
+"args": [],
+"method": &"pause"
+}, {
+"args": [],
+"method": &"timer_start"
+}, {
+"args": [],
+"method": &"timer_stop"
 }, {
 "args": [],
 "method": &"pause"
@@ -537,13 +616,13 @@ tracks/5/path = NodePath("UI/PanelContainer/RichTextLabel:text")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.866667, 4.96667, 9.2, 14.8667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.866667, 4.96667, 5.76667, 6.2, 9.2, 10.4333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": ["Wha..?! Are those aliens?
 Hey give me back my dog !", "Where are you taking him?
-DAMN YOU !!", "I have to save Jax from those creatures... Better take my gun from the chest inside the house.", "I have to save Jax from those creature.
-Better take my gun inside the house."]
+DAMN YOU !!", "I have to save Jax from those creatures... Better take my gun from the chest inside the house.", "Where are you taking him?
+DAMN YOU !!", "I have to save Jax from those creatures... Better take my gun from the chest inside the house.", "I have to save Jax from those creatures... Better take my gun from the chest inside the house."]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -552,10 +631,10 @@ tracks/6/path = NodePath("UI/PanelContainer/RichTextLabel:visible_ratio")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.866667, 1.8, 2.9, 2.96667, 4.9, 6.2, 7.63333, 7.73333, 9.2, 10.4333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.866667, 1.8, 2.9, 2.96667, 4.93333, 6.2, 7.63333, 9.2, 10.4333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0]
+"values": [0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -588,9 +667,27 @@ tracks/9/path = NodePath(".")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(13.8, 14.1333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.866667, 1.8, 4.96667, 6.2, 9.2, 10.4333, 13.8, 14.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"timer_start"
+}, {
+"args": [],
+"method": &"timer_stop"
+}, {
+"args": [],
+"method": &"timer_start"
+}, {
+"args": [],
+"method": &"timer_stop"
+}, {
+"args": [],
+"method": &"timer_start"
+}, {
+"args": [],
+"method": &"timer_stop"
+}, {
 "args": [],
 "method": &"opening_2_finished"
 }, {
@@ -1413,16 +1510,15 @@ volume_db = -9.551
 stream = ExtResource("3_3qq6r")
 
 [node name="Sprite2D" type="Sprite2D" parent="------- Cutscene -------"]
-visible = false
 z_index = 4096
-position = Vector2(62, -6)
+position = Vector2(214, -20)
 texture = ExtResource("4_dgiqf")
 
 [node name="PointLight2D" type="PointLight2D" parent="------- Cutscene -------/Sprite2D"]
 position = Vector2(1, 146)
 scale = Vector2(0.723958, 1.07813)
 color = Color(0, 0.72, 0.516, 1)
-energy = 5.0
+energy = 0.0
 texture = ExtResource("5_kmt4e")
 texture_scale = 3.0
 
@@ -1436,7 +1532,7 @@ frame_progress = 0.0
 [node name="Alien" type="Sprite2D" parent="------- Cutscene -------"]
 visible = false
 z_index = 99
-position = Vector2(73, 198)
+position = Vector2(72, -24)
 texture = ExtResource("8_6i6iy")
 
 [node name="SpaceshipFly" type="AudioStreamPlayer" parent="------- Cutscene -------"]
@@ -1458,8 +1554,16 @@ shape = SubResource("RectangleShape2D_26itn")
 
 [node name="BossDog" type="Sprite2D" parent="------- Cutscene -------"]
 z_index = 4000
-position = Vector2(9103, 136)
+position = Vector2(9155.17, 102.171)
+rotation = 0.0112604
 texture = ExtResource("12_c431r")
+
+[node name="textsound" type="AudioStreamPlayer" parent="------- Cutscene -------"]
+stream = ExtResource("11_utqc0")
+volume_db = -6.0
+
+[node name="Timer" type="Timer" parent="------- Cutscene -------"]
+wait_time = 0.1
 
 [node name="Player" parent="." node_paths=PackedStringArray("cutscene_animation_player") instance=ExtResource("1_gfy2y")]
 z_index = 4004
@@ -1471,7 +1575,7 @@ cutscene_animation_player = NodePath("../AnimationPlayer")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -50)
 scale = Vector2(2.04, 1)
-offset = Vector2(50, 0)
+offset = Vector2(50, -15.6248)
 process_callback = 0
 limit_left = -500
 limit_smoothed = true
@@ -1534,8 +1638,9 @@ mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("9_gku2d")
 theme_override_font_sizes/normal_font_size = 16
-text = "I have to save Jax from those creature.
-Better take my gun inside the house."
+text = "What do you mean?
+Wait, No,  Jax !!
+"
 scroll_active = false
 tab_size = 1
 visible_characters = 0
@@ -2070,5 +2175,6 @@ position = Vector2(7672, -125)
 rotation = -1.5708
 
 [connection signal="area_entered" from="------- Cutscene -------/ClosingCue" to="." method="_on_closing_cue_area_entered"]
+[connection signal="timeout" from="------- Cutscene -------/Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="BossAreaDetector" to="AudioStreamPlayer" method="_on_boss_area_detector_area_entered"]
 [connection signal="area_entered" from="BossAreaDetector" to="BossAreaDetector" method="_on_area_entered"]

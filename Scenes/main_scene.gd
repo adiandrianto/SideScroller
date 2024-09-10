@@ -6,6 +6,9 @@ extends Node2D
 @onready var closing_cue: Area2D = $"------- Cutscene -------/ClosingCue"
 @onready var button: Button = $UI/Button
 @onready var is_paused: bool = false
+@onready var textsound: AudioStreamPlayer = $"------- Cutscene -------/textsound"
+@onready var rich_text_label: RichTextLabel = $UI/PanelContainer/RichTextLabel
+@onready var sfx_timer: Timer = $"------- Cutscene -------/Timer"
 
 func _ready() -> void:
 	button.pressed.connect(on_button_pressed)
@@ -46,3 +49,18 @@ func _on_closing_cue_area_entered(area: Area2D) -> void:
 		DimensionManager.emit_signal("closing_cue")
 		animation_player.play("closing")
 		closing_cue.call_deferred("queue_free")
+
+func timer_start():
+	sfx_timer.start()
+	
+func timer_stop():
+	sfx_timer.stop()
+	
+func _on_timer_timeout() -> void:
+	var sfx = textsound.duplicate()
+
+	sfx.pitch_scale = randf_range(0.8, 1.2)
+	get_tree().root.add_child(sfx)
+	sfx.play()
+	await sfx.finished
+	sfx.queue_free()

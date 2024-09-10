@@ -6,6 +6,7 @@ extends State
 @export var jump_gravity:= 900
 @onready var animated_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var ray_cast: RayCast2D = $"../../RayCastFront"
+@onready var smoke = preload("res://Scenes/smokejump.tscn")
 		
 func state_physics_update(delta):
 	var direction = Input.get_axis("left", "right")
@@ -41,6 +42,9 @@ func state_physics_update(delta):
 		
 func state_enter():
 	animated_sprite.play("jump")
+	var fx = smoke.instantiate()
+	fx.global_position = owner.global_position
+	get_tree().root.add_child(fx)
 	if owner.is_on_floor():
 		owner.velocity.y = jump_height
 	

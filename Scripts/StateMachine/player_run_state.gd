@@ -4,10 +4,10 @@ extends State
 @export var speed: int
 @export var max_horizontal_speed : int
 @onready var ray_cast: RayCast2D = $"../../RayCastFront"
-	
+@onready var smoke = preload("res://Scenes/smokerun.tscn")
+
 func state_physics_update(delta):
 	var direction = Input.get_axis("left", "right")
-	
 	if direction && owner.weapon != null:
 		owner.velocity.x += direction * speed
 		owner.velocity.x = clamp(owner.velocity.x, -max_horizontal_speed, max_horizontal_speed)
@@ -42,10 +42,21 @@ func state_physics_update(delta):
 	owner.move_and_slide()
 	
 func state_enter():
+	var direction = Input.get_axis("left", "right")
 	if owner.weapon != null:
+		var fx = smoke.instantiate()
+		if direction < 0:
+			fx.flip_h = true
+		elif direction > 0 :
+			fx.flip_h = false
+		fx.global_position = owner.global_position
+		get_tree().root.add_child(fx)
+	
 		animated_sprite.play("run")
 		owner.weapon.visible = true
+		
 	elif owner.weapon == null:
 		animated_sprite.play("walk")
+		
 	
 	
