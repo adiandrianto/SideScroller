@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://gbgtu7pqi1j0" path="res://Assets/Tileset/tileset1.png" id="2_85bff"]
 [ext_resource type="Texture2D" uid="uid://dp5gxubw1ois4" path="res://Assets/Tileset/tileset_city_free.png" id="3_ouvfl"]
 [ext_resource type="Texture2D" uid="uid://dgjvhuug5abq2" path="res://Assets/Tileset/house.png" id="4_uontd"]
-[ext_resource type="Script" path="res://Scenes/ground_tile.gd" id="5_1rhul"]
+[ext_resource type="Script" path="res://Scripts/ground_tile.gd" id="5_1rhul"]
 
 [sub_resource type="Environment" id="Environment_geolv"]
 background_mode = 3

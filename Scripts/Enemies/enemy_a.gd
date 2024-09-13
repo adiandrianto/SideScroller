@@ -13,6 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var ray_cast: RayCast2D = $RayCast2D
 @onready var blood_splatter: AnimatedSprite2D = $Blood_Splatter
+@onready var hit_box_component: HitBoxComponent = $HitBoxComponent
 
 const ENEMY_A_DEATH_SCENE = preload("res://Scenes/Enemies/enemy_a_death_scene.tscn")
 
@@ -38,11 +39,15 @@ func invincible():
 	visible = false
 	hurt_box_component.monitorable = false
 	hurt_box_component.monitoring = false
+	hit_box_component.monitorable = false
+	hit_box_component.monitoring = false
 	
 func can_be_seen():
 	visible = true
 	hurt_box_component.monitorable = true
 	hurt_box_component.monitoring = true
+	hit_box_component.monitorable = true
+	hit_box_component.monitoring = true
 	
 func _on_health_component_died() -> void:
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://0lhxpdmj4smc"]
 
-[ext_resource type="Script" path="res://Scenes/Credits/Credits.gd" id="1_fr6q4"]
+[ext_resource type="Script" path="res://Scripts/Credits.gd" id="1_fr6q4"]
 [ext_resource type="Texture2D" uid="uid://p80ndd82gj30" path="res://Assets/TitleScreen/TitleScreenBG2.jpg" id="2_gtxaw"]
 [ext_resource type="FontFile" uid="uid://dtpew0jy7sjbf" path="res://Assets/Fonts/PeaberryDoublespace.ttf" id="2_kt0ng"]
 

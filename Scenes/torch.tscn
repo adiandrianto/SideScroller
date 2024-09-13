@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cnlxrivc4bcvf"]
 
-[ext_resource type="Script" path="res://Scenes/torch.gd" id="1_2y81c"]
+[ext_resource type="Script" path="res://Scripts/torch.gd" id="1_2y81c"]
 [ext_resource type="Texture2D" uid="uid://dquvggr0tqqbn" path="res://Assets/Enemy Sprite/torch.png" id="2_15fll"]
 [ext_resource type="PackedScene" uid="uid://be4lfovfuvq74" path="res://Scenes/Components/hit_box_component.tscn" id="2_pa8hy"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://ewaovw0m3vvb"]
 
-[ext_resource type="Script" path="res://Scenes/death_popup.gd" id="1_fl8vd"]
+[ext_resource type="Script" path="res://Scripts/death_popup.gd" id="1_fl8vd"]
 [ext_resource type="FontFile" uid="uid://dtpew0jy7sjbf" path="res://Assets/Fonts/PeaberryDoublespace.ttf" id="2_yhlom"]
 [ext_resource type="AudioStream" uid="uid://dyv0nbqau84hi" path="res://Assets/Audio/SFX/UI Button/Ui Hover.wav" id="3_habov"]
 [ext_resource type="AudioStream" uid="uid://bplo8duute5w2" path="res://Assets/Audio/SFX/UI Button/Ui Click.wav" id="4_r4i7b"]

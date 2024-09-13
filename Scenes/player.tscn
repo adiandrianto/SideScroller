@@ -22,7 +22,7 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine/player_jump_state.gd" id="15_0uodt"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/player_fall_state.gd" id="15_4ki7g"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/player_climb_ledge_state.gd" id="20_xygf4"]
-[ext_resource type="Script" path="res://Scenes/player_off_state.gd" id="23_cyjib"]
+[ext_resource type="Script" path="res://Scripts/player_off_state.gd" id="23_cyjib"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pupvq"]
 radius = 5.0

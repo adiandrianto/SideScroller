@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cau0d7myn7cwv"]
 
 [ext_resource type="Texture2D" uid="uid://b1ua0blm858cn" path="res://Assets/Player Sprite/smokerun.png" id="1_id66j"]
-[ext_resource type="Script" path="res://Scenes/smokerun.gd" id="2_ig0s5"]
+[ext_resource type="Script" path="res://Scripts/smokerun.gd" id="2_ig0s5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qrt37"]
 atlas = ExtResource("1_id66j")

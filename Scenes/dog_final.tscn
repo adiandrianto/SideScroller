@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://bf1fn832hioxq"]
 
-[ext_resource type="Script" path="res://Scenes/dog_final.gd" id="1_fj4mq"]
+[ext_resource type="Script" path="res://Scripts/dog_final.gd" id="1_fj4mq"]
 [ext_resource type="Texture2D" uid="uid://b4t8qaljmgaqc" path="res://Assets/Dog Sprite/Idle.png" id="1_mehwp"]
 [ext_resource type="Texture2D" uid="uid://dqiysfhc1f3vf" path="res://Assets/Dog Sprite/Walk.png" id="2_ynftv"]
 

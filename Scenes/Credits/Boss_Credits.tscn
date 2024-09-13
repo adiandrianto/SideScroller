@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://buctphcrlj1n6"]
 
-[ext_resource type="Script" path="res://Scenes/Credits/Boss_Credits.gd" id="1_8yy87"]
+[ext_resource type="Script" path="res://Scripts/Boss_Credits.gd" id="1_8yy87"]
 [ext_resource type="FontFile" uid="uid://dtpew0jy7sjbf" path="res://Assets/Fonts/PeaberryDoublespace.ttf" id="3_w4wia"]
 
 [sub_resource type="Animation" id="Animation_ywpo4"]

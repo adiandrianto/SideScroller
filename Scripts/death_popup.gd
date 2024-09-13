@@ -30,7 +30,6 @@ func _on_button_pressed() -> void:
 	button.disabled = true
 	button_2.disabled = true
 
-
 func _on_button_2_pressed() -> void:
 	click.play()
 	await click.finished

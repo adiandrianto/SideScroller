@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://ci2wrqhnocdw7" path="res://Shader/give_outline.tres" id="1_0xfe2"]
 [ext_resource type="Texture2D" uid="uid://cc7hbwbdo1yy0" path="res://Assets/button_corridor.png" id="1_37eko"]
-[ext_resource type="Script" path="res://Scenes/interact/button_corridor.gd" id="2_li0mg"]
+[ext_resource type="Script" path="res://Scripts/button_corridor.gd" id="2_li0mg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j46yu"]
 shader = ExtResource("1_0xfe2")
